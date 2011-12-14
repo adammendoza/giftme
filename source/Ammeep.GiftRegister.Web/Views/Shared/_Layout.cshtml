@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+</head>
+
+<body>
+   <div class="topbar">     
+    <div class="topbar-inner">
+        <div class="container-fluid">
+             @Html.Partial("_Toplinks")
+             @Html.Partial("_LoggedInUser")
+        </div>
+    </div>
+    </div>
+
+    <div class="container-fluid">
+        @RenderBody()
+        @Html.Partial("_Footer")
+    </div> <!-- /container -->
+
+</body>
+</html>
