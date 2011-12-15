@@ -1,0 +1,9 @@
+# git ignore file
+[Oo]bj/
+[Bb]in/
+*.suo
+*.user
+/TestResults
+*.vspscc
+*.vssscc
+_ReSharper*
