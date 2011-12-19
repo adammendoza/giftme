@@ -1,3 +1,216 @@
+body {
+    background: #FFF url('Images/tile.gif') repeat top center;
+    margin: 0;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+	
+
+h1 {
+    font-size: 20px;
+    text-align: center;
+}
+
+
+h1 a:link, h1 a:visited {
+    color: #FFFFFF;
+}
+
+h1 a:hover {
+    color: #c1e4f2;
+    text-decoration: underline;
+}
+
+
+a:link {
+    color: #166FC3;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #166FC3;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #166FC3;
+    text-decoration: underline;
+}
+	
+/* Container */
+
+#container {
+    width: 900px;
+    margin: 0px auto;
+    min-height: 1200px;
+    border-left: #C1E4F2 solid 5px;
+    border-right: #C1E4F2 solid 5px;
+    background-color: #FFFFFF;
+	
+}
+
+/* Header */
+
+#header {
+    background-color: #FFFFFF;
+    height: 232px;
+    width: 900px;
+    margin: 0px auto;
+    background-image: url('Images/header_bg.gif');
+    position: relative;
+}
+
+#header_flag {
+    width: 788px;
+    height: 174px;
+    background-image: url('Images/flag_img.png');
+    margin-left: -40px;
+    position: absolute;
+    top: 20px;
+    left: 0px;
+}
+
+#date {
+    width: 157px;
+    height: 42px;
+    background-image: url('Images/date.png');
+    margin-right: 20px;
+    margin-top: 88px;
+    float: right;
+
+}
+
+/* Navigation */
+
+#nav {
+    width: 900px;
+    height: 49px;
+    margin-top: 13px;
+}
+
+#nav_list li {
+    display: inline;
+    list-style-type: none;
+    width: 186px;
+    height: 40px;
+    background: #633b1c;
+    border: 5px solid #b19d8d;
+    margin-left: 10px;
+    float: left;
+
+}
+
+/* Page Content */
+
+#content {
+    background-color: #FFFFFF;
+    height: 232px;
+    width: 900px;
+    margin: 0px auto;
+}
+
+#welcome_text {
+    height: 40px;
+    width: 629px;
+    background-image: url('Images/welcome_text.png');
+    margin-top: 43px;
+    margin-left: 24px;
+}
+
+#hello {
+    height: 250px;
+    width: 900px;
+    margin: 0px auto;
+}
+
+#hello_box {
+    width: 756px;
+    height: 232px;
+    background-color: #fbf1dc;
+    margin-left: 144px;
+    margin-top: 40px;
+    border-bottom: #f7e4ba solid 5px;
+}
+
+#hello_box_left {
+    width: 120px;
+    height: 232px;
+    background: url('Images/love_img.png') no-repeat;
+    float: left;
+    margin-left: -86px;
+    margin-top: 13px;
+    position: absolute;
+}
+
+#hello_box_right {
+    width: 686px;
+    height: 232px;
+    padding-left: 40px;
+}
+
+#hello_box_right p {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 15px;
+    color: #633b1c;
+    padding: 20px;
+}
+
+#purchase_flag {
+    width: 431px;
+    background: url('Images/flag_purchase.png') no-repeat;
+    margin-left: -40px;
+    margin-top: 27px;
+}
+
+#purchase_text {
+    width: 750px;
+    height: 100px;
+    padding-left: 65px;
+    padding-top: 65px;
+}
+
+#purchase_text p {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 15px;
+    color: #633b1c;
+}
+			
+/* Registry starts here */
+
+#registry_flag {
+    width: 431px;
+    background: url('Images/flag_registry.png') no-repeat;
+    margin-left: -40px;
+    margin-top: 75px;
+    height: 66px;
+}
+
+
+
+
+
+/* Footer */
+
+#footer {
+    width: 900px;
+    height: 80px;
+    background-color: #c1e4f2;
+    border-top: 5px solid #e0f1f8;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+#footer h1 {
+    color: #633b1c;
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 5px;
+    font-size: 15px;
+}
+
 .giftRow {
     border-top: 2px solid #eee;
     padding: 20px;
