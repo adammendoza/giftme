@@ -13,5 +13,10 @@ namespace Ammeep.GiftRegister.Web.Models
         public int QuantityRequired { get; set; }
         public decimal RetailPrice { get; set; }
         public bool IsPurchased { get; set; }
+
+        public string RetailPriceText
+        {
+            get { return string.Format("{0:C}", RetailPrice); }
+        }
     }
 }
