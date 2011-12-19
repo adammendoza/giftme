@@ -1,0 +1,38 @@
+﻿@model Ammeep.GiftRegister.Web.Models.GiftWish
+
+<div class="row giftRow">
+    <div class="span6">
+       <img src="@Model.ImageLocation" alt="Awesome Alt"/>
+    </div>
+    <div class="span16">
+        <div class="row">
+           <h4> @Model.ItemName</h4>
+        </div>
+        <div class="row">
+            @Model.Description
+        </div>
+            <div class="row">
+            <h5>Suggested Stores</h5> 
+        </div>
+    </div>
+    <div class="span8">
+        <table>
+            <thead>
+                 <tr>
+                    <td>Specific Item Required?</td>
+                    <td>Quantity</td>
+                    <td>RRP</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Yes</td>
+                    <td>2</td>
+                    <td>$20.00</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn primary">I'll get this!</button>
+    </div>
+</div>
+ 
