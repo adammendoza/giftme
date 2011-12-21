@@ -70,6 +70,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\and.png" />
+    <Content Include="Content\Images\button_get_this.png" />
     <Content Include="Content\Images\damask.png" />
     <Content Include="Content\Images\date.png" />
     <Content Include="Content\Images\eat.png" />

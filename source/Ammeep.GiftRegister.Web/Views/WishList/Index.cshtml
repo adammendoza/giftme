@@ -7,25 +7,13 @@
 
 <div id="registry_flag">
 </div>
-@*
-
-
-<div class="hero-unit">
-    <h2>All The Gifts!</h2>
-</div>
-
-<div>
-<h4>Welcome</h4>
-<p>Rump frankfurter meatball, brisket jowl ribeye pork tenderloin tongue filet mignon tri-tip shoulder hamburger. Frankfurter capicola sausage turkey. Meatloaf meatball jerky, sausage ribeye short ribs drumstick ham tongue pork chop hamburger. Swine chuck tri-tip shankle, tongue beef ribs tail pork loin prosciutto bacon kielbasa turducken ground round pork drumstick.</p>
-
-<h4>How to make a purchase</h4>
-<p>Biltong sirloin spare ribs, tongue chicken ham hock meatloaf frankfurter pork belly pork loin pork chop pancetta rump. Spare ribs sirloin meatball filet mignon turducken pork belly tail, chicken fatback jerky short ribs ribeye. Short loin brisket turkey cow, short ribs ball tip jerky.</p>
-</div>
 
 @foreach (var item in Model.GiftWishes) {
     @Html.Partial("GiftRow",item)
 }
 
+
+@*
  <!-- Modal -->
 <div id="moda" class="modal" style="position: relative; top: auto; left: auto; margin: 0 auto; z-index: 1">
     <div class="modal-header">
