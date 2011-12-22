@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ammeep.GiftRegister.Web.Models
 {
@@ -8,15 +8,17 @@ namespace Ammeep.GiftRegister.Web.Models
         public Uri ImageLocation { get; set; }
         public string ItemName { get; set; }
         public string Description { get; set; }
-        public IEnumerable<Uri> SuggestedStoreLinks { get; set; }
+        public Uri Website { get; set; }
+        public string SuggestedStores { get; set; }
+
+        [UIHint("YesNo")]
         public bool IsSpecificItemRequired { get; set; }
         public int QuantityRequired { get; set; }
+
+        [UIHint("Cost")]
         public decimal RetailPrice { get; set; }
         public bool IsPurchased { get; set; }
 
-        public string RetailPriceText
-        {
-            get { return string.Format("{0:C}", RetailPrice); }
-        }
+
     }
 }

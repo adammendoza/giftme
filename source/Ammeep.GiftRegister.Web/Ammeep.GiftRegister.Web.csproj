@@ -75,6 +75,7 @@
     <Content Include="Content\Images\damask.png" />
     <Content Include="Content\Images\date.png" />
     <Content Include="Content\Images\eat.png" />
+    <Content Include="Content\Images\email.png" />
     <Content Include="Content\Images\flag_help.png" />
     <Content Include="Content\Images\flag_img.png" />
     <Content Include="Content\Images\flag_purchase.png" />
@@ -173,6 +174,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Help.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\YesNo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\DisplayTemplates\Cost.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
