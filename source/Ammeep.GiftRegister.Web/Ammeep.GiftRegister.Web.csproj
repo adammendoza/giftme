@@ -75,6 +75,7 @@
     <Content Include="Content\Images\damask.png" />
     <Content Include="Content\Images\date.png" />
     <Content Include="Content\Images\eat.png" />
+    <Content Include="Content\Images\flag_help.png" />
     <Content Include="Content\Images\flag_img.png" />
     <Content Include="Content\Images\flag_purchase.png" />
     <Content Include="Content\Images\flag_registry.png" />
