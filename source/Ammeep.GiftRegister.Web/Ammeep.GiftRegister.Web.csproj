@@ -58,6 +58,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Admin.cs" />
+    <Compile Include="Models\AdminLoginModel.cs" />
     <Compile Include="Models\GiftWish.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Models\WishlistPageModel.cs" />
@@ -69,6 +71,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\admin_text.png" />
     <Content Include="Content\Images\and.png" />
     <Content Include="Content\Images\button_ill_get_this.png" />
     <Content Include="Content\Images\button_ill_get_this_hover.png" />
@@ -180,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\DisplayTemplates\Cost.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\AdminLogin.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

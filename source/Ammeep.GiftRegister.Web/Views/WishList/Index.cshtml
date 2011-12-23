@@ -4,7 +4,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+ @Html.Partial("Welcome")
+ @Html.Partial("HowTo")
+ 
 <div id="registry_flag">
 </div>
 <div id="registry_sort">
@@ -15,7 +17,7 @@
     @Html.Partial("GiftRow", item)
 }
 
-
+@Html.Partial("Help")
 @*
  <!-- Modal -->
 <div id="moda" class="modal" style="position: relative; top: auto; left: auto; margin: 0 auto; z-index: 1">
