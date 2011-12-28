@@ -1,6 +1,6 @@
 ﻿@model Ammeep.GiftRegister.Web.Models.AdminLoginModel
 @{
-    ViewBag.Title = "AdminLogin";
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
 <div class="content">
     <div class="loginbox">
         <p> Please enter your username and password. </p>
-         @using (Html.BeginForm("AdminLogin"))
+         @using (Html.BeginForm("Login"))
          {
         <div class="clearfix">
 

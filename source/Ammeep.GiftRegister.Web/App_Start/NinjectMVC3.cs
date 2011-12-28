@@ -50,6 +50,7 @@ namespace Ammeep.GiftRegister.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUserManager>().To<UserManager>();
+            kernel.Bind<IGiftManager>().To<GiftManager>();
         }        
     }
 }

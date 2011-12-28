@@ -73,9 +73,11 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Domain\IGiftManager.cs" />
     <Compile Include="Domain\IUserManager.cs" />
     <Compile Include="Domain\LoginResult.cs" />
     <Compile Include="Models\AdminLoginModel.cs" />
+    <Compile Include="Models\EditGiftPage.cs" />
     <Compile Include="Models\GiftRow.cs" />
     <Compile Include="Models\Gift.cs" />
     <Compile Include="Controllers\GiftController.cs" />
@@ -182,7 +184,7 @@
     <Content Include="Views\Shared\Navigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Gift\Index.cshtml" />
+    <Content Include="Views\Gift\Registry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Gift\GiftRow.cshtml" />
@@ -203,13 +205,16 @@
     <Content Include="Views\Shared\DisplayTemplates\Cost.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\AdminLogin.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\Manage.cshtml" />
+    <Content Include="Views\Gift\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\ManageGiftRow.cshtml" />
+    <Content Include="Views\Gift\ManageGiftRow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Gift\Edit.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

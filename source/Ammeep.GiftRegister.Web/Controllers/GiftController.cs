@@ -1,28 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {
     public class GiftController : Controller
     {
+        private readonly IGiftManager _giftManager;
 
-        public ActionResult Index()
+        public GiftController(IGiftManager giftManager)
         {
+            _giftManager = giftManager;
+        }
+
+        public ActionResult Registry()
+        {
+            IEnumerable<Gift> gifts = _giftManager.GetRegistry();
             WishlistPageModel pageModel = new WishlistPageModel();
             pageModel.WishlistTitle = "The mightly list";
-            Gift wish1 = new Gift();
-            wish1.ImageLocation = new Uri("http://baconmockup.com/170/165");
-            wish1.ItemName = "Item Name";
-            wish1.Description = "Shoulder hamburger frankfurter, biltong tail shankle drumstick prosciutto short ribs pastrami. Boudin kielbasa shank cow. Andouille turducken filet mignon, pancetta capicola beef ribs pork meatloaf. Shoulder corned beef ball tip jerky pig. Short ribs pork loin sirloin pig, tail meatloaf turducken swine. Flank tail cow chicken filet mignon, capicola andouille biltong pastrami frankfurter. Meatball jerky shankle, jowl pork chop prosciutto tongue andouille turducken tail rump.";
-            wish1.QuantityRequired = 2;
-            wish1.RetailPrice = 44.87m;
-            wish1.Website = new Uri("http://www.google.com");
-            wish1.SuggestedStores = "Bed, Bath n' Table, Briscoes";
-            wish1.IsSpecificItemRequired = true;
-            pageModel.GiftWishes = new List<Gift> {wish1, wish1, wish1};
+            pageModel.GiftWishes = gifts;
             return View(pageModel);
+        }
+
+        public ActionResult Manage()
+        {
+            IEnumerable<Gift> gifts = _giftManager.GetRegistry();
+            ManagePageModel pageModel = new ManagePageModel();
+            pageModel.Gifts = gifts;
+            return View(pageModel);
+        }
+
+        public ActionResult Edit(int giftId)
+        {
+            Gift giftToEdit = _giftManager.GetGift(giftId);
+            EditGiftPage editGiftPage = new EditGiftPage();
+            editGiftPage.Gift = giftToEdit;
+            return View(editGiftPage);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Gift gift)
+        {
+            if(ModelState.IsValid)
+            {
+                _giftManager.UpdateGift(gift);
+                return RedirectToAction("Manage");
+            }
+            EditGiftPage editGiftPage = new EditGiftPage();
+            editGiftPage.Gift = gift;
+            return View(editGiftPage);
+        }
+
+        public ActionResult Delete(int giftId)
+        {
+            _giftManager.DeleteGift(giftId);
+            return RedirectToAction("Manage");
         }
 
     }
