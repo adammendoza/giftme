@@ -158,22 +158,21 @@ input[type=file]:focus, input[type=checkbox]:focus, select:focus {
   box-shadow: none;
   outline: 1px dotted #666;
 }
-form .clearfix.error > label, form .clearfix.error .help-block, form .clearfix.error .help-inline {
+form .input-validation-error, form .field-validation-error{
   color: #b94a48;
 }
-form .clearfix.error input, form .clearfix.error textarea {
+form .input-validation-error {
   color: #b94a48;
   border-color: #ee5f5b;
 }
-form .clearfix.error input:focus, form .clearfix.error textarea:focus {
+form .input-validation-error input:focus, form .input-validation-error textarea:focus {
   border-color: #e9322d;
   -webkit-box-shadow: 0 0 6px #f8b9b7;
   -moz-box-shadow: 0 0 6px #f8b9b7;
   box-shadow: 0 0 6px #f8b9b7;
 }
-form .clearfix.error .input-prepend .add-on, form .clearfix.error .input-append .add-on {
+form .input-validation-error, form .input-validation-error {
   color: #b94a48;
-  background-color: #fce6e6;
   border-color: #b94a48;
 }
 form .clearfix.warning > label, form .clearfix.warning .help-block, form .clearfix.warning .help-inline {

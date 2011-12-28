@@ -9,9 +9,8 @@
 <div class="admin_content">
     <div class="loginbox">
         <p> Please enter your username and password. </p>
-        @Html.ValidationSummary("Login was unsuccessful. Please correct the errors and try again.")
-
-         @using (Html.BeginForm()) {
+         @using (Html.BeginForm("AdminLogin"))
+         {
         <div class="clearfix">
 
                <div class="input">
