@@ -78,7 +78,7 @@
     <Compile Include="Models\AdminLoginModel.cs" />
     <Compile Include="Models\GiftRow.cs" />
     <Compile Include="Models\Gift.cs" />
-    <Compile Include="Controllers\WishlistController.cs" />
+    <Compile Include="Controllers\GiftController.cs" />
     <Compile Include="Models\ManagePageModel.cs" />
     <Compile Include="Models\WishlistPageModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -107,6 +107,7 @@
     <Content Include="Content\Images\ian_jo.png" />
     <Content Include="Content\Images\love.png" />
     <Content Include="Content\Images\love_img.png" />
+    <Content Include="Content\Images\manage_registry.png" />
     <Content Include="Content\Images\nav_help.png" />
     <Content Include="Content\Images\shape.png" />
     <Content Include="Content\Images\tile.gif" />
@@ -181,10 +182,10 @@
     <Content Include="Views\Shared\Navigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\WishList\Index.cshtml" />
+    <Content Include="Views\Gift\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\WishList\GiftRow.cshtml" />
+    <Content Include="Views\Gift\GiftRow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Welcome.cshtml" />

@@ -20,7 +20,7 @@ namespace Ammeep.GiftRegister.Web
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Wishlist", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Gift", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
         }

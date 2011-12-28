@@ -5,7 +5,7 @@ using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {
-    public class WishlistController : Controller
+    public class GiftController : Controller
     {
 
         public ActionResult Index()
