@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Ammeep.GiftRegister.Web.Models
 {
-    public class GiftWish
+    public class Gift
     {
         public Uri ImageLocation { get; set; }
         public string ItemName { get; set; }
