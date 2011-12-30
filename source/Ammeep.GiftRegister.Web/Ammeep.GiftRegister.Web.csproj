@@ -83,16 +83,19 @@
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Domain\IConfiguration.cs" />
-    <Compile Include="Domain\IGiftManager.cs" />
+    <Compile Include="Domain\IRegistryManager.cs" />
     <Compile Include="Domain\IUserManager.cs" />
     <Compile Include="Domain\LoginResult.cs" />
+    <Compile Include="Domain\Model\Category.cs" />
+    <Compile Include="Domain\Model\GiftRepository.cs" />
+    <Compile Include="Domain\Model\IGiftRepository.cs" />
     <Compile Include="Models\AdminLoginModel.cs" />
     <Compile Include="Models\EditGiftPage.cs" />
     <Compile Include="Models\GiftRow.cs" />
-    <Compile Include="Models\Gift.cs" />
+    <Compile Include="Domain\Model\Gift.cs" />
     <Compile Include="Controllers\GiftController.cs" />
     <Compile Include="Models\ManagePageModel.cs" />
-    <Compile Include="Models\WishlistPageModel.cs" />
+    <Compile Include="Models\RegistryPage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

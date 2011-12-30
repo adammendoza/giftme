@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Ammeep.GiftRegister.Web.Models
+namespace Ammeep.GiftRegister.Web.Domain.Model
 {
     public class Gift
     {
@@ -17,7 +17,5 @@ namespace Ammeep.GiftRegister.Web.Models
         [UIHint("Cost")]
         public decimal RetailPrice { get; set; }
         public bool IsPurchased { get; set; }
-
-
     }
 }

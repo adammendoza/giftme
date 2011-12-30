@@ -1,4 +1,5 @@
 using Ammeep.GiftRegister.Web.Domain;
+using Ammeep.GiftRegister.Web.Domain.Model;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Ammeep.GiftRegister.Web.App_Start.NinjectMVC3), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Ammeep.GiftRegister.Web.App_Start.NinjectMVC3), "Stop")]
@@ -52,7 +53,7 @@ namespace Ammeep.GiftRegister.Web.App_Start
             kernel.Bind<IConfiguration>().To<Configuration>();
             kernel.Bind<IGiftRepository>().To<GiftRepository>();
             kernel.Bind<IUserManager>().To<UserManager>();
-            kernel.Bind<IGiftManager>().To<GiftManager>();
+            kernel.Bind<IRegistryManager>().To<RegistryManager>();
         }        
     }
 }

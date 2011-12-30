@@ -1,31 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain;
+using Ammeep.GiftRegister.Web.Domain.Model;
 using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {
     public class GiftController : Controller
     {
-        private readonly IGiftManager _giftManager;
+        private readonly IRegistryManager _registryManager;
 
-        public GiftController(IGiftManager giftManager)
+        public GiftController(IRegistryManager registryManager)
         {
-            _giftManager = giftManager;
+            _registryManager = registryManager;
         }
 
         public ActionResult Registry()
-        {
-            IEnumerable<Gift> gifts = _giftManager.GetRegistry();
-            WishlistPageModel pageModel = new WishlistPageModel();
-            pageModel.WishlistTitle = "The mightly list";
-            pageModel.GiftWishes = gifts;
-            return View(pageModel);
+        {          
+            RegistryPage page = new RegistryPage();
+            page.Gifts = _registryManager.GetRegistry();
+            page.Categories = _registryManager.GetCategories();
+            return View(page);
         }
 
         public ActionResult Manage()
         {
-            IEnumerable<Gift> gifts = _giftManager.GetRegistry();
+            IEnumerable<Gift> gifts = _registryManager.GetRegistry();
             ManagePageModel pageModel = new ManagePageModel();
             pageModel.Gifts = gifts;
             return View(pageModel);
@@ -33,7 +33,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
 
         public ActionResult Edit(int giftId)
         {
-            Gift giftToEdit = _giftManager.GetGift(giftId);
+            Gift giftToEdit = _registryManager.GetGift(giftId);
             EditGiftPage editGiftPage = new EditGiftPage();
             editGiftPage.Gift = giftToEdit;
             return View(editGiftPage);
@@ -44,7 +44,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                _giftManager.UpdateGift(gift);
+                _registryManager.UpdateGift(gift);
                 return RedirectToAction("Manage");
             }
             EditGiftPage editGiftPage = new EditGiftPage();
@@ -54,7 +54,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
 
         public ActionResult Delete(int giftId)
         {
-            _giftManager.DeleteGift(giftId);
+            _registryManager.DeleteGift(giftId);
             return RedirectToAction("Manage");
         }
 

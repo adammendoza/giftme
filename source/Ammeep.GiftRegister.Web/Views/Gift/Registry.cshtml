@@ -1,4 +1,4 @@
-﻿@model Ammeep.GiftRegister.Web.Models.WishlistPageModel
+﻿@model Ammeep.GiftRegister.Web.Models.RegistryPage
 
 @{
     ViewBag.Title = "Registry";
@@ -10,9 +10,9 @@
 <div id="registry_flag">
 </div>
 <div id="registry_sort">
-    <p> Sort by:</p>
+    <p> Sort by:</p>@Html.DropDownList("category", Model.CategoriesSelectList)
  </div>
-@foreach (var item in Model.GiftWishes.Select((gift, i) => new Ammeep.GiftRegister.Web.Models.GiftRow { Item = gift, IsFirst = i == 0 }))
+@foreach (var item in Model.Gifts.Select((gift, i) => new Ammeep.GiftRegister.Web.Models.GiftRow { Item = gift, IsFirst = i == 0 }))
 {
     @Html.Partial("GiftRow", item)
 }
