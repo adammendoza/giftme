@@ -49,6 +49,8 @@ namespace Ammeep.GiftRegister.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IConfiguration>().To<Configuration>();
+            kernel.Bind<IGiftRepository>().To<GiftRepository>();
             kernel.Bind<IUserManager>().To<UserManager>();
             kernel.Bind<IGiftManager>().To<GiftManager>();
         }        

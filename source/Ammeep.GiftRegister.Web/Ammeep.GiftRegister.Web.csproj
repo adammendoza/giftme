@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Domain\IConfiguration.cs" />
     <Compile Include="Domain\IGiftManager.cs" />
     <Compile Include="Domain\IUserManager.cs" />
     <Compile Include="Domain\LoginResult.cs" />

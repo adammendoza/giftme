@@ -5,10 +5,10 @@ namespace Ammeep.GiftRegister.Web.Models
 {
     public class Gift
     {
-        public Uri ImageLocation { get; set; }
+        public string ImageLocation { get; set; }
         public string ItemName { get; set; }
         public string Description { get; set; }
-        public Uri Website { get; set; }
+        public string Website { get; set; }
         public string SuggestedStores { get; set; }
 
         [UIHint("YesNo")]
