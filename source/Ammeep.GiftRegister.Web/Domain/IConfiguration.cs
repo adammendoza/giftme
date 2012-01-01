@@ -16,7 +16,12 @@ namespace Ammeep.GiftRegister.Web.Domain
 
         private static string GetConnectionStringValue(string key)
         {
-            return key != null ? ConfigurationManager.ConnectionStrings[key].ConnectionString : string.Empty;
+            if (key != null)
+            {
+                var connectionString = ConfigurationManager.ConnectionStrings[key];
+                return connectionString !=null  ? connectionString.ConnectionString : string.Empty;
+            }
+            return string.Empty;
         }
 
         public string GiftmeConnectionString

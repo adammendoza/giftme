@@ -1,4 +1,5 @@
 using Ammeep.GiftRegister.Web.Domain;
+using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Domain.Model;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Ammeep.GiftRegister.Web.App_Start.NinjectMVC3), "Start")]
@@ -51,6 +52,7 @@ namespace Ammeep.GiftRegister.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IConfiguration>().To<Configuration>();
+            kernel.Bind<ILoggingService>().To<LoggingService>();
             kernel.Bind<IGiftRepository>().To<GiftRepository>();
             kernel.Bind<IUserManager>().To<UserManager>();
             kernel.Bind<IRegistryManager>().To<RegistryManager>();

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain;
+using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Domain.Model;
 using Ammeep.GiftRegister.Web.Models;
 
@@ -9,14 +10,17 @@ namespace Ammeep.GiftRegister.Web.Controllers
     public class GiftController : Controller
     {
         private readonly IRegistryManager _registryManager;
+        private readonly ILoggingService _loggingService;
 
-        public GiftController(IRegistryManager registryManager)
+        public GiftController(IRegistryManager registryManager, ILoggingService loggingService)
         {
             _registryManager = registryManager;
+            _loggingService = loggingService;
         }
 
         public ActionResult Registry()
         {          
+            _loggingService.LogDebug("Getting all registry items");
             RegistryPage page = new RegistryPage();
             page.Gifts = _registryManager.GetRegistry();
             page.Categories = _registryManager.GetCategories();
