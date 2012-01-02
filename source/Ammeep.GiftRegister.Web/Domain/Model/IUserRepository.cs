@@ -33,7 +33,8 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public User GetUserByUserName(string userName)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Users.FindByUserName(userName).Cast<User>();
+            var findByUserName = connection.Users.FindByUserName(userName);
+            return (User) findByUserName;
         }
 
       

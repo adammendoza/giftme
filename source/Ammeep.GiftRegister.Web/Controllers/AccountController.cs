@@ -34,7 +34,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
                 }
                 if (loginResult.Successful)
                 {
-                    return RedirectToAction("Login", "ManageRegistry");
+                    return RedirectToAction("Index", "ManageRegistry");
                 }
                 loginResult.AddModelErrors(ModelState);
             }
@@ -45,7 +45,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
         public ActionResult LogOff()
         {
             _userManager.SignOut();
-            return RedirectToAction("Login", "ManageRegistry");
+            return RedirectToAction("Registry", "Gift");
         }
 
 
