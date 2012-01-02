@@ -18,6 +18,9 @@ namespace Ammeep.GiftRegister.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("RegistryItemScroll",
+                "{controller}/NRegistry/{pageSize}/{pageNumber}/{categoryId}",
+                new { controller = "Gift", action = "NRegistry", pageSize = 5, pageNumber = 0, categoryId = 0 });
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

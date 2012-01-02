@@ -32,12 +32,14 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 
         public IEnumerable<Gift> GetPagedGifts(int pageSize, int pageNumber)
         {
+            pageNumber = pageNumber > 0 ? pageNumber-- : pageNumber;
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             return connection.Gifts.All().Skip(pageNumber).Take(pageSize).Cast<Gift>();
         }
 
         public IEnumerable<Gift> GetPagedGiftsForCategory(int pageSize, int pageNumber, int categoryId)
         {
+            pageNumber = pageNumber > 0 ? pageNumber-- : pageNumber;
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             return connection.Gifts.FindAllByCategory(categoryId).Skip(pageNumber).Take(pageSize).Cast<Gift>();
         }

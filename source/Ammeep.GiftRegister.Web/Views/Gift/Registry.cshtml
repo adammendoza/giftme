@@ -18,20 +18,20 @@
  </div>
 
  <nav id="page_nav">
-    <a href="@Url.Action("GetNextRegistryItems", new { pageSize=5,pageNumber=2,categoryId=1})"></a>
+    <a id="nextGiftUrl" href="@Url.Action("NRegistry", new { pageSize = Model.PageSize, pageNumber = 2, categoryId = 0 })"></a>
   </nav>
 
 @Html.Partial("Help")
 
 <script type="text/javascript">
-    var categoryPager = function(pageSize, defaultCategory, nextItemsUrl) {
+    var categoryPager    = function(pageSize, defaultCategory, nextItemsUrl) {
         this.pageSize = pageSize;
         this.currentCategory = defaultCategory;
         this.pageNumber = 0;
         this.nextItemsUrl = nextItemsUrl;
 
-        this.getNextPage = function() {
-          
+        this.incrementPageNumber = function() {
+            this.pageNumber = this.pageNumber + 1;
         };
 
         this.getNextPageUrl = function() {
@@ -42,25 +42,26 @@
     };
     $(document).ready(function () {
 
+        var pager = new categoryPager(@Model.PageSize , 0, "@Url.Action("NRegistry")");
+        var $container = $('#registryItemContainer');
 
-            var $container = $('#registryItemContainer');
+        $container.isotope({
+            itemSelector: '.registry_container'
+        });
 
-            $container.isotope({
-                itemSelector: '.registry_container'
-            });
-
-            $container.infinitescroll({
-                navSelector: '#page_nav',    // selector for the paged navigation 
-                nextSelector: '#page_nav a',  // selector for the NEXT link (to page 2)
-                itemSelector: '.registry_container',     // selector for all items you'll retrieve
-                loadingImg: 'http://i.imgur.com/qkKy8.gif',
-                loadingText: 'No more pages to load.',
-                animate:true
+        $container.infinitescroll({
+            navSelector: '#page_nav',    // selector for the paged navigation 
+            nextSelector: '#page_nav a',  // selector for the NEXT link (to page 2)
+            itemSelector: '.registry_container',     // selector for all items you'll retrieve
+            loadingImg: 'http://i.imgur.com/qkKy8.gif',
+            loadingText: 'No more pages to load.',
+            animate:true
                 
-            },
+        },
             // call Isotope as a callback
-        function (newElements) {
-            $container.isotope('appended', $(newElements));
+         function (newElements) {  
+            pager.incrementPageNumber();
+            $container.isotope('appended', $(newElements));          
         }
       );
         
