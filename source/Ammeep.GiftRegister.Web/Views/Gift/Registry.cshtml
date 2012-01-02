@@ -6,9 +6,10 @@
 }
  @Html.Partial("Welcome")
  @Html.Partial("HowTo")
- 
 <div id="registry_flag">
+ <a name="registry" id="registry"></a> 
 </div>
+
 <div id="registry_sort">
     <p> Sort by:</p>@Html.DropDownList("category", Model.CategoriesSelectList, new { id = "categoryDropdown" })
  </div>
