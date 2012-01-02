@@ -137,17 +137,15 @@ a:visited {
 	}
 
 
-.loginbox
-{
-    border: 4px solid #C1E4F2;
+.admin_content
+{   
     height:250px;
-    width:500px;
-    margin-left: auto ;
+    width:750px;
     margin-right: auto ;
-    margin-top:50px;
+    padding-left: 26px;
 }
 
-.loginbox p
+.admin_content p
 {
     color: #EC652A;
     font-family: museo300,sans-serif;
@@ -156,17 +154,8 @@ a:visited {
     padding-top: 9px;
 }
 
-.loginbox
-{
-    border: 4px solid #C1E4F2;
-    height:250px;
-    width:500px;
-    margin-left: auto ;
-    margin-right: auto ;
-    margin-top:50px;
-}
 
-.loginbox lable {
+.admin_content lable {
     color: #EC008C;
     font-family: Tahoma,Geneva,sans-serif;
     font-size: 13px;

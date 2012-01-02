@@ -4,11 +4,11 @@ using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {
-    public class AdminController :Controller
+    public class ManageRegistryController :Controller
     {
         private readonly IUserManager _userManager;
 
-        public AdminController(IUserManager userManager)
+        public ManageRegistryController(IUserManager userManager)
         {
             _userManager = userManager;
         }
