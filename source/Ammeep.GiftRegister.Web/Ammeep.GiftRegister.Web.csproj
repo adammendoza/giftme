@@ -93,7 +93,7 @@
     <Compile Include="Attributes\PropertiesMustMatchAttribute.cs" />
     <Compile Include="Attributes\ValidatePasswordLengthAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ManageRegistryController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Domain\Authentication\PasswordHash.cs" />
     <Compile Include="Domain\Model\User.cs" />
     <Compile Include="Domain\Result.cs" />
@@ -248,9 +248,6 @@
     <Content Include="Views\Shared\DisplayTemplates\Cost.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ManageRegistry\Login.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Gift\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -269,7 +266,16 @@
     <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ManageRegistry\Index.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\AdminNavigation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

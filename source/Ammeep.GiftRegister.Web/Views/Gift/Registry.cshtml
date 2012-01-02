@@ -4,23 +4,26 @@
     ViewBag.Title = "Registry";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
- @Html.Partial("Welcome")
- @Html.Partial("HowTo")
+
+
+@Html.Partial("Welcome")
+@Html.Partial("HowTo")
+
 <div id="registry_flag">
- <a name="registry" id="registry"></a> 
+    <a name="registry" id="registry"></a> 
 </div>
 
 <div id="registry_sort">
     <p> Sort by:</p>@Html.DropDownList("category", Model.CategoriesSelectList, new { id = "categoryDropdown" })
- </div>
+</div>
 
-  <div id="registryItemContainer">
-        @Html.Partial("RegistryItems", Model.Gifts) 
- </div>
+<div id="registryItemContainer">
+    @Html.Partial("RegistryItems", Model.Gifts) 
+</div>
 
- <nav id="page_nav">
-    <a id="nextGiftUrl" href="@Url.Action("NextItems", new { pageSize = Model.PageSize, pageNumber = 2, categoryId = 0 })"></a>
-  </nav>
+<nav id="page_nav">
+<a id="nextGiftUrl" href="@Url.Action("NextItems", new { pageSize = Model.PageSize, pageNumber = 2, categoryId = 0 })"></a>
+</nav>
 
 @Html.Partial("Help")
 

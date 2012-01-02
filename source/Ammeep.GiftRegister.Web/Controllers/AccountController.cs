@@ -17,6 +17,12 @@ namespace Ammeep.GiftRegister.Web.Controllers
             _configuration = configuration;
         }
 
+        [Authorize]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult LogOn()
         {
             return View();
@@ -34,7 +40,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
                 }
                 if (loginResult.Successful)
                 {
-                    return RedirectToAction("Index", "ManageRegistry");
+                    return RedirectToAction("Index", "Manage");
                 }
                 loginResult.AddModelErrors(ModelState);
             }
@@ -63,7 +69,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
                 Result result = _userManager.RegisterUser(model.UserName,model.FirstName,model.LastName, model.Password, model.Email);
                 if (result.Successful)
                 {                  
-                    return RedirectToAction("Index", "ManageRegistry");
+                    return RedirectToAction("Index", "Manage");
                 }
                 result.AddModelErrors(ModelState);
             }
@@ -109,5 +115,6 @@ namespace Ammeep.GiftRegister.Web.Controllers
         //    return View();
         //}
 
+       
     }
 }
