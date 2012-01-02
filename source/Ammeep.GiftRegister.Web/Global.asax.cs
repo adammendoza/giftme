@@ -4,10 +4,7 @@ using log4net.Config;
 
 namespace Ammeep.GiftRegister.Web
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
-    public class MvcApplication : System.Web.HttpApplication
+    public class GiftmeApplication : System.Web.HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -18,14 +15,28 @@ namespace Ammeep.GiftRegister.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+                "Management", // Route name
+                "Manage/{action}/{id}", // URL with parameters
+                new {controller = "Manage", action = "Index", id = UrlParameter.Optional} // Parameter defaults
+                );
+
             routes.MapRoute("RegistryNextItems",
-                "{controller}/NextItems/{pageSize}/{pageNumber}/{categoryId}",
-                new { controller = "Gift", action = "NextItems", pageSize = 5, pageNumber = 0, categoryId = 0 });
+                            "{controller}/NextItems/{pageSize}/{pageNumber}/{categoryId}",
+                            new
+                                {
+                                    controller = "Gift",
+                                    action = "NextItems",
+                                    pageSize = 5,
+                                    pageNumber = 0,
+                                    categoryId = 0
+                                }
+                );
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Gift", action = "Registry", id = UrlParameter.Optional } // Parameter defaults
-            );
+                new {controller = "Gift", action = "Registry", id = UrlParameter.Optional} // Parameter defaults
+                );
 
         }
 
