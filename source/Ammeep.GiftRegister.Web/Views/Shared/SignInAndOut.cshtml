@@ -1,8 +1,12 @@
 ﻿ 
  @if(Request.IsAuthenticated) {
-   
-    <p> Welcome @User.Identity.Name | @Html.ActionLink("Log Off", "LogOff", "Account")</p>
+   <div id="footer_admin_loggedIn">
+     <p> Welcome @User.Identity.Name |@Html.ActionLink("Manage", "Index", "Manage") | @Html.ActionLink("Log Off", "LogOff", "Account")</p>
+   </div>
 }
 else {
-   <p>@Html.ActionLink("Admin Login", "Logon", "Account")</p>
+   <div id="footer_admin">
+     <p>@Html.ActionLink("Admin Login", "Logon", "Account")</p>
+   </div>
 }
+

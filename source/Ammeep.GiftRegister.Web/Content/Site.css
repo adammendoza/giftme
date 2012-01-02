@@ -603,6 +603,10 @@ text-align: right;
 	width: 100px;
 	float: right;
 	}
+#footer_admin_loggedIn {
+    margin-right: 10px;
+	float: right;
+}
 	
 	#footer_admin p {;
 		font-size: 13px;
