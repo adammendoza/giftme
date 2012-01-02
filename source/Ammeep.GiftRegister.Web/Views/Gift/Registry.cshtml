@@ -13,7 +13,9 @@
     <p> Sort by:</p>@Html.DropDownList("category", Model.CategoriesSelectList, new { id = "categoryDropdown" })
  </div>
 
-  @Html.Partial("RegistryItems",Model.Gifts)
+  <div id="registryItemContainer">
+        @Html.Partial("RegistryItems", Model.Gifts) 
+ </div>
 
  <nav id="page_nav">
     <a href="@Url.Action("GetNextRegistryItems", new { pageSize=5,pageNumber=2,categoryId=1})"></a>
