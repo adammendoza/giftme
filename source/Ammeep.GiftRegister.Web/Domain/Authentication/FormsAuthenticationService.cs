@@ -1,7 +1,7 @@
 using System;
 using System.Web.Security;
 
-namespace Ammeep.GiftRegister.Web.Domain
+namespace Ammeep.GiftRegister.Web.Domain.Authentication
 {
     public class FormsAuthenticationService : IFormsAuthenticationService
     {

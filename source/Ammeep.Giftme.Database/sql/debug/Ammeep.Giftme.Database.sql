@@ -271,9 +271,13 @@ PRINT N'Creating [dbo].[Users]...';
 
 GO
 CREATE TABLE [dbo].[Users] (
-    [UserId]   INT           IDENTITY (1, 1) NOT NULL,
-    [UserName] NVARCHAR (50) NOT NULL,
-    [Password] NVARCHAR (50) NOT NULL
+    [UserId]       INT            IDENTITY (1, 1) NOT NULL,
+    [UserName]     NVARCHAR (50)  NOT NULL,
+    [Email]        NVARCHAR (50)  NOT NULL,
+    [FirstName]    NVARCHAR (50)  NOT NULL,
+    [LastName]     NVARCHAR (50)  NOT NULL,
+    [PasswordHash] NVARCHAR (256) NOT NULL,
+    [PasswordSalt] NVARCHAR (256) NOT NULL
 );
 
 
@@ -389,9 +393,9 @@ Post-Deployment Script Template
 print 'Inserting Test Data'
 
 SET IDENTITY_INSERT [Users] ON
-INSERT [Users] ([UserId], [UserName], [Password]) VALUES (1, N'Lydia74', N'SGO2X8MAT0DUQPT1V')
-INSERT [Users] ([UserId], [UserName], [Password]) VALUES (2, N'Danny711', N'K90IX')
-INSERT [Users] ([UserId], [UserName], [Password]) VALUES (3, N'Gavin61', N'O')
+INSERT [Users] ([UserId], [UserName], [Email],[FirstName],[LastName],[PasswordHash],[PasswordSalt]) VALUES (1, N'Lydia74',N'test@test.com',N'Test',N'Test', N'SGO2X8MAT0DUQPT1V', N'SGO2X8MAT0DUQPT1V')
+INSERT [Users] ([UserId], [UserName], [Email],[FirstName],[LastName],[PasswordHash],[PasswordSalt]) VALUES (2, N'Danny711',N'test@test.com',N'Test',N'Test', N'SGO2X8MAT0DUQPT1V', N'SGO2X8MAT0DUQPT1V')
+INSERT [Users] ([UserId], [UserName], [Email],[FirstName],[LastName],[PasswordHash],[PasswordSalt]) VALUES (3, N'Gavin61',N'test@test.com',N'Test',N'Test', N'SGO2X8MAT0DUQPT1V', N'SGO2X8MAT0DUQPT1V')
 SET IDENTITY_INSERT [Users] OFF
 print 'Inserting Guests'
 SET IDENTITY_INSERT [Guest] ON

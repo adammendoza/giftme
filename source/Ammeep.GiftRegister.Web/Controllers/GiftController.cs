@@ -5,6 +5,7 @@ using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Domain.Model;
 using Ammeep.GiftRegister.Web.Models;
 using Newtonsoft.Json;
+using ActionResult = System.Web.Mvc.ActionResult;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {

@@ -206,10 +206,10 @@
     <NotInBuild Include="Scripts\Post-Deployment\TestData\GiftPurchase.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
-    <NotInBuild Include="Scripts\Post-Deployment\TestData\Users.sql">
+    <NotInBuild Include="Scripts\Post-Deployment\TestData\Guests.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
-    <NotInBuild Include="Scripts\Post-Deployment\TestData\Guests.sql">
+    <NotInBuild Include="Scripts\Post-Deployment\TestData\Users.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
   </ItemGroup>

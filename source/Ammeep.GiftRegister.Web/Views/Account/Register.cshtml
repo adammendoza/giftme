@@ -32,6 +32,18 @@
                     </div>
 
                      <div class="input">
+                        <label for="username">First Name:</label>
+                        @Html.TextBoxFor(model => model.FirstName)
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                    </div>
+
+                     <div class="input">
+                        <label for="username">Last Name:</label>
+                        @Html.TextBoxFor(model => model.LastName)
+                        @Html.ValidationMessageFor(model => model.LastName)
+                    </div>
+
+                     <div class="input">
                         <label for="username">Email:</label>
                         @Html.TextBoxFor(model => model.Email)
                         @Html.ValidationMessageFor(model => model.Email)

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
+﻿using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain;
-using Ammeep.GiftRegister.Web.Domain.Validation;
 using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
@@ -12,21 +8,14 @@ namespace Ammeep.GiftRegister.Web.Controllers
     [HandleError]
     public class AccountController : Controller
     {
+        private readonly IUserManager _userManager;
+        private readonly IConfiguration _configuration;
 
-        public IFormsAuthenticationService FormsService { get; set; }
-        public IMembershipService MembershipService { get; set; }
-
-        protected override void Initialize(RequestContext requestContext)
+        public AccountController(IUserManager userManager,IConfiguration configuration)
         {
-            if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
-            if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
-
-            base.Initialize(requestContext);
+            _userManager = userManager;
+            _configuration = configuration;
         }
-
-        // **************************************
-        // URL: /Account/LogOn
-        // **************************************
 
         public ActionResult LogOn()
         {
@@ -38,46 +27,31 @@ namespace Ammeep.GiftRegister.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (MembershipService.ValidateUser(model.UserName, model.Password))
+                Result loginResult = _userManager.SignIn(model.UserName, model.Password,model.RememberMe);
+                if (loginResult.Successful && !string.IsNullOrEmpty(returnUrl))
                 {
-                    FormsService.SignIn(model.UserName, model.RememberMe);
-                    if (!String.IsNullOrEmpty(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Login", "ManageRegistry");
-                    }
+                    return Redirect(returnUrl);
                 }
-                else
+                if (loginResult.Successful)
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    return RedirectToAction("Login", "ManageRegistry");
                 }
+                loginResult.AddModelErrors(ModelState);
             }
-
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        // **************************************
-        // URL: /Account/LogOff
-        // **************************************
 
         public ActionResult LogOff()
         {
-            FormsService.SignOut();
-
+            _userManager.SignOut();
             return RedirectToAction("Login", "ManageRegistry");
         }
 
-        // **************************************
-        // URL: /Account/Register
-        // **************************************
 
         public ActionResult Register()
         {
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = _configuration.MinimumPasswordLength;
             return View();
         }
 
@@ -86,65 +60,54 @@ namespace Ammeep.GiftRegister.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Login", "ManageRegistry");
+                Result result = _userManager.RegisterUser(model.UserName,model.FirstName,model.LastName, model.Password, model.Email);
+                if (result.Successful)
+                {                  
+                    return RedirectToAction("Index", "ManageRegistry");
                 }
-                else
-                {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
-                }
+                result.AddModelErrors(ModelState);
             }
 
-            // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["PasswordLength"] = _configuration.MinimumPasswordLength;
             return View(model);
         }
 
-        // **************************************
-        // URL: /Account/ChangePassword
-        // **************************************
+        //[Authorize]
+        //public ActionResult ChangePassword()
+        //{
+        //    ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+        //    return View();
+        //}
 
-        [Authorize]
-        public ActionResult ChangePassword()
-        {
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-            return View();
-        }
+        //[Authorize]
+        //[HttpPost]
+        //public ActionResult ChangePassword(ChangePasswordModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
+        //        {
+        //            return RedirectToAction("ChangePasswordSuccess");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+        //        }
+        //    }
 
-        [Authorize]
-        [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
-                {
-                    return RedirectToAction("ChangePasswordSuccess");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                }
-            }
+        //    // If we got this far, something failed, redisplay form
+        //    ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+        //    return View(model);
+        //}
 
-            // If we got this far, something failed, redisplay form
-            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-            return View(model);
-        }
+        //// **************************************
+        //// URL: /Account/ChangePasswordSuccess
+        //// **************************************
 
-        // **************************************
-        // URL: /Account/ChangePasswordSuccess
-        // **************************************
-
-        public ActionResult ChangePasswordSuccess()
-        {
-            return View();
-        }
+        //public ActionResult ChangePasswordSuccess()
+        //{
+        //    return View();
+        //}
 
     }
 }

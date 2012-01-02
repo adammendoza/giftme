@@ -1,6 +1,7 @@
 using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Models;
+using ActionResult = System.Web.Mvc.ActionResult;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {
@@ -13,27 +14,10 @@ namespace Ammeep.GiftRegister.Web.Controllers
             _userManager = userManager;
         }
 
-
-        public ActionResult Login()
+        public ActionResult Index()
         {
-            return View(new AdminLoginModel());
+            return View();
         }
-
-        [HttpPost]
-        public ActionResult Login(AdminLoginModel model)
-        {
-            if(ModelState.IsValid)
-            {
-                LoginResult loginUserResult = _userManager.LoginUser(model.UserName, model.Password);
-                if (loginUserResult.SuccessfulLogin)
-                {
-                    return RedirectToAction("Manage","Gift");
-                }
-                ModelState.AddModelError("Login",loginUserResult.Errors);
-            }
-            return View(model);
-        }
-
       
     }
 }

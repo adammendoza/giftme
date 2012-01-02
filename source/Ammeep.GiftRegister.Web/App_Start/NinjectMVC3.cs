@@ -1,4 +1,5 @@
 using Ammeep.GiftRegister.Web.Domain;
+using Ammeep.GiftRegister.Web.Domain.Authentication;
 using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Domain.Model;
 
@@ -53,7 +54,10 @@ namespace Ammeep.GiftRegister.Web.App_Start
         {
             kernel.Bind<IConfiguration>().To<Configuration>();
             kernel.Bind<ILoggingService>().To<LoggingService>();
+            kernel.Bind<IFormsAuthenticationService>().To<FormsAuthenticationService>();
+            kernel.Bind<IMembershipService>().To<AccountMembershipService>();
             kernel.Bind<IGiftRepository>().To<GiftRepository>();
+            kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IUserManager>().To<UserManager>();
             kernel.Bind<IRegistryManager>().To<RegistryManager>();
         }        

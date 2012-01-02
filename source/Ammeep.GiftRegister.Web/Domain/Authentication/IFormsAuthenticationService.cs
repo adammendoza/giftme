@@ -1,4 +1,4 @@
-namespace Ammeep.GiftRegister.Web.Domain
+namespace Ammeep.GiftRegister.Web.Domain.Authentication
 {
     public interface IFormsAuthenticationService
     {

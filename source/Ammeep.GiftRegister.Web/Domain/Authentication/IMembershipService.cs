@@ -1,13 +1,11 @@
 using System.Web.Security;
 
-namespace Ammeep.GiftRegister.Web.Domain
+namespace Ammeep.GiftRegister.Web.Domain.Authentication
 {
     public interface IMembershipService
     {
-        int MinPasswordLength { get; }
-
         bool ValidateUser(string userName, string password);
-        MembershipCreateStatus CreateUser(string userName, string password, string email);
         bool ChangePassword(string userName, string oldPassword, string newPassword);
+        MembershipCreateStatus CreateUser(string userName, string firstName, string lastName, string password, string email);
     }
 }

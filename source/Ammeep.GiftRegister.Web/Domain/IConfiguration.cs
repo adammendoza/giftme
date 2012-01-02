@@ -8,6 +8,7 @@ namespace Ammeep.GiftRegister.Web.Domain
     {
         string GiftmeConnectionString { get; }
         int RegistryPageSize { get; }
+        int MinimumPasswordLength { get; }
     }
 
     public class Configuration : IConfiguration
@@ -58,6 +59,11 @@ namespace Ammeep.GiftRegister.Web.Domain
         public int RegistryPageSize
         {
             get { return GetApplicationConfigurationValue<int>("RegistryPageSize",false); }
+        }
+
+        public int MinimumPasswordLength
+        {
+            get { return GetApplicationConfigurationValue<int>("MinimumPasswordLength", true); }
         }
     }
 
