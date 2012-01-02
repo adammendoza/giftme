@@ -49,25 +49,29 @@
             itemSelector: '.registry_container'
         });
 
-        $container.infinitescroll({
-            navSelector: '#page_nav',    // selector for the paged navigation 
-            nextSelector: '#page_nav a',  // selector for the NEXT link (to page 2)
-            itemSelector: '.registry_container',     // selector for all items you'll retrieve
-            loadingImg: 'http://i.imgur.com/qkKy8.gif',
-            loadingText: 'No more pages to load.',
-            animate:true
-                
-        },
-            // call Isotope as a callback
-         function (newElements) {  
-            pager.incrementPageNumber();
-            $container.isotope('appended', $(newElements));          
-        }
-      );
+//        var infiniteScroller = $container.infinitescroll({
+//            navSelector: '#page_nav',    // selector for the paged navigation 
+//            nextSelector: '#page_nav a',  // selector for the NEXT link (to page 2)
+//            itemSelector: '.registry_container',     // selector for all items you'll retrieve
+//            loadingImg: 'http://i.imgur.com/qkKy8.gif',
+//            loadingText: 'No more pages to load.',               
+//            animate:true
+//            },
+//            // call Isotope as a callback
+//             function (newElements) {  
+//                pager.incrementPageNumber();
+//                $container.isotope('appended', $(newElements));          
+//            }
+//      );
         
         
         $('#categoryDropdown').change(function () {
             $container.isotope('remove', $('.registry_container'));
+            var newCategory = $("#categoryDropdown option:selected").val();
+            alert(newCategory);
+            infiniteScroller.state.currPage = 1;
+            infiniteScroller.state.filterBy = newCategory;
+
         });
     });
   

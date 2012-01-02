@@ -159,21 +159,21 @@ input[type=file]:focus, input[type=checkbox]:focus, select:focus {
   outline: 1px dotted #666;
 }
 form .input-validation-error, form .field-validation-error{
-  color: #b94a48;
+  color: #EC008C;
 }
 form .input-validation-error {
-  color: #b94a48;
-  border-color: #ee5f5b;
+  color: #EC008C;
+  border-color: #EC008C;
 }
 form .input-validation-error input:focus, form .input-validation-error textarea:focus {
-  border-color: #e9322d;
+  border-color: #EC008C;
   -webkit-box-shadow: 0 0 6px #f8b9b7;
   -moz-box-shadow: 0 0 6px #f8b9b7;
   box-shadow: 0 0 6px #f8b9b7;
 }
 form .input-validation-error, form .input-validation-error {
-  color: #b94a48;
-  border-color: #b94a48;
+  color: #EC008C;
+  border-color: #EC008C;
 }
 form .clearfix.warning > label, form .clearfix.warning .help-block, form .clearfix.warning .help-inline {
   color: #c09853;
