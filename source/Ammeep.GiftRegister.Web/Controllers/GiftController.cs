@@ -1,31 +1,39 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain;
-using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Domain.Model;
 using Ammeep.GiftRegister.Web.Models;
+using Newtonsoft.Json;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {
     public class GiftController : Controller
     {
         private readonly IRegistryManager _registryManager;
-        private readonly ILoggingService _loggingService;
+        private readonly IConfiguration _config;
 
-        public GiftController(IRegistryManager registryManager, ILoggingService loggingService)
+        public GiftController(IRegistryManager registryManager, IConfiguration configuration)
         {
             _registryManager = registryManager;
-            _loggingService = loggingService;
+            _config = configuration;
         }
 
         public ActionResult Registry()
-        {          
-            _loggingService.LogDebug("Getting all registry items");
+        {
+            var registryPageSize = _config.RegistryPageSize;
             RegistryPage page = new RegistryPage();
-            page.Gifts = _registryManager.GetRegistry();
+            page.PageSize = registryPageSize;
+            page.Gifts = _registryManager.GetRegistry(registryPageSize, 0, 0);
             page.Categories = _registryManager.GetCategories();
             return View(page);
         }
+
+        public PartialViewResult GetNextRegistryItems(int pageSize, int pageNumber, int categoryId)
+        {
+            var nextItems = _registryManager.GetRegistry(pageSize, pageNumber, categoryId);
+            return PartialView("RegistryItems", nextItems);
+        }
+
 
         public ActionResult Manage()
         {

@@ -17,5 +17,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         [UIHint("Cost")]
         public decimal RetailPrice { get; set; }
         public bool IsPurchased { get; set; }
+
+        public string Category { get; set; }
     }
 }

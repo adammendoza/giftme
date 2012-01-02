@@ -8,10 +8,12 @@ namespace Ammeep.GiftRegister.Web.Models
     {
         public IEnumerable<Gift> Gifts { get; set; }
         public IEnumerable<Category> Categories { get; set; }
+        public int PageSize { get; set; }
 
         public SelectList CategoriesSelectList
         {
             get { return new SelectList(Categories,"CategoryId","Name");}
         }
+
     }
 }

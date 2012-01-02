@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Ammeep.GiftRegister.Web.Domain.Model.Gift>
+ <div id="registryItemContainer">
+    @foreach (var item in Model.Select((gift, i) => new Ammeep.GiftRegister.Web.Models.GiftRow { Item = gift, IsFirst = i == 0 }))
+    {
+        @Html.Partial("GiftRow", item)
+    }
+</div>

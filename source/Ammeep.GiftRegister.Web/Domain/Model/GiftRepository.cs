@@ -22,7 +22,25 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);        
             return connection.Gifts.All().Cast<Gift>();           
-        } 
+        }
+
+        public IEnumerable<Gift> GetAllGiftsForCategory(int categoryId)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            return connection.Gifts.FindAllByCategory(categoryId).Cast<Gift>();
+        }
+
+        public IEnumerable<Gift> GetPagedGifts(int pageSize, int pageNumber)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            return connection.Gifts.All().Skip(pageNumber).Take(pageSize).Cast<Gift>();
+        }
+
+        public IEnumerable<Gift> GetPagedGiftsForCategory(int pageSize, int pageNumber, int categoryId)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            return connection.Gifts.FindAllByCategory(categoryId).Skip(pageNumber).Take(pageSize).Cast<Gift>();
+        }
     }
 
 }

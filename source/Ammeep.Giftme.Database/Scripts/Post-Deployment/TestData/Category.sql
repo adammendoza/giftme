@@ -1,4 +1,5 @@
 ﻿SET IDENTITY_INSERT [Category] ON
+INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (0, N'All', 3, CAST(0x00005732017D693C AS DateTime), 3, CAST(0x00005AB7015B9FAC AS DateTime))
 INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (1, N'Bedroom', 3, CAST(0x00005732017D693C AS DateTime), 3, CAST(0x00005AB7015B9FAC AS DateTime))
 INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (2, N'Living Room', 3, CAST(0x000076010133B519 AS DateTime), 3, CAST(0x0000559600E46CD2 AS DateTime))
 INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (3, N'Kitchen', 3, CAST(0x000093C90171F16E AS DateTime), 3, CAST(0x0000648D001F33C8 AS DateTime))

@@ -10,14 +10,67 @@
 <div id="registry_flag">
 </div>
 <div id="registry_sort">
-    <p> Sort by:</p>@Html.DropDownList("category", Model.CategoriesSelectList)
+    <p> Sort by:</p>@Html.DropDownList("category", Model.CategoriesSelectList, new { id = "categoryDropdown" })
  </div>
-@foreach (var item in Model.Gifts.Select((gift, i) => new Ammeep.GiftRegister.Web.Models.GiftRow { Item = gift, IsFirst = i == 0 }))
-{
-    @Html.Partial("GiftRow", item)
-}
+
+  @Html.Partial("RegistryItems",Model.Gifts)
+
+ <nav id="page_nav">
+    <a href="@Url.Action("GetNextRegistryItems", new { pageSize=5,pageNumber=2,categoryId=1})"></a>
+  </nav>
 
 @Html.Partial("Help")
+
+<script type="text/javascript">
+    var categoryPager = function(pageSize, defaultCategory, nextItemsUrl) {
+        this.pageSize = pageSize;
+        this.currentCategory = defaultCategory;
+        this.pageNumber = 0;
+        this.nextItemsUrl = nextItemsUrl;
+
+        this.getNextPage = function() {
+          
+        };
+
+        this.getNextPageUrl = function() {
+            var nextPageParameters = { pageSize: this.pageSize, pageNumber: this.pageNumber, categoryId: this.currentCategory };
+            return this.nextItemsUrl + "?" + jQuery.param(nextPageParameters);
+        };
+
+    };
+    $(document).ready(function () {
+
+
+            var $container = $('#registryItemContainer');
+
+            $container.isotope({
+                itemSelector: '.registry_container'
+            });
+
+            $container.infinitescroll({
+                navSelector: '#page_nav',    // selector for the paged navigation 
+                nextSelector: '#page_nav a',  // selector for the NEXT link (to page 2)
+                itemSelector: '.registry_container',     // selector for all items you'll retrieve
+                loading: {
+                    finishedMsg: 'No more pages to load.',
+                    img: 'http://i.imgur.com/qkKy8.gif'
+                }
+            },
+            // call Isotope as a callback
+        function (newElements) {
+            $container.isotope('appended', $(newElements));
+        }
+      );
+        
+        
+        $('#categoryDropdown').change(function () {
+            
+        });
+    });
+  
+
+</script>
+
 @*
  <!-- Modal -->
 <div id="moda" class="modal" style="position: relative; top: auto; left: auto; margin: 0 auto; z-index: 1">
