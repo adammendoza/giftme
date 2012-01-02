@@ -18,7 +18,7 @@
  </div>
 
  <nav id="page_nav">
-    <a id="nextGiftUrl" href="@Url.Action("NRegistry", new { pageSize = Model.PageSize, pageNumber = 2, categoryId = 0 })"></a>
+    <a id="nextGiftUrl" href="@Url.Action("NextItems", new { pageSize = Model.PageSize, pageNumber = 2, categoryId = 0 })"></a>
   </nav>
 
 @Html.Partial("Help")
@@ -42,7 +42,7 @@
     };
     $(document).ready(function () {
 
-        var pager = new categoryPager(@Model.PageSize , 0, "@Url.Action("NRegistry")");
+        var pager = new categoryPager(@Model.PageSize , 0, "@Url.Action("NextItems")");
         var $container = $('#registryItemContainer');
 
         $container.isotope({
