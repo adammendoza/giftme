@@ -2,6 +2,6 @@
  <div id="registryItemContainer">
     @foreach (var item in Model)
     {
-        @Html.Partial("GiftRow", item)
+        @Html.DisplayFor(gift => item);
     }
 </div>

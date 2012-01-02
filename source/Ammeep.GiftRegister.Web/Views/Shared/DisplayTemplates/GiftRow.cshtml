@@ -4,7 +4,7 @@
     <div class="registry_img_area">
         <div class="img_box">
 
-            <img src="@Model.Item.ImageLocation" />
+            <img src="@Model.Item.ImageLocation" alt="@Model.Item.Name" ></img>
         </div>
     </div>
     <div class="registry_content">
@@ -24,17 +24,16 @@
         </div>
         <div class="registry_box_middle">
             <ul>
-                <li>@Model.Item.SuggestedStores</li>
+                <li>@Model.Item.SuggestedStores @Model.Item.Category</li>
                 <li>@Html.DisplayFor(model => model.Item.IsSpecificItemRequired)</li>
                 <li>@Model.Item.QuantityRequired</li>
                 <li>@Html.DisplayFor(model => model.Item.RetailPrice)</li>
                 <li><a href="@Model.Item.Website">Click here</a></li>
             </ul>
         </div>
-        <div class="registry_box_right">
+        <div class="registry_box_right_display">
 
-            @Html.ActionLink("Edit", "Edit",new{giftId =1})
-            @Html.ActionLink("Delete", "Delete", new { giftId = 1 })
+            <a href="getthis.htm">Get This</a>
         </div>
     </div>
 </div>

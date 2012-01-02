@@ -5,9 +5,9 @@ using Ammeep.GiftRegister.Web.Domain.Model;
 
 namespace Ammeep.GiftRegister.Web.Models
 {
-    public class RegistryPage
+    public class RegistryItemsPage
     {
-        public RegistryPage(IEnumerable<Gift> gifts, IEnumerable<Category> categories,int pageSize)
+        public RegistryItemsPage(IEnumerable<Gift> gifts, IEnumerable<Category> categories,int pageSize)
         {
             Gifts =gifts.Select((gift, i) => new GiftRow {Item = gift, IsFirst = i == 0});
             CategoriesSelectList = new SelectList(categories,"CategoryId","Name");

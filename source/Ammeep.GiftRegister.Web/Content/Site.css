@@ -500,7 +500,8 @@ text-align: right;
 		line-height: 130%;
 		}
 	
-.registry_box_right a {
+	
+.registry_box_right_display a {
 	float: right;
 	width: 223px;
 	height: 40px;
@@ -509,7 +510,7 @@ text-align: right;
 	text-indent: -9999px;
 	}
 
-.registry_box_right a:hover {
+.registry_box_right_display a:hover {
 	background: transparent url('Images/button_ill_get_this_hover.png') no-repeat scroll 0 top;
 	cursor: pointer;
 	}

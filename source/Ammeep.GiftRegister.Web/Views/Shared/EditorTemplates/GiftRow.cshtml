@@ -31,9 +31,9 @@
                 <li><a href="@Model.Item.Website">Click here</a></li>
             </ul>
         </div>
-        <div class="registry_box_right">
-
-            <a href="getthis.htm">Get This</a>
+       <div class="registry_box_right">
+            @Html.ActionLink("Edit", "Edit","Manage",new{giftId =Model.Item.GiftId})
+            @Html.ActionLink("Delete", "Delete","Manage", new { giftId = Model.Item.GiftId })
         </div>
     </div>
 </div>
