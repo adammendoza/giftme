@@ -1,10 +1,5 @@
 @font-face {
     font-family: 'Museo300';
-    src: url('fonts/Museo300-Regular-webfont.eot');
-    src: url('fonts/Museo300-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/Museo300-Regular-webfont.woff') format('woff'),
-         url('fonts/Museo300-Regular-webfont.ttf') format('truetype'),
-         url('fonts/Museo300-Regular-webfont.svg#Museo300') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -451,9 +446,9 @@ text-align: right;
 	float: left;
 	}
 	
-	.registry_title_blurb h2 {
+	.registry_title_blurb h1 {
 		text-align: left;
-		text-size: 12px;
+		text-size: 14px;
 		color: #ec008c;
 		}
 		
