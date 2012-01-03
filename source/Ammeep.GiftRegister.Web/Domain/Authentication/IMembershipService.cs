@@ -8,7 +8,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Authentication
     {
         bool ValidateUser(string userName, string password);
         bool ChangePassword(string userName, string oldPassword, string newPassword);
-        MembershipCreateStatus CreateAdminUser(EventHostAccount eventHostAccount);
-        IEnumerable<EventHostAccount> GetAllUsers();
+        MembershipCreateStatus CreateAdminUser(AdminAccount adminAccount);
+        IEnumerable<AdminAccount> GetAllUsers();
     }
 }

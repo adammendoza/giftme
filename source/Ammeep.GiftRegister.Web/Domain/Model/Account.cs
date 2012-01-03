@@ -72,11 +72,11 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         Admin =2
     }
 
-    public class EventHostAccount :Account
+    public class AdminAccount :Account
     {
-        public EventHostAccount() : base(AccountType.Host, null){}
+        public AdminAccount() : base(AccountType.Host, null){}
 
-        public EventHostAccount(string name, string email, string username, string password) : base(AccountType.Host,username,password)
+        public AdminAccount(string name, string email, string username, string password) : base(AccountType.Host,username,password)
         {
             Name = name;
             Email = email;

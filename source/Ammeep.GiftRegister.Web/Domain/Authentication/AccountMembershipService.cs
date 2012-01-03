@@ -22,19 +22,19 @@ namespace Ammeep.GiftRegister.Web.Domain.Authentication
             return true;// PasswordHash.ValidatePassword(password, Account.PasswordHash);
         }
 
-        public MembershipCreateStatus CreateAdminUser(EventHostAccount eventHostAccount)
+        public MembershipCreateStatus CreateAdminUser(AdminAccount adminAccount)
         {
           
-            bool usernameUnique = _userRepository.IsUsernameUnique(eventHostAccount.Username);
+            bool usernameUnique = _userRepository.IsUsernameUnique(adminAccount.Username);
             if (usernameUnique)
             {
-                _userRepository.InsertAdminUser(eventHostAccount);
+                _userRepository.InsertAdminUser(adminAccount);
                 return MembershipCreateStatus.Success;
             }
             return MembershipCreateStatus.DuplicateUserName;
         }
 
-        public IEnumerable<EventHostAccount> GetAllUsers()
+        public IEnumerable<AdminAccount> GetAllUsers()
         {
             return _userRepository.GetAllEventHostUsers();
         }

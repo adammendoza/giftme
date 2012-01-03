@@ -6,9 +6,9 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
     public interface IUserRepository
     {
         bool IsUsernameUnique(string userName);
-        void InsertAdminUser(EventHostAccount account);
-        EventHostAccount GetAdminUserByUsername(string userName);
-        IEnumerable<EventHostAccount> GetAllEventHostUsers();
+        void InsertAdminUser(AdminAccount account);
+        AdminAccount GetAdminUserByUsername(string userName);
+        IEnumerable<AdminAccount> GetAllEventHostUsers();
     }
 
     public class UserRepository : IUserRepository
@@ -26,23 +26,23 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             return (connection.Account.FindByUserName(userName)) == null;
         }
 
-        public void InsertAdminUser(EventHostAccount account)
+        public void InsertAdminUser(AdminAccount account)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             connection.Account.Insert(account);
         }
 
-        public EventHostAccount GetAdminUserByUsername(string userName)
+        public AdminAccount GetAdminUserByUsername(string userName)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             var findByUserName = connection.Account.FindByUserName(userName);
-            return (EventHostAccount) findByUserName;
+            return (AdminAccount) findByUserName;
         }
 
-        public IEnumerable<EventHostAccount> GetAllEventHostUsers()
+        public IEnumerable<AdminAccount> GetAllEventHostUsers()
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Account.FindAllByAccountType(AccountType.Host).Cast<EventHostAccount>();
+            return connection.Account.FindAllByAccountType(AccountType.Host).Cast<AdminAccount>();
         }
     }
 }

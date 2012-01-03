@@ -11,7 +11,7 @@ namespace Ammeep.GiftRegister.Web.Domain
         Result SignIn(string userName, string password, bool rememberMe);
         void SignOut();
         Result RegisterHostUser(string userName, string name, string password, string email);
-        IEnumerable<EventHostAccount> GetEventHostUsers();
+        IEnumerable<AdminAccount> GetEventHostUsers();
     }
 
     public class UserManager : IUserManager
@@ -19,17 +19,20 @@ namespace Ammeep.GiftRegister.Web.Domain
 
         private readonly IFormsAuthenticationService _formsAuthenticationService;
         private readonly IMembershipService _membershipService;
+        private readonly IUserRepository _userRepository;
 
-        public UserManager(IFormsAuthenticationService formsAuthenticationService,IMembershipService membershipService)
+        public UserManager(IFormsAuthenticationService formsAuthenticationService, IMembershipService membershipService, IUserRepository userRepository)
         {
             _formsAuthenticationService = formsAuthenticationService;
             _membershipService = membershipService;
+            _userRepository = userRepository;
         }
 
         public Result SignIn(string userName, string password, bool rememberMe)
         {
             Result result = new Result();
-            if (_membershipService.ValidateUser(userName, password))
+            bool passwordCorrect = ValidateAccount(userName, password);
+            if (passwordCorrect)
             {
                 _formsAuthenticationService.SignIn(userName, rememberMe);
                 result.Successful = true;
@@ -40,6 +43,16 @@ namespace Ammeep.GiftRegister.Web.Domain
             return result;
         }
 
+        private bool ValidateAccount(string userName, string password)
+        {
+            AdminAccount adminAccount = _userRepository.GetAdminUserByUsername(userName);
+            if(adminAccount != null)
+            {
+                return adminAccount.ValidatePassword(password);
+            }
+            return false;
+        }
+
         public void SignOut()
         {
             _formsAuthenticationService.SignOut();
@@ -48,7 +61,7 @@ namespace Ammeep.GiftRegister.Web.Domain
         public Result RegisterHostUser(string userName, string name, string password, string email)
         {
             Result result = new Result(); 
-            EventHostAccount hostAccount = new EventHostAccount(name, email,userName,password);
+            AdminAccount hostAccount = new AdminAccount(name, email,userName,password);
             MembershipCreateStatus createStatus = _membershipService.CreateAdminUser(hostAccount);
 
             if (createStatus == MembershipCreateStatus.Success)
@@ -63,7 +76,7 @@ namespace Ammeep.GiftRegister.Web.Domain
             return result;
         }
 
-        public IEnumerable<EventHostAccount> GetEventHostUsers()
+        public IEnumerable<AdminAccount> GetEventHostUsers()
         {
            return _membershipService.GetAllUsers();
         }

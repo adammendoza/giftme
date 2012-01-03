@@ -115,6 +115,16 @@ a:visited {
 		}
 
 
+/* Validation Styles*/
+.validation-summary-errors {
+    font-size: 13px;
+    color: #633b1c;
+    margin: 0;
+	font-family:Tahoma, Geneva, sans-serif;
+    padding-left: 9px;
+    padding-top: 9px;
+}
+
 .admin_header {
     background-image: url("Images/admin_text.png");
     height: 40px;
@@ -141,9 +151,10 @@ a:visited {
 
 .admin_content p
 {
-    color: #EC652A;
-    font-family: museo300,sans-serif;
-    font-size: 15px;
+    font-size: 14px;
+    color: #633b1c;
+    margin: 0;
+	font-family:Tahoma, Geneva, sans-serif;
     padding-left: 9px;
     padding-top: 9px;
 }
@@ -160,11 +171,8 @@ a:visited {
     margin-top: 30px;
     padding-right: 10px;
     padding-top: 6px;
-
-
-float: left;
-
-text-align: right;
+    float: left;
+    text-align: right;
 }
 
 
