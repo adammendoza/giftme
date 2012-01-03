@@ -55,14 +55,15 @@ table tbody th {
   background-color: #f5f5f5;
 }
 table .header {
-  cursor: pointer;
+   cursor: pointer;
+   text-align: left;
+   text-size: 18px;
+   color: #8AC3DA;  
+   font-family: Museo300, sans-serif;
+   font-weight: bolder;
 }
 
-table h2 {
-    text-align: left;
-    text-size: 12px;
-    color: #ec008c;
-}
+
 
 table .usertable {
   color: #ec008c;

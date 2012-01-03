@@ -8,7 +8,8 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         bool IsUsernameUnique(string userName);
         void InsertAdminUser(AdminAccount account);
         AdminAccount GetAdminUserByUsername(string userName);
-        IEnumerable<AdminAccount> GetAllEventHostUsers();
+        IEnumerable<AdminAccount> GetAllAdminUsers();
+        IEnumerable<GuestAccount> GetAllGuestUsers();
     }
 
     public class UserRepository : IUserRepository
@@ -39,10 +40,16 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             return (AdminAccount) findByUserName;
         }
 
-        public IEnumerable<AdminAccount> GetAllEventHostUsers()
+        public IEnumerable<AdminAccount> GetAllAdminUsers()
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Account.FindAllByAccountType(AccountType.Host).Cast<AdminAccount>();
+            return connection.Account.FindAllByAccountType(new[] {AccountType.Admin,AccountType.Host}).OrderByAccountTypeDescending().Cast<AdminAccount>();
+        }
+
+        public IEnumerable<GuestAccount> GetAllGuestUsers()
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            return connection.Account.FindAllByAccountType(AccountType.Guest).Cast<GuestAccount>();
         }
     }
 }

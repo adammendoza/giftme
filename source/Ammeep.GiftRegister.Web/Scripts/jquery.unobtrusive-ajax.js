@@ -92,7 +92,7 @@
                 getFunction(element.getAttribute("data-ajax-complete"), ["xhr", "status"]).apply(this, arguments);
             },
             success: function (data, status, xhr) {
-                asyncOnSuccess(element, data, xhr.getResponseHeader("Content-Type") || "text/html");
+                asyncOnSuccess(element, data, xhr.getResponseHeader("Content-AccountType") || "text/html");
                 getFunction(element.getAttribute("data-ajax-success"), ["data", "status", "xhr"]).apply(this, arguments);
             },
             error: getFunction(element.getAttribute("data-ajax-failure"), ["xhr", "status", "error"])

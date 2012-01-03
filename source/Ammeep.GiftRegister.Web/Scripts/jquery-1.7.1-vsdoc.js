@@ -708,7 +708,7 @@ jQuery.ajax = function( url, options ) {
 		// We also use the url parameter if available
 		s.url = ( ( url || s.url ) + "" ).replace( rhash, "" ).replace( rprotocol, ajaxLocParts[ 1 ] + "//" );
 
-		// Extract dataTypes list
+		// Extract dataAccountTypes list
 		s.dataTypes = jQuery.trim( s.dataType || "*" ).toLowerCase().split( rspacesAjax );
 
 		// Determine if a cross-domain request is in order
@@ -775,7 +775,7 @@ jQuery.ajax = function( url, options ) {
 
 		// Set the correct header, if data is being sent
 		if ( s.data && s.hasContent && s.contentType !== false || options.contentType ) {
-			jqXHR.setRequestHeader( "Content-Type", s.contentType );
+			jqXHR.setRequestHeader( "Content-AccountType", s.contentType );
 		}
 
 		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
@@ -789,7 +789,7 @@ jQuery.ajax = function( url, options ) {
 			}
 		}
 
-		// Set the Accepts header for the server, depending on the dataType
+		// Set the Accepts header for the server, depending on the dataAccountType
 		jqXHR.setRequestHeader(
 			"Accept",
 			s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[0] ] ?
@@ -854,8 +854,8 @@ jQuery.ajaxPrefilter = function( dataTypeExpression, func ) {
 /// <summary>
 ///     Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
 /// </summary>
-/// <param name="dataTypeExpression" type="String">
-///     An optional string containing one or more space-separated dataTypes
+/// <param name="dataAccountTypeExpression" type="String">
+///     An optional string containing one or more space-separated dataAccountTypes
 /// </param>
 /// <param name="func" type="Function">
 ///     A handler to set default values for future Ajax requests.
@@ -876,7 +876,7 @@ jQuery.ajaxPrefilter = function( dataTypeExpression, func ) {
 				list,
 				placeBefore;
 
-			// For each dataType in the dataTypeExpression
+			// For each dataAccountType in the dataAccountTypeExpression
 			for ( ; i < length; i++ ) {
 				dataType = dataTypes[ i ];
 				// We control if we're asked to add before
@@ -939,7 +939,7 @@ jQuery.ajaxTransport = function( dataTypeExpression, func ) {
 				list,
 				placeBefore;
 
-			// For each dataType in the dataTypeExpression
+			// For each dataAccountType in the dataAccountTypeExpression
 			for ( ; i < length; i++ ) {
 				dataType = dataTypes[ i ];
 				// We control if we're asked to add before
@@ -2522,7 +2522,7 @@ jQuery.proxy = function( fn, context ) {
 		}
 
 		// Quick check to determine if target is callable, in the spec
-		// this throws a TypeError, but we will just return undefined.
+		// this throws a AccountTypeError, but we will just return undefined.
 		if ( !jQuery.isFunction( fn ) ) {
 			return undefined;
 		}
@@ -2940,7 +2940,7 @@ jQuery.text = function( elem ) {
 		}
 	} else {
 
-		// If no nodeType, this is expected to be an array
+		// If no nodeAccountType, this is expected to be an array
 		for ( i = 0; (node = elem[i]); i++ ) {
 			// Do not traverse comment nodes
 			if ( node.nodeType !== 8 ) {
@@ -3577,8 +3577,8 @@ jQuery.prototype.before = function() {
 jQuery.prototype.bind = function( types, data, fn ) {
 /// <summary>
 ///     Attach a handler to an event for the elements.
-///     &#10;1 - bind(eventType, eventData, handler(eventObject)) 
-///     &#10;2 - bind(eventType, eventData, preventBubble) 
+///     &#10;1 - bind(eventAccountType, eventData, handler(eventObject)) 
+///     &#10;2 - bind(eventAccountType, eventData, preventBubble) 
 ///     &#10;3 - bind(events)
 /// </summary>
 /// <param name="types" type="String">
@@ -3981,8 +3981,8 @@ jQuery.prototype.delay = function( time, type ) {
 jQuery.prototype.delegate = function( selector, types, data, fn ) {
 /// <summary>
 ///     Attach a handler to one or more events for all elements that match the selector, now or in the future, based on a specific set of root elements.
-///     &#10;1 - delegate(selector, eventType, handler) 
-///     &#10;2 - delegate(selector, eventType, eventData, handler) 
+///     &#10;1 - delegate(selector, eventAccountType, handler) 
+///     &#10;2 - delegate(selector, eventAccountType, eventData, handler) 
 ///     &#10;3 - delegate(selector, events)
 /// </summary>
 /// <param name="selector" type="String">
@@ -4030,8 +4030,8 @@ jQuery.prototype.die = function( types, fn ) {
 ///     1: Remove all event handlers previously attached using .live() from the elements.
 ///     &#10;    1.1 - die()
 ///     &#10;2: Remove an event handler previously attached using .live() from the elements.
-///     &#10;    2.1 - die(eventType, handler) 
-///     &#10;    2.2 - die(eventTypes)
+///     &#10;    2.1 - die(eventAccountType, handler) 
+///     &#10;    2.2 - die(eventAccountTypes)
 /// </summary>
 /// <param name="types" type="String">
 ///     A string containing a JavaScript event type, such as click or keydown.
@@ -5552,7 +5552,7 @@ jQuery.prototype.on = function( types, selector, data, fn, /*INTERNAL*/ one ) {
 
 		var origFn, type;
 
-		// Types can be a map of types/handlers
+		// AccountTypes can be a map of types/handlers
 		if ( typeof types === "object" ) {
 			// ( types-Object, selector, data )
 			if ( typeof selector !== "string" ) {
@@ -6834,7 +6834,7 @@ jQuery.prototype.toggleClass = function( value, stateVal ) {
 jQuery.prototype.trigger = function( type, data ) {
 /// <summary>
 ///     Execute all handlers and behaviors attached to the matched elements for the given event type.
-///     &#10;1 - trigger(eventType, extraParameters) 
+///     &#10;1 - trigger(eventAccountType, extraParameters) 
 ///     &#10;2 - trigger(event)
 /// </summary>
 /// <param name="type" type="String">
@@ -6868,8 +6868,8 @@ jQuery.prototype.triggerHandler = function( type, data ) {
 jQuery.prototype.unbind = function( types, fn ) {
 /// <summary>
 ///     Remove a previously-attached event handler from the elements.
-///     &#10;1 - unbind(eventType, handler(eventObject)) 
-///     &#10;2 - unbind(eventType, false) 
+///     &#10;1 - unbind(eventAccountType, handler(eventObject)) 
+///     &#10;2 - unbind(eventAccountType, false) 
 ///     &#10;3 - unbind(event)
 /// </summary>
 /// <param name="types" type="String">
@@ -6886,8 +6886,8 @@ jQuery.prototype.undelegate = function( selector, types, fn ) {
 /// <summary>
 ///     Remove a handler from the event for all elements which match the current selector, based upon a specific set of root elements.
 ///     &#10;1 - undelegate() 
-///     &#10;2 - undelegate(selector, eventType) 
-///     &#10;3 - undelegate(selector, eventType, handler) 
+///     &#10;2 - undelegate(selector, eventAccountType) 
+///     &#10;3 - undelegate(selector, eventAccountType, handler) 
 ///     &#10;4 - undelegate(selector, events) 
 ///     &#10;5 - undelegate(namespace)
 /// </summary>

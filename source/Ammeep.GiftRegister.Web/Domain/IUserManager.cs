@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Web.Security;
 using Ammeep.GiftRegister.Web.Domain.Authentication;
+using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Domain.Model;
 using Ammeep.GiftRegister.Web.Domain.Validation;
 
@@ -11,21 +12,22 @@ namespace Ammeep.GiftRegister.Web.Domain
         Result SignIn(string userName, string password, bool rememberMe);
         void SignOut();
         Result RegisterHostUser(string userName, string name, string password, string email);
-        IEnumerable<AdminAccount> GetEventHostUsers();
+        IEnumerable<AdminAccount> GetAdminUsers();
+        IEnumerable<GuestAccount> GetGuestList();
     }
 
     public class UserManager : IUserManager
     {
 
         private readonly IFormsAuthenticationService _formsAuthenticationService;
-        private readonly IMembershipService _membershipService;
         private readonly IUserRepository _userRepository;
+        private readonly ILoggingService _loggingService;
 
-        public UserManager(IFormsAuthenticationService formsAuthenticationService, IMembershipService membershipService, IUserRepository userRepository)
+        public UserManager(IFormsAuthenticationService formsAuthenticationService,IUserRepository userRepository, ILoggingService loggingService)
         {
             _formsAuthenticationService = formsAuthenticationService;
-            _membershipService = membershipService;
             _userRepository = userRepository;
+            _loggingService = loggingService;
         }
 
         public Result SignIn(string userName, string password, bool rememberMe)
@@ -62,8 +64,17 @@ namespace Ammeep.GiftRegister.Web.Domain
         {
             Result result = new Result(); 
             AdminAccount hostAccount = new AdminAccount(name, email,userName,password);
-            MembershipCreateStatus createStatus = _membershipService.CreateAdminUser(hostAccount);
-
+            bool usernameUnique = _userRepository.IsUsernameUnique(hostAccount.Username);
+            MembershipCreateStatus createStatus;
+            if (usernameUnique)
+            {
+                _userRepository.InsertAdminUser(hostAccount);
+                createStatus = MembershipCreateStatus.Success;
+            }
+            else
+            {
+                createStatus = MembershipCreateStatus.DuplicateUserName;
+            }
             if (createStatus == MembershipCreateStatus.Success)
             {
                 _formsAuthenticationService.SignIn(userName, false);
@@ -76,9 +87,14 @@ namespace Ammeep.GiftRegister.Web.Domain
             return result;
         }
 
-        public IEnumerable<AdminAccount> GetEventHostUsers()
+        public IEnumerable<AdminAccount> GetAdminUsers()
         {
-           return _membershipService.GetAllUsers();
+           return _userRepository.GetAllAdminUsers();
+        }
+
+        public IEnumerable<GuestAccount> GetGuestList()
+        {
+            return _userRepository.GetAllGuestUsers();
         }
     }
 }

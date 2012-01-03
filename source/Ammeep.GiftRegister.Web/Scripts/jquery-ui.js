@@ -4789,7 +4789,7 @@ $.effects.bounce = function(o) {
 		var distance = o.options.distance || 20; // Default distance
 		var times = o.options.times || 5; // Default # of times
 		var speed = o.duration || 250; // Default speed per bounce
-		if (/show|hide/.test(mode)) props.push('opacity'); // Avoid touching opacity to prevent clearType and PNG issues in IE
+		if (/show|hide/.test(mode)) props.push('opacity'); // Avoid touching opacity to prevent clearAccountType and PNG issues in IE
 
 		// Adjust
 		$.effects.save(el, props); el.show(); // Save & Show
@@ -11164,7 +11164,7 @@ $.widget( "ui.tabs", {
 		}
 
 		// Reset certain styles left over from animation
-		// and prevent IE's ClearType bug...
+		// and prevent IE's ClearAccountType bug...
 		function resetStyle( $el, fx ) {
 			$el.css( "display", "" );
 			if ( !$.support.opacity && fx.opacity ) {

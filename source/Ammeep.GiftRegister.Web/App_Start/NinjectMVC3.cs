@@ -55,7 +55,6 @@ namespace Ammeep.GiftRegister.Web.App_Start
             kernel.Bind<IConfiguration>().To<Configuration>();
             kernel.Bind<ILoggingService>().To<LoggingService>();
             kernel.Bind<IFormsAuthenticationService>().To<FormsAuthenticationService>();
-            kernel.Bind<IMembershipService>().To<AccountMembershipService>();
             kernel.Bind<IGiftRepository>().To<GiftRepository>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IUserManager>().To<UserManager>();

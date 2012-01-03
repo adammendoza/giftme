@@ -9,25 +9,50 @@
 <div class="login_flag">User Management</div>
 <div class="content">
     <div class="admin_content">
-            <p>Here is some text about users</p>
+            <p>Here is some text about Admin users</p>
+            <table class="zebra-striped">
+            <thead class="header">
+                <tr>
+                    <td class="header">User Name</td>
+                    <td class="header">Name</td>
+                    <td class="header">Email Name</td>
+                    <td class="header">Account Type</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.AdminUsers)
+                {
+                    <tr>
+                        <td>@user.Username</td>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                        <td>@user.AccountType</td>
+                        <td>@Html.ActionLink("Manage Account","Manage","Account")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </br>
+     <p>Here is some text about Gues users</p>
             <table class="zebra-striped">
                 <thead class="header">
                     <tr>
-                        <td><h2>User Name</h2></td>
-                        <td><h2>Name</h2></td>
-                        <td><h2>Email Name</h2></td>
-                        <td><h2>Account Type</h2></td>
+                        <td class="header">User Name</td>
+                        <td class="header">Name</td>
+                        <td class="header">Email Name</td>
+                        <td class="header">Account Type</td>
                         <td></td>
                     </tr>
                 </thead>
                 <tbody>
-                     @foreach (var user in Model.Users)
+                     @foreach (var user in Model.Guests)
                     {
                         <tr>
                             <td>@user.Username</td>
                             <td>@user.Name</td>
                             <td>@user.Email</td>
-                            <td>@user.Type</td>
+                            <td>@user.AccountType</td>
                             <td>@Html.ActionLink("Manage Account","Manage","Account")</td>
                         </tr>
                     }

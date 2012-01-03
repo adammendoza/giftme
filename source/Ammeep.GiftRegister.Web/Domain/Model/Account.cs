@@ -4,22 +4,22 @@ using System.Text;
 
 namespace Ammeep.GiftRegister.Web.Domain.Model
 {
-  
     public abstract class Account
     {
+        protected Account(){}
+
         protected Account(AccountType type,string username):this(type,username,null){}
 
         protected Account(AccountType type, string username, string password)
         {
-            Type = type;
+            AccountType = type;
             Username = username;
             RequiresPassword = type != AccountType.Guest;
             PasswordSalt = CreateNewPasswordSalt();
             PasswordHash = HashPassword(password);
         }
-
-       
-        public AccountType Type { get; set; }
+    
+        public AccountType AccountType { get; set; }
         public string Username { get; set; }
         public int AccountId { get; set; }
         public bool RequiresPassword { get; set; }
@@ -28,8 +28,10 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 
         public bool ValidatePassword(string password)
         {
-            if (string.IsNullOrEmpty(PasswordHash) || PasswordHash.Length < 128)
+            if (string.IsNullOrEmpty(PasswordHash))
+            {
                 throw new ArgumentException("There is an invalid password hash to validate against.");
+            }
             string passHash = HashPassword(password);
             return string.Compare(PasswordHash, passHash) == 0;
         }
@@ -63,19 +65,18 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             return s.ToString();
         }
     }
-
-  
+ 
     public enum AccountType
     {
-        Guest =0,
-        Host =1,
-        Admin =2
+        Guest = 0,
+        Host =  1,
+        Admin = 2
     }
 
     public class AdminAccount :Account
     {
-        public AdminAccount() : base(AccountType.Host, null){}
-
+        public AdminAccount(){}
+    
         public AdminAccount(string name, string email, string username, string password) : base(AccountType.Host,username,password)
         {
             Name = name;
@@ -86,8 +87,16 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public string Email { get; set; }       
     }
 
-    public class GuestUser 
-    {
+    public class GuestAccount :Account
+    {   
+        public GuestAccount(){}
+
+        public GuestAccount(string username,string name, string email) : base(AccountType.Guest, username)
+        {
+            Name = name;
+            Email = email;
+        }
+
         public string Name { get; set; }
         public string Email { get; set; }
     }

@@ -803,7 +803,7 @@ jQuery.extend({
 		}
 
 		// Quick check to determine if target is callable, in the spec
-		// this throws a TypeError, but we will just return undefined.
+		// this throws a AccountTypeError, but we will just return undefined.
 		if ( !jQuery.isFunction( fn ) ) {
 			return undefined;
 		}
@@ -3668,7 +3668,7 @@ jQuery.fn.extend({
 	on: function( types, selector, data, fn, /*INTERNAL*/ one ) {
 		var origFn, type;
 
-		// Types can be a map of types/handlers
+		// AccountTypes can be a map of types/handlers
 		if ( typeof types === "object" ) {
 			// ( types-Object, selector, data )
 			if ( typeof selector !== "string" ) {
@@ -4207,7 +4207,7 @@ var getText = Sizzle.getText = function( elem ) {
 		}
 	} else {
 
-		// If no nodeType, this is expected to be an array
+		// If no nodeAccountType, this is expected to be an array
 		for ( i = 0; (node = elem[i]); i++ ) {
 			// Do not traverse comment nodes
 			if ( node.nodeType !== 8 ) {
@@ -6663,7 +6663,7 @@ if ( !jQuery.support.opacity ) {
 			if ( value >= 1 && jQuery.trim( filter.replace( ralpha, "" ) ) === "" ) {
 
 				// Setting style.filter to null, "" & " " still leave "filter:" in the cssText
-				// if "filter:" is present at all, clearType is disabled, we want to avoid this
+				// if "filter:" is present at all, clearAccountType is disabled, we want to avoid this
 				// style.removeAttribute is IE Only, but so apparently is this code path...
 				style.removeAttribute( "filter" );
 
@@ -6850,20 +6850,20 @@ var r20 = /%20/g,
 	_load = jQuery.fn.load,
 
 	/* Prefilters
-	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
+	 * 1) They are useful to introduce custom dataAccountTypes (see ajax/jsonp.js for an example)
 	 * 2) These are called:
 	 *    - BEFORE asking for a transport
 	 *    - AFTER param serialization (s.data is a string if s.processData is true)
-	 * 3) key is the dataType
+	 * 3) key is the dataAccountType
 	 * 4) the catchall symbol "*" can be used
-	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
+	 * 5) execution will start with transport dataAccountType and THEN continue down to "*" if needed
 	 */
 	prefilters = {},
 
 	/* Transports bindings
-	 * 1) key is the dataType
+	 * 1) key is the dataAccountType
 	 * 2) the catchall symbol "*" can be used
-	 * 3) selection will start with transport dataType and THEN go to "*" if needed
+	 * 3) selection will start with transport dataAccountType and THEN go to "*" if needed
 	 */
 	transports = {},
 
@@ -6894,7 +6894,7 @@ ajaxLocParts = rurl.exec( ajaxLocation.toLowerCase() ) || [];
 // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
 function addToPrefiltersOrTransports( structure ) {
 
-	// dataTypeExpression is optional and defaults to "*"
+	// dataAccountTypeExpression is optional and defaults to "*"
 	return function( dataTypeExpression, func ) {
 
 		if ( typeof dataTypeExpression !== "string" ) {
@@ -6910,7 +6910,7 @@ function addToPrefiltersOrTransports( structure ) {
 				list,
 				placeBefore;
 
-			// For each dataType in the dataTypeExpression
+			// For each dataAccountType in the dataAccountTypeExpression
 			for ( ; i < length; i++ ) {
 				dataType = dataTypes[ i ];
 				// We control if we're asked to add before
@@ -6944,7 +6944,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 
 	for ( ; i < length && ( executeOnly || !selection ); i++ ) {
 		selection = list[ i ]( options, originalOptions, jqXHR );
-		// If we got redirected to another dataType
+		// If we got redirected to another dataAccountType
 		// we try there if executing only and not done already
 		if ( typeof selection === "string" ) {
 			if ( !executeOnly || inspected[ selection ] ) {
@@ -6957,7 +6957,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 		}
 	}
 	// If we're only executing or nothing was selected
-	// we try the catchall dataType if not done already
+	// we try the catchall dataAccountType if not done already
 	if ( ( executeOnly || !selection ) && !inspected[ "*" ] ) {
 		selection = inspectPrefiltersOrTransports(
 				structure, options, originalOptions, jqXHR, "*", inspected );
@@ -7150,7 +7150,7 @@ jQuery.extend({
 		/*
 		timeout: 0,
 		data: null,
-		dataType: null,
+		dataAccountType: null,
 		username: null,
 		password: null,
 		cache: null,
@@ -7449,7 +7449,7 @@ jQuery.extend({
 		// We also use the url parameter if available
 		s.url = ( ( url || s.url ) + "" ).replace( rhash, "" ).replace( rprotocol, ajaxLocParts[ 1 ] + "//" );
 
-		// Extract dataTypes list
+		// Extract dataAccountTypes list
 		s.dataTypes = jQuery.trim( s.dataType || "*" ).toLowerCase().split( rspacesAjax );
 
 		// Determine if a cross-domain request is in order
@@ -7516,7 +7516,7 @@ jQuery.extend({
 
 		// Set the correct header, if data is being sent
 		if ( s.data && s.hasContent && s.contentType !== false || options.contentType ) {
-			jqXHR.setRequestHeader( "Content-Type", s.contentType );
+			jqXHR.setRequestHeader( "Content-AccountType", s.contentType );
 		}
 
 		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
@@ -7530,7 +7530,7 @@ jQuery.extend({
 			}
 		}
 
-		// Set the Accepts header for the server, depending on the dataType
+		// Set the Accepts header for the server, depending on the dataAccountType
 		jqXHR.setRequestHeader(
 			"Accept",
 			s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[0] ] ?
@@ -7674,7 +7674,7 @@ jQuery.extend({
 
 /* Handles responses to an ajax request:
  * - sets all responseXXX fields accordingly
- * - finds the right dataType (mediates between content-type and expected dataType)
+ * - finds the right dataAccountType (mediates between content-type and expected dataAccountType)
  * - returns the corresponding response
  */
 function ajaxHandleResponses( s, jqXHR, responses ) {
@@ -7694,7 +7694,7 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		}
 	}
 
-	// Remove auto dataType and get content-type in the process
+	// Remove auto dataAccountType and get content-type in the process
 	while( dataTypes[ 0 ] === "*" ) {
 		dataTypes.shift();
 		if ( ct === undefined ) {
@@ -7712,11 +7712,11 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		}
 	}
 
-	// Check to see if we have a response for the expected dataType
+	// Check to see if we have a response for the expected dataAccountType
 	if ( dataTypes[ 0 ] in responses ) {
 		finalDataType = dataTypes[ 0 ];
 	} else {
-		// Try convertible dataTypes
+		// Try convertible dataAccountTypes
 		for ( type in responses ) {
 			if ( !dataTypes[ 0 ] || s.converters[ type + " " + dataTypes[0] ] ) {
 				finalDataType = type;
@@ -7730,8 +7730,8 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		finalDataType = finalDataType || firstDataType;
 	}
 
-	// If we found a dataType
-	// We add the dataType to the list if needed
+	// If we found a dataAccountType
+	// We add the dataAccountType to the list if needed
 	// and return the corresponding response
 	if ( finalDataType ) {
 		if ( finalDataType !== dataTypes[ 0 ] ) {
@@ -7755,7 +7755,7 @@ function ajaxConvert( s, response ) {
 		key,
 		length = dataTypes.length,
 		tmp,
-		// Current and previous dataTypes
+		// Current and previous dataAccountTypes
 		current = dataTypes[ 0 ],
 		prev,
 		// Conversion expression
@@ -7766,7 +7766,7 @@ function ajaxConvert( s, response ) {
 		conv1,
 		conv2;
 
-	// For each dataType in the chain
+	// For each dataAccountType in the chain
 	for ( i = 1; i < length; i++ ) {
 
 		// Create converters map
@@ -7779,14 +7779,14 @@ function ajaxConvert( s, response ) {
 			}
 		}
 
-		// Get the dataTypes
+		// Get the dataAccountTypes
 		prev = current;
 		current = dataTypes[ i ];
 
-		// If current is auto dataType, update it to prev
+		// If current is auto dataAccountType, update it to prev
 		if ( current === "*" ) {
 			current = prev;
-		// If no auto and dataTypes are actually different
+		// If no auto and dataAccountTypes are actually different
 		} else if ( prev !== "*" && prev !== current ) {
 
 			// Get the converter
@@ -7897,7 +7897,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			return responseContainer[ 0 ];
 		};
 
-		// force json dataType
+		// force json dataAccountType
 		s.dataTypes[ 0 ] = "json";
 
 		// Delegate to script
@@ -7908,7 +7908,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 
 
-// Install script dataType
+// Install script dataAccountType
 jQuery.ajaxSetup({
 	accepts: {
 		script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"

@@ -22,9 +22,11 @@ namespace Ammeep.GiftRegister.Web.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            IEnumerable<AdminAccount> users = _userManager.GetEventHostUsers();
+            IEnumerable<AdminAccount> adminUsers = _userManager.GetAdminUsers();
+            IEnumerable<GuestAccount> guests = _userManager.GetGuestList();
             ManageUsersPage usersPage = new ManageUsersPage();
-            usersPage.Users = users;
+            usersPage.AdminUsers = adminUsers;
+            usersPage.Guests = guests;
             return View(usersPage);
         }
 

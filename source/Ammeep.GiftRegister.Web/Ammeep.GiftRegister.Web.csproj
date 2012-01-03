@@ -94,13 +94,11 @@
     <Compile Include="Attributes\ValidatePasswordLengthAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Domain\Authentication\FormsAuthenticationService.cs" />
     <Compile Include="Domain\Model\Account.cs" />
     <Compile Include="Domain\Result.cs" />
-    <Compile Include="Domain\Authentication\AccountMembershipService.cs" />
-    <Compile Include="Domain\Authentication\FormsAuthenticationService.cs" />
     <Compile Include="Domain\IConfiguration.cs" />
     <Compile Include="Domain\Authentication\IFormsAuthenticationService.cs" />
-    <Compile Include="Domain\Authentication\IMembershipService.cs" />
     <Compile Include="Domain\IRegistryManager.cs" />
     <Compile Include="Domain\IUserManager.cs" />
     <Compile Include="Domain\Logging\ILoggingService.cs" />
