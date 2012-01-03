@@ -7,7 +7,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
     {
         bool IsUsernameUnique(string userName);
         void InsertAdminUser(EventHostAccount account);
-        Account GetUserByUserName(string userName);
+        EventHostAccount GetAdminUserByUsername(string userName);
         IEnumerable<EventHostAccount> GetAllEventHostUsers();
     }
 
@@ -32,11 +32,11 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             connection.Account.Insert(account);
         }
 
-        public Account GetUserByUserName(string userName)
+        public EventHostAccount GetAdminUserByUsername(string userName)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             var findByUserName = connection.Account.FindByUserName(userName);
-            return (Account) findByUserName;
+            return (EventHostAccount) findByUserName;
         }
 
         public IEnumerable<EventHostAccount> GetAllEventHostUsers()

@@ -18,7 +18,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Authentication
         {
             if (string.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
             if (string.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
-            Account account = _userRepository.GetUserByUserName(userName);
+            Account account = _userRepository.GetAdminUserByUsername(userName);
             return true;// PasswordHash.ValidatePassword(password, Account.PasswordHash);
         }
 
