@@ -116,6 +116,7 @@
     <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Functions\" />
     <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Schemes\" />
     <Folder Include="Scripts\Post-Deployment\TestData" />
+    <Folder Include="Scripts\Post-Deployment\ReferenceData" />
   </ItemGroup>
   <ItemGroup>
     <PropertiesFile Include="Properties\Database.sqlsettings">
@@ -182,6 +183,8 @@
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Guest.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Gifts.table.sql">
       <SubType>Code</SubType>
@@ -191,8 +194,42 @@
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\GuestPurchase.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Users.table.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_GiftPurchase_Gifts.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_GiftPurchase_Account.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_Account_AccountType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_GiftPurchase.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_AccountType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Users_1.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\GiftPurchase.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\AccountType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Account.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Service Broker\Routes\AutoCreatedLocal.route.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>
@@ -203,13 +240,13 @@
     <NotInBuild Include="Scripts\Post-Deployment\TestData\Gift.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
-    <NotInBuild Include="Scripts\Post-Deployment\TestData\GiftPurchase.sql">
-      <SubType>NotInBuild</SubType>
-    </NotInBuild>
     <NotInBuild Include="Scripts\Post-Deployment\TestData\Guests.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
-    <NotInBuild Include="Scripts\Post-Deployment\TestData\Users.sql">
+    <NotInBuild Include="Scripts\Post-Deployment\TestData\Accounts.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="Scripts\Post-Deployment\ReferenceData\AccountTypes.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
   </ItemGroup>

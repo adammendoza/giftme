@@ -153,6 +153,7 @@
     <Content Include="Content\Images\tile.gif" />
     <Content Include="Content\Images\tile.png" />
     <Content Include="Content\Images\welcome_text.png" />
+    <Content Include="Content\Tables.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\jquery-ui.css" />
@@ -274,6 +275,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Gift\RegistryItems.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Manage.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

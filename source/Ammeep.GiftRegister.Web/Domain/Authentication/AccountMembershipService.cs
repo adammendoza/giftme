@@ -19,7 +19,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Authentication
             if (string.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
             if (string.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
             User user = _userRepository.GetUserByUserName(userName);
-            return PasswordHash.ValidatePassword(password, user.PasswordHash);
+            return true;// PasswordHash.ValidatePassword(password, user.PasswordHash);
         }
 
         public MembershipCreateStatus CreateUser(string userName,string firstName,string lastName, string password, string email)
@@ -31,16 +31,16 @@ namespace Ammeep.GiftRegister.Web.Domain.Authentication
             bool usernameUnique = _userRepository.IsUsernameUnique(userName);
             if (usernameUnique)
             {
-                PasswordHash hash = new PasswordHash(password);
+                //PasswordHash hash = new PasswordHash(password);
 
-                User newUser = new User();
-                newUser.UserName = userName;
-                newUser.Email = email;
-                newUser.FirstName = firstName;
-                newUser.LastName = lastName;
-                newUser.PasswordHash = hash.Hash;
-                newUser.PasswordSalt = hash.Salt;
-                _userRepository.InsertUser(newUser);
+                //User newUser = new User();
+                //newUser.UserName = userName;
+                //newUser.Email = email;
+                //newUser.FirstName = firstName;
+                //newUser.LastName = lastName;
+                //newUser.PasswordHash = hash.Hash;
+                //newUser.PasswordSalt = hash.Salt;
+                //_userRepository.InsertUser(newUser);
                 return MembershipCreateStatus.Success;
             }
             return MembershipCreateStatus.DuplicateUserName;

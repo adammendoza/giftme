@@ -10,8 +10,7 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 print 'Inserting Test Data'
-:r .\TestData\Users.sql
-:r .\TestData\Guests.sql
+:r .\ReferenceData\AccountTypes.sql
+:r .\TestData\Accounts.sql
 :r .\TestData\Category.sql
 :r .\TestData\Gift.sql
-:r .\TestData\GiftPurchase.sql
