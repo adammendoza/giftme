@@ -10,8 +10,8 @@ namespace Ammeep.GiftRegister.Web.Domain
     {
         Result SignIn(string userName, string password, bool rememberMe);
         void SignOut();
-        Result RegisterUser(string userName, string firstName, string lastName, string password, string email);
-        IEnumerable<User> GetUsers();
+        Result RegisterHostUser(string userName, string name, string password, string email);
+        IEnumerable<EventHostAccount> GetEventHostUsers();
     }
 
     public class UserManager : IUserManager
@@ -45,10 +45,11 @@ namespace Ammeep.GiftRegister.Web.Domain
             _formsAuthenticationService.SignOut();
         }
 
-        public Result RegisterUser(string userName,string firstName ,string lastName ,string password, string email)
+        public Result RegisterHostUser(string userName, string name, string password, string email)
         {
-            Result result = new Result();
-            MembershipCreateStatus createStatus = _membershipService.CreateUser(userName,firstName,lastName,password,email);
+            Result result = new Result(); 
+            EventHostAccount hostAccount = new EventHostAccount(name, email,userName,password);
+            MembershipCreateStatus createStatus = _membershipService.CreateAdminUser(hostAccount);
 
             if (createStatus == MembershipCreateStatus.Success)
             {
@@ -62,7 +63,7 @@ namespace Ammeep.GiftRegister.Web.Domain
             return result;
         }
 
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<EventHostAccount> GetEventHostUsers()
         {
            return _membershipService.GetAllUsers();
         }

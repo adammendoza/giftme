@@ -94,8 +94,7 @@
     <Compile Include="Attributes\ValidatePasswordLengthAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Domain\Authentication\PasswordHash.cs" />
-    <Compile Include="Domain\Model\User.cs" />
+    <Compile Include="Domain\Model\Account.cs" />
     <Compile Include="Domain\Result.cs" />
     <Compile Include="Domain\Authentication\AccountMembershipService.cs" />
     <Compile Include="Domain\Authentication\FormsAuthenticationService.cs" />

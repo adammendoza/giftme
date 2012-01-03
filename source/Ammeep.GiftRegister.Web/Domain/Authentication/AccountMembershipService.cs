@@ -18,37 +18,25 @@ namespace Ammeep.GiftRegister.Web.Domain.Authentication
         {
             if (string.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
             if (string.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
-            User user = _userRepository.GetUserByUserName(userName);
-            return true;// PasswordHash.ValidatePassword(password, user.PasswordHash);
+            Account account = _userRepository.GetUserByUserName(userName);
+            return true;// PasswordHash.ValidatePassword(password, Account.PasswordHash);
         }
 
-        public MembershipCreateStatus CreateUser(string userName,string firstName,string lastName, string password, string email)
+        public MembershipCreateStatus CreateAdminUser(EventHostAccount eventHostAccount)
         {
-            if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
-            if (String.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
-            if (String.IsNullOrEmpty(email)) throw new ArgumentException("Value cannot be null or empty.", "email");
-
-            bool usernameUnique = _userRepository.IsUsernameUnique(userName);
+          
+            bool usernameUnique = _userRepository.IsUsernameUnique(eventHostAccount.Username);
             if (usernameUnique)
             {
-                //PasswordHash hash = new PasswordHash(password);
-
-                //User newUser = new User();
-                //newUser.UserName = userName;
-                //newUser.Email = email;
-                //newUser.FirstName = firstName;
-                //newUser.LastName = lastName;
-                //newUser.PasswordHash = hash.Hash;
-                //newUser.PasswordSalt = hash.Salt;
-                //_userRepository.InsertUser(newUser);
+                _userRepository.InsertAdminUser(eventHostAccount);
                 return MembershipCreateStatus.Success;
             }
             return MembershipCreateStatus.DuplicateUserName;
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<EventHostAccount> GetAllUsers()
         {
-            return _userRepository.GetAllUsers();
+            return _userRepository.GetAllEventHostUsers();
         }
 
         public bool ChangePassword(string userName, string oldPassword, string newPassword)

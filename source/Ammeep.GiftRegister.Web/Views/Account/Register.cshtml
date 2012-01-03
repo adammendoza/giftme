@@ -33,15 +33,9 @@
                     </div>
 
                      <div class="input">
-                        <label for="username">First Name:</label>
-                        @Html.TextBoxFor(model => model.FirstName)
-                        @Html.ValidationMessageFor(model => model.FirstName)
-                    </div>
-
-                     <div class="input">
-                        <label for="username">Last Name:</label>
-                        @Html.TextBoxFor(model => model.LastName)
-                        @Html.ValidationMessageFor(model => model.LastName)
+                        <label for="username">Name:</label>
+                        @Html.TextBoxFor(model => model.Name)
+                        @Html.ValidationMessageFor(model => model.Name)
                     </div>
 
                      <div class="input">
@@ -52,13 +46,13 @@
 
                      <div class="input">
                         <label for="username">Password:</label>
-                        @Html.TextBoxFor(model => model.Password)
+                        @Html.PasswordFor(model => model.Password)
                         @Html.ValidationMessageFor(model => model.Password)
                     </div>
 
                      <div class="input">
                         <label for="username">ConfirmPassword:</label>
-                        @Html.TextBoxFor(model => model.ConfirmPassword)
+                        @Html.PasswordFor(model => model.ConfirmPassword)
                         @Html.ValidationMessageFor(model => model.ConfirmPassword)
                     </div>
             </div>

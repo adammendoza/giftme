@@ -5,6 +5,6 @@ namespace Ammeep.GiftRegister.Web.Models
 {
     public class ManageUsersPage
     {
-        public IEnumerable<User> Users { get; set; }
+        public IEnumerable<EventHostAccount> Users { get; set; }
     }
 }

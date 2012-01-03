@@ -28,11 +28,7 @@ namespace Ammeep.GiftRegister.Web.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [DisplayName("First name")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [DisplayName("Last name")]
-        public string LastName { get; set; }
+        [DisplayName("Name")]
+        public string Name { get; set; }
     }
 }

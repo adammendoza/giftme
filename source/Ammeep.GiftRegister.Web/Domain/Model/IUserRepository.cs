@@ -6,9 +6,9 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
     public interface IUserRepository
     {
         bool IsUsernameUnique(string userName);
-        void InsertUser(User user);
-        User GetUserByUserName(string userName);
-        IEnumerable<User> GetAllUsers();
+        void InsertAdminUser(EventHostAccount account);
+        Account GetUserByUserName(string userName);
+        IEnumerable<EventHostAccount> GetAllEventHostUsers();
     }
 
     public class UserRepository : IUserRepository
@@ -23,26 +23,26 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public bool IsUsernameUnique(string userName)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return (connection.Users.FindByUserName(userName)) == null;
+            return (connection.Account.FindByUserName(userName)) == null;
         }
 
-        public void InsertUser(User user)
+        public void InsertAdminUser(EventHostAccount account)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            connection.Users.Insert(user);
+            connection.Account.Insert(account);
         }
 
-        public User GetUserByUserName(string userName)
+        public Account GetUserByUserName(string userName)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            var findByUserName = connection.Users.FindByUserName(userName);
-            return (User) findByUserName;
+            var findByUserName = connection.Account.FindByUserName(userName);
+            return (Account) findByUserName;
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<EventHostAccount> GetAllEventHostUsers()
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Users.All().Cast<User>();
+            return connection.Account.FindAllByAccountType(AccountType.Host).Cast<EventHostAccount>();
         }
     }
 }

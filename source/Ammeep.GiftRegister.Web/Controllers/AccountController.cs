@@ -22,7 +22,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            IEnumerable<User> users = _userManager.GetUsers();
+            IEnumerable<EventHostAccount> users = _userManager.GetEventHostUsers();
             ManageUsersPage usersPage = new ManageUsersPage();
             usersPage.Users = users;
             return View(usersPage);
@@ -77,7 +77,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Result result = _userManager.RegisterUser(model.UserName,model.FirstName,model.LastName, model.Password, model.Email);
+                Result result = _userManager.RegisterHostUser(model.UserName, model.Name, model.Password, model.Email);
                 if (result.Successful)
                 {                  
                     return RedirectToAction("Index", "Manage");
