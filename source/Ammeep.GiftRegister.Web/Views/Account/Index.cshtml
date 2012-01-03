@@ -1,8 +1,39 @@
-﻿@model object
+﻿@model Ammeep.GiftRegister.Web.Models.ManageUsersPage
 
 @{
     ViewBag.Title = "Manage";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>title</h2>
+<div class="admin_header"> </div>
+<div class="login_flag">User Management</div>
+<div class="content">
+    <div class="admin_content">
+            <p>Here is some text about users</p>
+            <table class="zebra-striped">
+                <thead class="header">
+                    <tr>
+                        <td><h2>User Name</h2></td>
+                        <td><h2>First Name</h2></td>
+                        <td><h2>Last Name</h2></td>
+                        <td><h2>Email Name</h2></td>
+                        <td><h2>Account Type</h2></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                     @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.FirstName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.Email</td>
+                            <td>Admin</td>
+                            <td>@Html.ActionLink("Manage Account","Manage","Account")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    </div>
+</div>

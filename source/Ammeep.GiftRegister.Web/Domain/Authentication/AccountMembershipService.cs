@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Web.Security;
 using Ammeep.GiftRegister.Web.Domain.Model;
 
@@ -43,6 +44,11 @@ namespace Ammeep.GiftRegister.Web.Domain.Authentication
                 return MembershipCreateStatus.Success;
             }
             return MembershipCreateStatus.DuplicateUserName;
+        }
+
+        public IEnumerable<User> GetAllUsers()
+        {
+            return _userRepository.GetAllUsers();
         }
 
         public bool ChangePassword(string userName, string oldPassword, string newPassword)

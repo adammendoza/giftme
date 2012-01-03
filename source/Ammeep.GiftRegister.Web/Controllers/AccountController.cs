@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain;
+using Ammeep.GiftRegister.Web.Domain.Model;
 using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
@@ -19,6 +21,15 @@ namespace Ammeep.GiftRegister.Web.Controllers
 
         [Authorize]
         public ActionResult Index()
+        {
+            IEnumerable<User> users = _userManager.GetUsers();
+            ManageUsersPage usersPage = new ManageUsersPage();
+            usersPage.Users = users;
+            return View(usersPage);
+        }
+
+        [Authorize]
+        public ActionResult Manage(int userId)
         {
             return View();
         }

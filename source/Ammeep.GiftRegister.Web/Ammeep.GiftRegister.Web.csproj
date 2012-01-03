@@ -118,6 +118,7 @@
     <Compile Include="Controllers\GiftController.cs" />
     <Compile Include="Models\LogOnModel.cs" />
     <Compile Include="Models\ManagePageModel.cs" />
+    <Compile Include="Models\ManageUsersPage.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\RegistryItemsPage.cs" />
     <Compile Include="Global.asax.cs">

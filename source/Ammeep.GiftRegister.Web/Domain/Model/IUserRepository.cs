@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Simple.Data;
 
 namespace Ammeep.GiftRegister.Web.Domain.Model
@@ -7,6 +8,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         bool IsUsernameUnique(string userName);
         void InsertUser(User user);
         User GetUserByUserName(string userName);
+        IEnumerable<User> GetAllUsers();
     }
 
     public class UserRepository : IUserRepository
@@ -37,11 +39,10 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             return (User) findByUserName;
         }
 
-      
-
-      
-
-
-      
+        public IEnumerable<User> GetAllUsers()
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            return connection.Users.All().Cast<User>();
+        }
     }
 }

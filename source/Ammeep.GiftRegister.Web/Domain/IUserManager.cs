@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Web.Security;
 using Ammeep.GiftRegister.Web.Domain.Authentication;
+using Ammeep.GiftRegister.Web.Domain.Model;
 using Ammeep.GiftRegister.Web.Domain.Validation;
 
 namespace Ammeep.GiftRegister.Web.Domain
@@ -9,6 +11,7 @@ namespace Ammeep.GiftRegister.Web.Domain
         Result SignIn(string userName, string password, bool rememberMe);
         void SignOut();
         Result RegisterUser(string userName, string firstName, string lastName, string password, string email);
+        IEnumerable<User> GetUsers();
     }
 
     public class UserManager : IUserManager
@@ -57,6 +60,11 @@ namespace Ammeep.GiftRegister.Web.Domain
                 result.Errors.Add("", AccountValidation.ErrorCodeToString(createStatus));
             }
             return result;
+        }
+
+        public IEnumerable<User> GetUsers()
+        {
+           return _membershipService.GetAllUsers();
         }
     }
 }
