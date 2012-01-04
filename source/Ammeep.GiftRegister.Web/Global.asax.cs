@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using log4net.Config;
 
 namespace Ammeep.GiftRegister.Web
 {
@@ -42,7 +41,6 @@ namespace Ammeep.GiftRegister.Web
 
         protected void Application_Start()
         {
-            XmlConfigurator.Configure();
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);

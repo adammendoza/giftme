@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Reflection;
-using log4net;
+using NLog;
 
 namespace Ammeep.GiftRegister.Web.Domain.Logging
 {
@@ -18,53 +17,54 @@ namespace Ammeep.GiftRegister.Web.Domain.Logging
     public class LoggingService : ILoggingService
     {
 
-        private static readonly ILog _log4NetLoggger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);   
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public void LogDebug(string message)
         {
-            if (_log4NetLoggger.IsDebugEnabled)
+            if (Logger.IsDebugEnabled)
             {
-                _log4NetLoggger.Debug(message);
+
+                Logger.Debug(message);
             }
         }
 
         public void LogInformation(string message)
         {
-            if (_log4NetLoggger.IsInfoEnabled)
+            if (Logger.IsInfoEnabled)
             {
-                _log4NetLoggger.Info(message);
+                Logger.Info(message);
             }
         }
 
         public void LogWarning(string message)
         {
-            if (_log4NetLoggger.IsWarnEnabled)
+            if (Logger.IsWarnEnabled)
             {
-                _log4NetLoggger.Warn(message);
+                Logger.Warn(message);
             }
         }
 
         public void LogError(string message)
         {
-            if (_log4NetLoggger.IsErrorEnabled)
+            if (Logger.IsErrorEnabled)
             {
-                _log4NetLoggger.Error(message);
+                Logger.Error(message);
             }
         }
 
         public void LogError(string message, Exception exception)
         {
-            if (_log4NetLoggger.IsErrorEnabled)
+            if (Logger.IsErrorEnabled)
             {
-                _log4NetLoggger.Error(message, exception);
+                Logger.Error(message, exception);
             }
         }
 
         public void LogFatal(string message, Exception exception)
         {
-            if (_log4NetLoggger.IsFatalEnabled)
+            if (Logger.IsFatalEnabled)
             {
-                _log4NetLoggger.Fatal(message, exception);
+                Logger.Fatal(message, exception);
             }
         }
 
