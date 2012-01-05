@@ -14,12 +14,6 @@ namespace Ammeep.GiftRegister.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "Management", // Route name
-                "Manage/{action}/{id}", // URL with parameters
-                new {controller = "Manage", action = "Index", id = UrlParameter.Optional} // Parameter defaults
-                );
-
             routes.MapRoute("RegistryNextItems",
                             "{controller}/NextItems/{pageSize}/{pageNumber}/{categoryId}",
                             new

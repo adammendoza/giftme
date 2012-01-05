@@ -146,7 +146,7 @@ a:visited {
 {   
     width:850px;
     margin-right: auto ;
-    padding-left: 26px;
+    margin-left: 26px;
 }
 
 .admin_content p
@@ -155,8 +155,7 @@ a:visited {
     color: #633b1c;
     margin: 0;
 	font-family:Tahoma, Geneva, sans-serif;
-    padding-left: 9px;
-    padding-top: 9px;
+    padding-top: 10px;
 }
 
 
@@ -174,6 +173,42 @@ a:visited {
     float: left;
     text-align: right;
 }
+
+
+.row {
+  zoom: 1;
+}
+.row:before, .row:after {
+  display: table;
+  content: "";
+  zoom: 1;
+}
+.row:after {
+  clear: both;
+}
+
+
+.span-all {
+    width: 850px;
+    background-color: aqua;
+}
+
+.span-left-half {
+    float: left;
+    width: 410px;
+    margin-right: 5px;
+    background-color:blue;
+    border-right: black 2px solid;
+}
+
+.span-right-half {
+    float: right;
+    width: 410px;
+    margin-left: 5px;
+    background-color:blue;
+    border-right: black 2px solid;
+}
+
 
 
 

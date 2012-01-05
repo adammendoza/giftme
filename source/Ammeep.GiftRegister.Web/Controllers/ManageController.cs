@@ -26,9 +26,9 @@ namespace Ammeep.GiftRegister.Web.Controllers
             return View(itemsPage);
         }
 
-        public ActionResult Edit(int giftId)
+        public ActionResult Edit(int id)
         {
-            Gift giftToEdit = _registryManager.GetGift(giftId);
+            Gift giftToEdit = _registryManager.GetGift(id);
             EditGiftPage editGiftPage = new EditGiftPage();
             editGiftPage.Gift = giftToEdit;
             return View(editGiftPage);

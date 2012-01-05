@@ -1,0 +1,66 @@
+﻿@model Ammeep.GiftRegister.Web.Models.EditGiftPage
+
+@{
+    ViewBag.Title = "Edit Gift";
+    Layout ="../Shared/_AdminLayout.cshtml";
+}
+
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="manage_header"> </div>
+<div class="login_flag"> <h2>Edit Item</h2></div>
+<div class="content">
+    <div class="admin_content">
+        <p> Some text about adding an item</p>
+             
+
+        @using (Html.BeginForm()) {
+            @Html.ValidationSummary(true)
+
+
+            <div class="clearfix">
+              
+                <div class="row">
+                     <div class="span-all">
+                         Level 1 of column
+                         <div class="row">
+                            <div class="span-left-half">
+                                @Html.EditorFor(model => model.Gift.Name)
+                                @Html.EditorFor(model => model.Gift.ImageLocation)
+                                @Html.EditorFor(model => model.Gift.Description)
+                                @Html.EditorFor(model => model.Gift.Website)
+                                @Html.EditorFor(model => model.Gift.Category)
+                            </div>
+                            <div class="span-right-half">
+        
+                                @Html.EditorFor(model => model.Gift.SuggestedStores)
+                                @Html.EditorFor(model => model.Gift.IsSpecificItemRequired)
+                                @Html.EditorFor(model => model.Gift.QuantityRequired)
+                                @Html.EditorFor(model => model.Gift.RetailPrice)
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              
+      
+            
+            </div>
+            @Html.HiddenFor(model => model.Gift.GiftId)
+
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+
+        }
+    </div>
+  </div>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
