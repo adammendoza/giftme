@@ -12,8 +12,9 @@ namespace Ammeep.GiftRegister.Web.Domain
         Result SignIn(string userName, string password, bool rememberMe);
         void SignOut();
         Result RegisterHostUser(string userName, string name, string password, string email);
-        IEnumerable<AdminAccount> GetAdminUsers();
-        IEnumerable<GuestAccount> GetGuestList();
+        IEnumerable<Account> GetAdminUsers();
+        IEnumerable<Account> GetGuestList();
+        Account GetAccount(int accountId);
     }
 
     public class UserManager : IUserManager
@@ -47,7 +48,7 @@ namespace Ammeep.GiftRegister.Web.Domain
 
         private bool ValidateAccount(string userName, string password)
         {
-            AdminAccount adminAccount = _userRepository.GetAdminUserByUsername(userName);
+            Account adminAccount = _userRepository.GetAdminUserByUsername(userName);
             if(adminAccount != null)
             {
                 return adminAccount.ValidatePassword(password);
@@ -62,8 +63,8 @@ namespace Ammeep.GiftRegister.Web.Domain
 
         public Result RegisterHostUser(string userName, string name, string password, string email)
         {
-            Result result = new Result(); 
-            AdminAccount hostAccount = new AdminAccount(name, email,userName,password);
+            Result result = new Result();
+            Account hostAccount = new Account(AccountType.Host,userName, password, name, email);
             bool usernameUnique = _userRepository.IsUsernameUnique(hostAccount.Username);
             MembershipCreateStatus createStatus;
             if (usernameUnique)
@@ -87,14 +88,21 @@ namespace Ammeep.GiftRegister.Web.Domain
             return result;
         }
 
-        public IEnumerable<AdminAccount> GetAdminUsers()
+        public IEnumerable<Account> GetAdminUsers()
         {
            return _userRepository.GetAllAdminUsers();
         }
 
-        public IEnumerable<GuestAccount> GetGuestList()
+        public IEnumerable<Account> GetGuestList()
         {
             return _userRepository.GetAllGuestUsers();
         }
+    
+        public Account GetAccount(int accountId)
+        {
+            return _userRepository.GetAccountById(accountId);
+        }
+
+        
     }
 }

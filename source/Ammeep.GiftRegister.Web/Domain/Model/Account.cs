@@ -4,16 +4,15 @@ using System.Text;
 
 namespace Ammeep.GiftRegister.Web.Domain.Model
 {
-    public abstract class Account
+    public class Account
     {
-        protected Account(){}
-
-        protected Account(AccountType type,string username):this(type,username,null){}
-
-        protected Account(AccountType type, string username, string password)
+        public Account(){}
+        public Account(AccountType type, string username, string password, string name, string email)
         {
             AccountType = type;
             Username = username;
+            Name = name;
+            Email = email;
             RequiresPassword = type != AccountType.Guest;
             PasswordSalt = CreateNewPasswordSalt();
             PasswordHash = HashPassword(password);
@@ -25,6 +24,8 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public bool RequiresPassword { get; set; }
         public string PasswordSalt { get; set; }
         public string PasswordHash { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }     
 
         public bool ValidatePassword(string password)
         {
@@ -64,6 +65,38 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             }
             return s.ToString();
         }
+
+        public bool HasPermissionToView(ICurrentUser currentUser)
+        {
+            switch (AccountType)
+            {
+                case AccountType.Guest:
+                    return currentUser.AccountType == AccountType.Admin;
+                case AccountType.Host:
+                    return currentUser.AccountType == AccountType.Admin ||
+                          (currentUser.AccountType == AccountType.Host && currentUser.AccountId == AccountId);
+                case AccountType.Admin:
+                    return currentUser.AccountType == AccountType.Admin;
+                default:
+                    return false;
+            }
+        }
+
+        public bool HasPermissionToEdit(ICurrentUser currentUser)
+        {
+            switch (AccountType)
+            {
+                case AccountType.Guest:
+                    return currentUser.AccountType == AccountType.Admin;
+                case AccountType.Host:
+                    return currentUser.AccountType == AccountType.Admin ||
+                          (currentUser.AccountType == AccountType.Host && currentUser.AccountId == AccountId);
+                case AccountType.Admin:
+                    return currentUser.AccountType == AccountType.Admin;
+                default:
+                    return false;
+            }
+        }
     }
  
     public enum AccountType
@@ -73,31 +106,4 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         Admin = 2
     }
 
-    public class AdminAccount :Account
-    {
-        public AdminAccount(){}
-    
-        public AdminAccount(string name, string email, string username, string password) : base(AccountType.Host,username,password)
-        {
-            Name = name;
-            Email = email;
-        }
-
-        public string Name { get; set; }
-        public string Email { get; set; }       
-    }
-
-    public class GuestAccount :Account
-    {   
-        public GuestAccount(){}
-
-        public GuestAccount(string username,string name, string email) : base(AccountType.Guest, username)
-        {
-            Name = name;
-            Email = email;
-        }
-
-        public string Name { get; set; }
-        public string Email { get; set; }
-    }
 }

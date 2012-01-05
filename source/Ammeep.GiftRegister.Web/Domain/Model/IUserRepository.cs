@@ -6,10 +6,11 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
     public interface IUserRepository
     {
         bool IsUsernameUnique(string userName);
-        void InsertAdminUser(AdminAccount account);
-        AdminAccount GetAdminUserByUsername(string userName);
-        IEnumerable<AdminAccount> GetAllAdminUsers();
-        IEnumerable<GuestAccount> GetAllGuestUsers();
+        void InsertAdminUser(Account account);
+        Account GetAdminUserByUsername(string userName);
+        IEnumerable<Account> GetAllAdminUsers();
+        IEnumerable<Account> GetAllGuestUsers();
+        Account GetAccountById(int accountId);
     }
 
     public class UserRepository : IUserRepository
@@ -27,29 +28,36 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             return (connection.Account.FindByUserName(userName)) == null;
         }
 
-        public void InsertAdminUser(AdminAccount account)
+        public void InsertAdminUser(Account account)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             connection.Account.Insert(account);
         }
 
-        public AdminAccount GetAdminUserByUsername(string userName)
+        public Account GetAdminUserByUsername(string userName)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             var findByUserName = connection.Account.FindByUserName(userName);
-            return (AdminAccount) findByUserName;
+            return (Account)findByUserName;
         }
 
-        public IEnumerable<AdminAccount> GetAllAdminUsers()
+        public IEnumerable<Account> GetAllAdminUsers()
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Account.FindAllByAccountType(new[] {AccountType.Admin,AccountType.Host}).OrderByAccountTypeDescending().Cast<AdminAccount>();
+            return connection.Account.FindAllByAccountType(new[] { AccountType.Admin, AccountType.Host }).OrderByAccountTypeDescending().Cast<Account>();
         }
 
-        public IEnumerable<GuestAccount> GetAllGuestUsers()
+        public IEnumerable<Account> GetAllGuestUsers()
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Account.FindAllByAccountType(AccountType.Guest).Cast<GuestAccount>();
+            return connection.Account.FindAllByAccountType(AccountType.Guest).Cast<Account>();
+        }
+
+        public Account GetAccountById(int accountId)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            var findByUserName = connection.Account.FindByAccountId(accountId);
+            return (Account)findByUserName;
         }
     }
 }

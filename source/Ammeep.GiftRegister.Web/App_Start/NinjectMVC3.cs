@@ -8,7 +8,6 @@ using Ammeep.GiftRegister.Web.Domain.Model;
 
 namespace Ammeep.GiftRegister.Web.App_Start
 {
-    using System.Reflection;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Mvc;
@@ -55,6 +54,7 @@ namespace Ammeep.GiftRegister.Web.App_Start
             kernel.Bind<IConfiguration>().To<Configuration>();
             kernel.Bind<ILoggingService>().To<LoggingService>();
             kernel.Bind<IFormsAuthenticationService>().To<FormsAuthenticationService>();
+            kernel.Bind<ICurrentUser>().To<AnonymousUser>();
             kernel.Bind<IGiftRepository>().To<GiftRepository>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IUserManager>().To<UserManager>();

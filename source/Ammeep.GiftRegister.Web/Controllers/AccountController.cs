@@ -12,19 +12,21 @@ namespace Ammeep.GiftRegister.Web.Controllers
     {
         private readonly IUserManager _userManager;
         private readonly IConfiguration _configuration;
+        private readonly ICurrentUser _currentUser;
 
-        public AccountController(IUserManager userManager,IConfiguration configuration)
+        public AccountController(IUserManager userManager,IConfiguration configuration, ICurrentUser currentUser)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _currentUser = currentUser;
         }
 
         [Authorize]
         public ActionResult Index()
         {
-            IEnumerable<AdminAccount> adminUsers = _userManager.GetAdminUsers();
-            IEnumerable<GuestAccount> guests = _userManager.GetGuestList();
-            ManageUsersPage usersPage = new ManageUsersPage();
+            IEnumerable<Account> adminUsers = _userManager.GetAdminUsers();
+            IEnumerable<Account> guests = _userManager.GetGuestList();
+            AllAccountsPage usersPage = new AllAccountsPage();
             usersPage.AdminUsers = adminUsers;
             usersPage.Guests = guests;
             return View(usersPage);
@@ -33,7 +35,16 @@ namespace Ammeep.GiftRegister.Web.Controllers
         [Authorize]
         public ActionResult Manage(int userId)
         {
-            return View();
+            var account = _userManager.GetAccount(userId);
+            if (account != null && account.HasPermissionToView(_currentUser))
+            {
+                ManageUserPage manageUserPage = new ManageUserPage();
+                manageUserPage.Account = account;
+                manageUserPage.CanEdit = account.HasPermissionToEdit(_currentUser);
+                manageUserPage.CanView = account.HasPermissionToView(_currentUser);
+                return View(manageUserPage);
+            }
+            return RedirectToAction("Index");
         }
 
         public ActionResult LogOn()
