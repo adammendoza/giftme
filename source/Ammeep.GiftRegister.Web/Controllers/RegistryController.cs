@@ -5,18 +5,18 @@ using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {
-    public class GiftController : Controller
+    public class RegistryController : Controller
     {
         private readonly IRegistryManager _registryManager;
         private readonly IConfiguration _config;
 
-        public GiftController(IRegistryManager registryManager, IConfiguration configuration)
+        public RegistryController(IRegistryManager registryManager, IConfiguration configuration)
         {
             _registryManager = registryManager;
             _config = configuration;
         }
 
-        public ActionResult Registry()
+        public ActionResult Index()
         {
             var registryPageSize = _config.RegistryPageSize;
             var gifts = _registryManager.GetRegistry(registryPageSize, 0, 0);

@@ -75,7 +75,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
         public ActionResult LogOff()
         {
             _userManager.SignOut();
-            return RedirectToAction("Registry", "Gift");
+            return RedirectToAction("Index", "Registry");
         }
 
 

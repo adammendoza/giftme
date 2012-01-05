@@ -34,7 +34,7 @@ namespace Ammeep.GiftRegister.Web
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new {controller = "Gift", action = "Registry", id = UrlParameter.Optional} // Parameter defaults
+                new {controller = "Registry", action = "Index", id = UrlParameter.Optional} // Parameter defaults
                 );
 
         }

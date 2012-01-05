@@ -114,7 +114,7 @@
     <Compile Include="Models\EditGiftPage.cs" />
     <Compile Include="Models\GiftRow.cs" />
     <Compile Include="Domain\Model\Gift.cs" />
-    <Compile Include="Controllers\GiftController.cs" />
+    <Compile Include="Controllers\RegistryController.cs" />
     <Compile Include="Models\LogOnModel.cs" />
     <Compile Include="Models\ManagePageModel.cs" />
     <Compile Include="Models\AllAccountsPage.cs" />
@@ -228,7 +228,7 @@
     <Content Include="Views\Shared\Navigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Gift\Registry.cshtml" />
+    <Content Include="Views\Registry\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\DisplayTemplates\GiftRow.cshtml" />
@@ -249,7 +249,7 @@
     <Content Include="Views\Shared\DisplayTemplates\Cost.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Gift\Edit.cshtml" />
+    <Content Include="Views\Registry\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\ChangePassword.cshtml" />
@@ -273,7 +273,7 @@
     <Content Include="Views\Shared\EditorTemplates\GiftRow.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Gift\RegistryItems.cshtml" />
+    <Content Include="Views\Registry\RegistryItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Manage.cshtml" />
