@@ -18,14 +18,13 @@
              
 
         @using (Html.BeginForm()) {
-            @Html.ValidationSummary(true)
+            @Html.ValidationSummary()
 
 
             <div class="clearfix">
               
                 <div class="row">
                      <div class="span-all">
-                         Level 1 of column
                          <div class="row">
                             <div class="span-left-half">
                                 @Html.EditorFor(model => model.Gift.Name)
@@ -52,9 +51,9 @@
             </div>
             @Html.HiddenFor(model => model.Gift.GiftId)
 
-            <p>
-                <input type="submit" value="Save" />
-            </p>
+            <div> 
+                <input type="submit" class="btn save_button" value="" />
+            </div>
 
         }
     </div>

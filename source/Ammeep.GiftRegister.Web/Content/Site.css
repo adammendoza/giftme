@@ -190,26 +190,19 @@ a:visited {
 
 .span-all {
     width: 850px;
-    background-color: aqua;
 }
 
 .span-left-half {
     float: left;
     width: 410px;
     margin-right: 5px;
-    background-color:blue;
-    border-right: black 2px solid;
 }
 
 .span-right-half {
     float: right;
     width: 410px;
     margin-left: 5px;
-    background-color:blue;
-    border-right: black 2px solid;
 }
-
-
 
 
 .manage_header {
@@ -244,12 +237,7 @@ a:visited {
     margin-top: 30px;
     padding: 0;
 }
-#save_button {
-    background: url("img/button_save.png") no-repeat scroll left top transparent;
-    height: 38px;
-    margin-left: 175px;
-    margin-top: 20px;
-}
+
 
 
 /* Page Content */		
