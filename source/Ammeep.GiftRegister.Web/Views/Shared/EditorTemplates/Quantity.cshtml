@@ -1,5 +1,6 @@
-﻿@model int
+﻿@using Ammeep.GiftRegister.Web.Attributes
+@model int
 <div class="input">
     @Html.LabelFor(model => model)
-    @Html.TextBoxFor(model => model)
+    @Html.TextBoxFor(model => model, new DataBindHtmlAttribute("value: quantityRequired"))
 </div>

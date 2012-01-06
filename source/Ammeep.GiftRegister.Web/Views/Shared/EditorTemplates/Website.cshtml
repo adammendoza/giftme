@@ -1,5 +1,6 @@
-﻿@model string
+﻿@using Ammeep.GiftRegister.Web.Attributes
+@model string
 <div class="input">
     @Html.LabelFor(model => model)
-    @Html.TextBoxFor(model => model)
+    @Html.TextBoxFor(model => model, new DataBindHtmlAttribute("value: website"))
 </div>

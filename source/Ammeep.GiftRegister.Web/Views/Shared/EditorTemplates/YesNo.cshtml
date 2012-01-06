@@ -1,5 +1,6 @@
-﻿@model bool
+﻿@using Ammeep.GiftRegister.Web.Attributes
+@model bool
 <div class="input">
     @Html.LabelFor(model => model)
-    @Html.CheckBoxFor(model => model)
+    @Html.CheckBoxFor(model => model, new DataBindHtmlAttribute("checked: isSpecificItemRequired"))
 </div>

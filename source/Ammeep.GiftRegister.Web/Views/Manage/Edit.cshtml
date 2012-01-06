@@ -1,65 +1,104 @@
-﻿@model Ammeep.GiftRegister.Web.Models.EditGiftPage
+﻿@using Ammeep.GiftRegister.Web.Models
+@model EditGiftPage
 
 @{
     ViewBag.Title = "Edit Gift";
     Layout ="../Shared/_AdminLayout.cshtml";
 }
 
-
-
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/knockout-2.0.0.js")" type="text/javascript"></script>
 
 <div class="manage_header"> </div>
 <div class="login_flag"> <h2>Edit Item</h2></div>
 <div class="content">
     <div class="admin_content">
-        <p> Some text about adding an item</p>
+   
+        <p>Update the gift details, and once you are happy with the live preview, just hit save.</br>
+        <span class="important_lable">Important</span> For all Urls please include 'http://' there is a bug which I cant be bothered fixing right now, and this avoids it :D</p>
              
-
         @using (Html.BeginForm()) {
             @Html.ValidationSummary()
 
-
-            <div class="clearfix">
-              
-                <div class="row">
-                     <div class="span-all">
-                         <div class="row">
-                            <div class="span-left-half">
-                                @Html.EditorFor(model => model.Gift.Name)
-                                @Html.EditorFor(model => model.Gift.ImageLocation)
-                                @Html.EditorFor(model => model.Gift.Description)
-                                @Html.EditorFor(model => model.Gift.Website)
-                                @Html.EditorFor(model => model.Gift.Category)
+  
+            <div class="row">
+                <div class="span-all">
+                    <div class="row">
+                        <div class="span-left-half">
+                            @Html.EditorFor(model => model.Gift.Name)
+                            @Html.EditorFor(model => model.Gift.ImageLocation)
+                            @Html.EditorFor(model => model.Gift.Description)
+                            @Html.EditorFor(model => model.Gift.Website)
+                            
+                            <div class="input">
+                                @Html.LabelFor(model => model.Gift.Category)
+                                @Html.DropDownListFor(model => model.Gift.Category, Model.CategoriesSelectList, new { id = "categoryDropdown" })
                             </div>
-                            <div class="span-right-half">
+                        </div>
+                        <div class="span-right-half">
         
-                                @Html.EditorFor(model => model.Gift.SuggestedStores)
-                                @Html.EditorFor(model => model.Gift.IsSpecificItemRequired)
-                                @Html.EditorFor(model => model.Gift.QuantityRequired)
-                                @Html.EditorFor(model => model.Gift.RetailPrice)
+                            @Html.EditorFor(model => model.Gift.SuggestedStores)
+                            @Html.EditorFor(model => model.Gift.IsSpecificItemRequired)
+                            @Html.EditorFor(model => model.Gift.QuantityRequired)
+                            @Html.EditorFor(model => model.Gift.RetailPrice)
                               
-                            </div>
                         </div>
                     </div>
                 </div>
-
-              
-      
-            
-            </div>
+            </div>              
             @Html.HiddenFor(model => model.Gift.GiftId)
-
-            <div> 
-                <input type="submit" class="btn save_button" value="" />
+            
+            <div class="row registry_container_preview">
+                @Html.Partial("RegistryItemPreview", new GiftRow { IsFirst = true, Item = Model.Gift })
             </div>
-
+              
+            <div class="right">
+                     
+                <input type="submit" class="btn save_button" value="" />
+                @Html.ActionLink("Back to List", "Index")
+            </div>
         }
+       
     </div>
-  </div>
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script type="text/javascript">
+    
+    function GiftViewModel() {
+        this.itemName = ko.observable("@Model.Gift.Name");
+        this.imageLocation = ko.observable("@Model.Gift.ImageLocation");
+        this.description = ko.observable("@Model.Gift.Description");
+        this.website = ko.observable();
+        this.suggestedStores = ko.observable("@Model.Gift.SuggestedStores");
+        this.isSpecificItemRequired = ko.observable("@Model.Gift.IsSpecificItemRequired");
+        this.quantityRequired = ko.observable("@Model.Gift.QuantityRequired");
+        this.retailPrice = ko.observable("@Model.Gift.RetailPrice");
+
+   
+        this.requiredYesNo = ko.computed(function () {
+            if (this.isSpecificItemRequired()) {
+                return "Yes";
+            }else {
+                return "No";
+            }
+        }, this);
+
+        this.retailPriceText = ko.computed(function () {
+            return "$" + this.retailPrice();
+        }, this);
+
+        this.suggestedStoresText = ko.computed(function () {
+           if(this.suggestedStores()) {
+               return this.suggestedStores();
+           }else {
+               return "N/A";
+           }
+
+        }, this);
+      
+    }
+
+    ko.applyBindings(new GiftViewModel());
+   
+</script>
