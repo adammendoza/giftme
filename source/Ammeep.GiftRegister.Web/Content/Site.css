@@ -123,7 +123,6 @@ a:visited {
 		border: 5px solid #b19d8d;
 		margin-left: 10px;
 		float:left;
-		font
 		}
 
 	#nav_list li a {
@@ -230,11 +229,15 @@ a:visited {
     width: 265px;
 }
 
-#manage_button {
-    background: url("img/button_add.png") no-repeat scroll left top transparent;
-    height: 38px;
-    margin-left: 25px;
-    margin-top: 20px;
+.add_button {
+   background: url(Images/button_add.png) no-repeat scroll left top transparent;
+   height: 38px;
+   margin-left: 25px;
+   margin-top: 20px;
+   cursor: pointer;
+    -webkit-appearance: button; 
+     text-indent: -9999px; /* hides the link text */
+
 }
 #manage_button p {
     color: #EC652A;
