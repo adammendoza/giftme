@@ -53,9 +53,9 @@ namespace Ammeep.GiftRegister.Web.Controllers
             return PartialView("RegistryItemPreview", new GiftRow { IsFirst = true, Item = gift });
         }
 
-        public ActionResult Delete(int giftId)
+        public ActionResult Delete(int id)
         {
-            _registryManager.DeleteGift(giftId);
+            _registryManager.DeleteGift(id);
             return RedirectToAction("Index");
         }
       

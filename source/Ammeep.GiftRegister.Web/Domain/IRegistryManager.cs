@@ -75,7 +75,8 @@ namespace Ammeep.GiftRegister.Web.Domain
 
         public void DeleteGift(int giftId)
         {
-            return;
+            _loggingService.LogInformation(string.Format("Setting gift id {0} to inactive", giftId));
+            _giftRepository.DeactivateGift (giftId,_currentUser.AccountId,DateTime.Now);
         }
 
         

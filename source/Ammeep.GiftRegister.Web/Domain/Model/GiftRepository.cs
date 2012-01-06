@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Simple.Data;
 
@@ -20,40 +21,46 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 
         public IEnumerable<Gift> GetGifts()
         {
-            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);        
-            return connection.Gifts.All().Cast<Gift>();           
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            return connection.Gifts.FindAllByIsActive(true).Cast<Gift>();           
         }
 
         public IEnumerable<Gift> GetAllGiftsForCategory(int categoryId)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Gifts.FindAllByCategory(categoryId).Cast<Gift>();
+            return connection.Gifts.FindAllByCategoryAndIsActive(categoryId).Cast<Gift>();
         }
 
         public IEnumerable<Gift> GetPagedGifts(int pageSize, int pageNumber)
         {
             pageNumber = pageNumber > 0 ? pageNumber-- : pageNumber;
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Gifts.All().Skip(pageNumber).Take(pageSize).Cast<Gift>();
+            return connection.Gifts.FindAllByIsActive(true).Skip(pageNumber).Take(pageSize).Cast<Gift>();
         }
 
         public IEnumerable<Gift> GetPagedGiftsForCategory(int pageSize, int pageNumber, int categoryId)
         {
             pageNumber = pageNumber > 0 ? pageNumber-- : pageNumber;
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Gifts.FindAllByCategory(categoryId).Skip(pageNumber).Take(pageSize).Cast<Gift>();
+            return connection.Gifts.FindAllByCategoryAndIsActive(categoryId).Skip(pageNumber).Take(pageSize).Cast<Gift>();
         }
 
         public Gift GetGift(int giftId)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Gifts.FindByGiftId(giftId);
+            return connection.Gifts.FindByGiftIdAndIsActive(giftId);
         }
 
         public void UpdateGift(Gift gift)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             connection.Gifts.Update(gift);
+        }
+
+        public void DeactivateGift(int giftId, int updatedByAccountId, DateTime updatedDateTime)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            connection.Gifts.UpdateByGiftId(GiftId: giftId, LastUpdatedDate: updatedDateTime, LastUpdatedBy: updatedByAccountId, IsActive:false);
         }
     }
 
