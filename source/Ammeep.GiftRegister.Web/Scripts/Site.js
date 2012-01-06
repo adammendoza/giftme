@@ -5,13 +5,13 @@ function GiftViewModel(itemName, imageLocation, description, website, suggestedS
     this.description = ko.observable(description);
     this.website = ko.observable(website);
     this.suggestedStores = ko.observable(suggestedStores);
-    this.isSpecificItemRequired = ko.observable(isSpecificItemRequired);
+    this.specificItemRequried = ko.observable(isSpecificItemRequired);
     this.quantityRequired = ko.observable(quantity);
     this.retailPrice = ko.observable(price);
 
 
     this.requiredYesNo = ko.computed(function () {
-        if (this.isSpecificItemRequired()) {
+        if (this.specificItemRequried()) {
             return "Yes";
         } else {
             return "No";
