@@ -110,6 +110,7 @@
     <Compile Include="Domain\Model\IGiftRepository.cs" />
     <Compile Include="Domain\Model\IUserRepository.cs" />
     <Compile Include="Domain\Validation\AccountValidation.cs" />
+    <Compile Include="HtmlExtentions.cs" />
     <Compile Include="Models\AdminLoginModel.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\EditGiftPage.cs" />
