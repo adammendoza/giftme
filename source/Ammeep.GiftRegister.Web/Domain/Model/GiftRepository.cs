@@ -43,6 +43,18 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             return connection.Gifts.FindAllByCategory(categoryId).Skip(pageNumber).Take(pageSize).Cast<Gift>();
         }
+
+        public Gift GetGift(int giftId)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            return connection.Gifts.FindByGiftId(giftId);
+        }
+
+        public void UpdateGift(Gift gift)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            connection.Gifts.Update(gift);
+        }
     }
 
 }

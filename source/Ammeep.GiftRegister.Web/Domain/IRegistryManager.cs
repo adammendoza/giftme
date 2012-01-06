@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Domain.Model;
@@ -20,11 +21,13 @@ namespace Ammeep.GiftRegister.Web.Domain
     {
         private readonly IGiftRepository _giftRepository;
         private readonly ILoggingService _loggingService;
+        private readonly ICurrentUser _currentUser;
 
-        public RegistryManager(IGiftRepository giftRepository, ILoggingService loggingService)
+        public RegistryManager(IGiftRepository giftRepository, ILoggingService loggingService,ICurrentUser currentUser)
         {
             _giftRepository = giftRepository;
             _loggingService = loggingService;
+            _currentUser = currentUser;
         }
 
         public IEnumerable<Category> GetCategories()
@@ -58,21 +61,16 @@ namespace Ammeep.GiftRegister.Web.Domain
 
         public Gift GetGift(int giftId)
         {
-            //Gift wish1 = new Gift();
-            //wish1.ImageLocation = new Uri("http://baconmockup.com/170/165");
-            //wish1.Name = "Item Name";
-            //wish1.Description = "Shoulder hamburger frankfurter, biltong tail shankle drumstick prosciutto short ribs pastrami. Boudin kielbasa shank cow. Andouille turducken filet mignon, pancetta capicola beef ribs pork meatloaf. Shoulder corned beef ball tip jerky pig. Short ribs pork loin sirloin pig, tail meatloaf turducken swine. Flank tail cow chicken filet mignon, capicola andouille biltong pastrami frankfurter. Meatball jerky shankle, jowl pork chop prosciutto tongue andouille turducken tail rump.";
-            //wish1.QuantityRequired = 2;
-            //wish1.RetailPrice = 44.87m;
-            //wish1.Website = new Uri("http://www.google.com");
-            //wish1.SuggestedStores = "Bed, Bath n' Table, Briscoes";
-            //wish1.IsSpecificItemRequired = true;
-            return new Gift();
+            _loggingService.LogDebug(string.Format("Retrieving gift id {0}", giftId));
+            return _giftRepository.GetGift(giftId);
         }
 
         public void UpdateGift(Gift gift)
         {
-            return;
+            _loggingService.LogInformation(string.Format("Updating gift id {0}", gift.GiftId));
+            gift.LastUpdatedOn = DateTime.Now;
+            gift.LastUpdatedBy = 1;
+            _giftRepository.UpdateGift(gift);
         }
 
         public void DeleteGift(int giftId)

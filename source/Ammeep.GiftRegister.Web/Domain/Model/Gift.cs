@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ammeep.GiftRegister.Web.Domain.Model
@@ -48,5 +49,9 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         [Required]
         public string Category { get; set; }
         public int GiftId { get; set; }
+
+        public DateTime LastUpdatedOn { get; set; }
+
+        public int LastUpdatedBy { get; set; }
     }
 }
