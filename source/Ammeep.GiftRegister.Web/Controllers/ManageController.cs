@@ -30,8 +30,8 @@ namespace Ammeep.GiftRegister.Web.Controllers
         {
             Gift giftToEdit = _registryManager.GetGift(id);
             var categories = _registryManager.GetCategories();
-            EditGiftPage editGiftPage = new EditGiftPage(giftToEdit,categories); 
-            return View(editGiftPage);
+            EditableGiftPage editableGiftPage = new EditableGiftPage(giftToEdit,categories); 
+            return View(editableGiftPage);
         }
 
         [HttpPost]
@@ -43,9 +43,9 @@ namespace Ammeep.GiftRegister.Web.Controllers
                 return RedirectToAction("Index");
             }
             var categories = _registryManager.GetCategories();
-            EditGiftPage editGiftPage = new EditGiftPage(gift,categories);
-            editGiftPage.Gift = gift;
-            return View(editGiftPage);
+            EditableGiftPage editableGiftPage = new EditableGiftPage(gift,categories);
+            editableGiftPage.Gift = gift;
+            return View(editableGiftPage);
         }
 
         public PartialViewResult GetGiftPreview(Gift gift)
@@ -57,6 +57,27 @@ namespace Ammeep.GiftRegister.Web.Controllers
         {
             _registryManager.DeleteGift(id);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Add()
+        {
+            var categories = _registryManager.GetCategories();
+            EditableGiftPage addGiftPage = new EditableGiftPage(new Gift(), categories);
+            return View(addGiftPage);
+        }
+
+        [HttpPost]
+        public ActionResult Add(Gift gift)
+        {
+            if (ModelState.IsValid)
+            {
+                _registryManager.AddNewGift(gift);
+                return RedirectToAction("Index");
+            }
+            var categories = _registryManager.GetCategories();
+            EditableGiftPage addGiftPage = new EditableGiftPage(gift, categories);
+            addGiftPage.Gift = gift;
+            return View(addGiftPage);
         }
       
     }

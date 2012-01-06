@@ -15,6 +15,7 @@ namespace Ammeep.GiftRegister.Web.Domain
         void UpdateGift(Gift gift);
         void DeleteGift(int giftId);
         IEnumerable<Category> GetCategories();
+        void AddNewGift(Gift gift);
     }
 
     public class RegistryManager : IRegistryManager
@@ -34,6 +35,18 @@ namespace Ammeep.GiftRegister.Web.Domain
         {
             _loggingService.LogDebug("Retrieving all gift categories");
             return _giftRepository.GetCategories();
+        }
+
+        public void AddNewGift(Gift gift)
+        {
+            _loggingService.LogDebug("Inserting a new gift.");
+            gift.CreatedDate = DateTime.Now;
+            gift.CreatedBy = _currentUser.AccountId;
+            gift.LastUpdatedBy = _currentUser.AccountId;
+            gift.LastUpdatedDate = DateTime.Now;
+            gift.QuantityRemaining = gift.QuantityRequired;
+            gift.IsActive = true;
+            _giftRepository.InsertGift(gift);
         }
 
         public IEnumerable<Gift> GetRegistry()

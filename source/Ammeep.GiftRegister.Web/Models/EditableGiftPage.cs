@@ -4,9 +4,9 @@ using Ammeep.GiftRegister.Web.Domain.Model;
 
 namespace Ammeep.GiftRegister.Web.Models
 {
-    public class EditGiftPage 
+    public class EditableGiftPage 
     {
-        public EditGiftPage(Gift gift, IEnumerable<Category> categories)
+        public EditableGiftPage(Gift gift, IEnumerable<Category> categories)
         {
             Gift =gift;
             CategoriesSelectList = new SelectList(categories,"CategoryId","Name");

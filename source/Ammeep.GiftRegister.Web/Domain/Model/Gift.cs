@@ -32,7 +32,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 
         [UIHint("YesNo")]
         [Display(Name = "Required:")]
-        public bool IsSpecificItemRequired { get; set; }
+        public bool SpecificItemRequried { get; set; }
 
         [Display(Name = "Quantity:")]
         [UIHint("Quantity")]
@@ -53,5 +53,13 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public DateTime LastUpdatedDate { get; set; }
 
         public int LastUpdatedBy { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public int CreatedBy { get; set; }
+
+        public int QuantityRemaining { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

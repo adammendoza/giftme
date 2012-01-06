@@ -7,18 +7,19 @@
 }
 <div class="manage_header"> </div>
 <div class="content">
+    @Html.ActionLink("Add","Add")
     <div id="registry_sort">
         <p> Sort by:</p>
-     </div>
+    </div>
 
-<div id="registryItemContainer">
     <div id="registryItemContainer">
-    @foreach (var giftRow in Model.Gifts)
-    {
-         @Html.EditorFor(item => giftRow);
-    }
-</div>
-</div>
+        <div id="registryItemContainer">
+            @foreach (var giftRow in Model.Gifts)
+            {
+                @Html.EditorFor(item => giftRow);
+            }
+        </div>
+    </div>
 
 
 </div>

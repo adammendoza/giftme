@@ -48,7 +48,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public Gift GetGift(int giftId)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Gifts.FindByGiftIdAndIsActive(giftId);
+            return connection.Gifts.FindByGiftId(giftId);
         }
 
         public void UpdateGift(Gift gift)
@@ -61,6 +61,12 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             connection.Gifts.UpdateByGiftId(GiftId: giftId, LastUpdatedDate: updatedDateTime, LastUpdatedBy: updatedByAccountId, IsActive:false);
+        }
+
+        public void InsertGift(Gift gift)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            connection.Gifts.Insert(gift);
         }
     }
 

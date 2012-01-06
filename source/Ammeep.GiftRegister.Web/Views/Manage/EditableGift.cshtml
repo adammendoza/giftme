@@ -1,0 +1,31 @@
+﻿@using Ammeep.GiftRegister.Web.Models
+@model EditableGiftPage
+<div class="row">
+    <div class="span-all">
+        <div class="row">
+            <div class="span-left-half">
+                @Html.EditorFor(model => model.Gift.Name)
+                @Html.EditorFor(model => model.Gift.ImageLocation)
+                @Html.EditorFor(model => model.Gift.Description)
+                @Html.EditorFor(model => model.Gift.Website)
+                            
+                <div class="input">
+                    @Html.LabelFor(model => model.Gift.Category)
+                    @Html.DropDownListFor(model => model.Gift.Category, Model.CategoriesSelectList, new { id = "categoryDropdown" })
+                </div>
+            </div>
+            <div class="span-right-half">
+        
+                @Html.EditorFor(model => model.Gift.SuggestedStores)
+                @Html.EditorFor(model => model.Gift.SpecificItemRequried)
+                @Html.EditorFor(model => model.Gift.QuantityRequired)
+                @Html.EditorFor(model => model.Gift.RetailPrice)
+                              
+            </div>
+        </div>
+    </div>
+</div>              
+@Html.HiddenFor(model => model.Gift.GiftId)
+ <div class="row registry_container_preview">
+       @Html.Partial("RegistryItemPreview", new GiftRow { IsFirst = true, Item = Model.Gift })
+ </div>
