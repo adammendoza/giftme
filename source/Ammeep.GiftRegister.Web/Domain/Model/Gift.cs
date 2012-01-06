@@ -4,40 +4,42 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 {
     public class Gift
     {
-        [Display(Name = "Image Url")]
+        [Display(Name = "Image Url:")]
         [UIHint("Image")]
         [Required]
         public string ImageLocation { get; set; }
 
-        [Display(Name = "Item Name")]
+        [Display(Name = "Item Name:")]
         [UIHint("ItemName")]
         [Required]
         public string Name { get; set; }
 
         [UIHint("Description")]
         [Required]
+        [Display(Name = "Description:")]
         public string Description { get; set; }
 
         [UIHint("Website")]
         [Required]
+        [Display(Name = "Website:")]
         public string Website { get; set; }
 
-        [Display(Name = "Suggested Store(s)")]
+        [Display(Name = "Suggested Store(s):")]
         [UIHint("Stores")]
         [Required]
         public string SuggestedStores { get; set; }
 
         [UIHint("YesNo")]
-        [Display(Name = "Flexible")]
+        [Display(Name = "Required:")]
         public bool IsSpecificItemRequired { get; set; }
 
-        [Display(Name = "Quantity")]
+        [Display(Name = "Quantity:")]
         [UIHint("Quantity")]
         [Required]
         public int QuantityRequired { get; set; }
 
         [UIHint("Cost")]
-        [Display(Name = "RRP")]
+        [Display(Name = "RRP:")]
         [Required]
         public decimal RetailPrice { get; set; }
         public bool IsPurchased { get; set; }

@@ -49,7 +49,19 @@ a:visited {
 	color: #166FC3;
 	text-decoration:underline;
 	}
-	
+
+.important_lable {
+  padding: 1px 3px 2px;
+  font-size: 9.75px;
+  font-weight: bold;
+  color: #ffffff;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background-color: #c1e4f2;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
 /* Container */
 
 #container {
@@ -60,6 +72,10 @@ a:visited {
 	background-color: #FFFFFF;
 	}
 
+.right {
+    float: right;
+    margin: 25px;
+}
 /* Header */
 
 #header {
@@ -144,9 +160,10 @@ a:visited {
 
 .admin_content
 {   
-    width:850px;
-    margin-right: auto ;
-    margin-left: 26px;
+    width:auto;
+	overflow: auto;
+	margin-left: 25px;
+	padding: 0px 0 8px 0;
 }
 
 .admin_content p
@@ -441,12 +458,20 @@ a:visited {
 	
 /* Registry Item */
 
+.registry_container_preview {
+	width: auto;
+	overflow: auto;
+    margin-left: -25px;
+    margin-top: 10px;
+	padding: 0px 0 8px 0;
+	}
+
 .registry_container {
 	width: 850px;
 	border-bottom: #633b1c solid 5px;
 	overflow: auto;
 	margin-left: 25px;
-	padding: 0px 0 8px 0;
+	padding: 0 0 8px 0;
 	}
 	
 	 .first {

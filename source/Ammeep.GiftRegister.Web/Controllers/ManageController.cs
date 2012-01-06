@@ -29,8 +29,8 @@ namespace Ammeep.GiftRegister.Web.Controllers
         public ActionResult Edit(int id)
         {
             Gift giftToEdit = _registryManager.GetGift(id);
-            EditGiftPage editGiftPage = new EditGiftPage();
-            editGiftPage.Gift = giftToEdit;
+            var categories = _registryManager.GetCategories();
+            EditGiftPage editGiftPage = new EditGiftPage(giftToEdit,categories); 
             return View(editGiftPage);
         }
 
@@ -42,9 +42,15 @@ namespace Ammeep.GiftRegister.Web.Controllers
                 _registryManager.UpdateGift(gift);
                 return RedirectToAction("Index");
             }
-            EditGiftPage editGiftPage = new EditGiftPage();
+            var categories = _registryManager.GetCategories();
+            EditGiftPage editGiftPage = new EditGiftPage(gift,categories);
             editGiftPage.Gift = gift;
             return View(editGiftPage);
+        }
+
+        public PartialViewResult GetGiftPreview(Gift gift)
+        {
+            return PartialView("RegistryItemPreview", new GiftRow { IsFirst = true, Item = gift });
         }
 
         public ActionResult Delete(int giftId)

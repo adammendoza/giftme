@@ -65,10 +65,9 @@ input[type=checkbox],input[type=submit] {
 
 input,
 textarea,
-select,
 .uneditable-input {
   display: inline-block;
-  width: 210px;
+  width: 240px;
   height: 18px;
   padding: 4px;
   font-size: 13px;
@@ -83,6 +82,18 @@ select,
 }
 select {
   padding: initial;
+   display: inline-block;
+  width: 250px;
+  height: 25px;
+  padding: 4px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #633B1C;
+  font-family: Museo300, sans-serif;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 .input * {
     vertical-align: middle;
@@ -102,7 +113,7 @@ input[type=checkbox] {
 
 
 select, input[type=file] {
-  height: 27px;
+  height: 30px;
   *height: auto;
   lineheight: 27px;
   *margintop: 4px;
