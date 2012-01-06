@@ -90,18 +90,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\NinjectMVC3.cs" />
+    <Compile Include="App_Start\NinjectActivation.cs" />
     <Compile Include="Attributes\DataBindHtmlAttribute.cs" />
     <Compile Include="Attributes\PropertiesMustMatchAttribute.cs" />
     <Compile Include="Attributes\ValidatePasswordLengthAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Domain\Authentication\FormsAuthenticationService.cs" />
+    <Compile Include="Domain\Authentication\AuthenticationService.cs" />
+    <Compile Include="Domain\Authentication\UserPrincipal.cs" />
     <Compile Include="Domain\ICurrentUser.cs" />
     <Compile Include="Domain\Model\Account.cs" />
     <Compile Include="Domain\Result.cs" />
     <Compile Include="Domain\IConfiguration.cs" />
-    <Compile Include="Domain\Authentication\IFormsAuthenticationService.cs" />
+    <Compile Include="Domain\Authentication\IAuthenticationService.cs" />
     <Compile Include="Domain\IRegistryManager.cs" />
     <Compile Include="Domain\IUserManager.cs" />
     <Compile Include="Domain\Logging\ILoggingService.cs" />

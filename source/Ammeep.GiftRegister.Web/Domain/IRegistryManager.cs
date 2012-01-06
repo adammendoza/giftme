@@ -68,8 +68,8 @@ namespace Ammeep.GiftRegister.Web.Domain
         public void UpdateGift(Gift gift)
         {
             _loggingService.LogInformation(string.Format("Updating gift id {0}", gift.GiftId));
-            gift.LastUpdatedOn = DateTime.Now;
-            gift.LastUpdatedBy = 1;
+            gift.LastUpdatedDate = DateTime.Now;
+            gift.LastUpdatedBy = _currentUser.AccountId;
             _giftRepository.UpdateGift(gift);
         }
 

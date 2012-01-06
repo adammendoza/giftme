@@ -3,8 +3,8 @@ using Ammeep.GiftRegister.Web.Domain.Authentication;
 using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Domain.Model;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(Ammeep.GiftRegister.Web.App_Start.NinjectMVC3), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Ammeep.GiftRegister.Web.App_Start.NinjectMVC3), "Stop")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(Ammeep.GiftRegister.Web.App_Start.NinjectActivation), "Start")]
+[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Ammeep.GiftRegister.Web.App_Start.NinjectActivation), "Stop")]
 
 namespace Ammeep.GiftRegister.Web.App_Start
 {
@@ -12,9 +12,9 @@ namespace Ammeep.GiftRegister.Web.App_Start
     using Ninject;
     using Ninject.Web.Mvc;
 
-    public static class NinjectMVC3 
+    public static class NinjectActivation 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -23,7 +23,7 @@ namespace Ammeep.GiftRegister.Web.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestModule));
             DynamicModuleUtility.RegisterModule(typeof(HttpApplicationInitializationModule));
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
         }
         
         /// <summary>
@@ -31,7 +31,7 @@ namespace Ammeep.GiftRegister.Web.App_Start
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
         
         /// <summary>
@@ -53,8 +53,8 @@ namespace Ammeep.GiftRegister.Web.App_Start
         {
             kernel.Bind<IConfiguration>().To<Configuration>();
             kernel.Bind<ILoggingService>().To<LoggingService>();
-            kernel.Bind<IFormsAuthenticationService>().To<FormsAuthenticationService>();
-            kernel.Bind<ICurrentUser>().To<AnonymousUser>();
+            kernel.Bind<IAuthenticationService>().To<AuthenticationService>();
+            kernel.Bind<ICurrentUser>().To<CurrentUser>();
             kernel.Bind<IGiftRepository>().To<GiftRepository>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IUserManager>().To<UserManager>();

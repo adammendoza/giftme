@@ -50,7 +50,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public string Category { get; set; }
         public int GiftId { get; set; }
 
-        public DateTime LastUpdatedOn { get; set; }
+        public DateTime LastUpdatedDate { get; set; }
 
         public int LastUpdatedBy { get; set; }
     }

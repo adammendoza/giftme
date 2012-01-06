@@ -1,6 +1,5 @@
 using System;
 using System.Configuration;
-using Ammeep.GiftRegister.Web.Domain.Logging;
 
 namespace Ammeep.GiftRegister.Web.Domain
 {
@@ -9,14 +8,12 @@ namespace Ammeep.GiftRegister.Web.Domain
         string GiftmeConnectionString { get; }
         int RegistryPageSize { get; }
         int MinimumPasswordLength { get; }
+        int AuthenticationExipryMinutes { get; }
+        string AuthenticatedUserCookieName { get; }
     }
 
     public class Configuration : IConfiguration
-    {      
-        public Configuration(ILoggingService logging)
-        {
-            
-        }
+    {
 
         private static string GetApplicationConfigurationValue(string key)
         {
@@ -36,6 +33,7 @@ namespace Ammeep.GiftRegister.Web.Domain
                {
                    return default(T);
                }
+   
                throw new ConfigurationErrorsException(string.Format("Could not find a configuration value of type {0} for the key {1}", typeof(T), key),exception);
             }    
         }
@@ -64,6 +62,16 @@ namespace Ammeep.GiftRegister.Web.Domain
         public int MinimumPasswordLength
         {
             get { return GetApplicationConfigurationValue<int>("MinimumPasswordLength", true); }
+        }
+
+        public int AuthenticationExipryMinutes
+        {
+            get { return GetApplicationConfigurationValue<int>("AuthenticationExipryMinutes", true); }
+        }
+
+        public string AuthenticatedUserCookieName
+        {
+            get { return GetApplicationConfigurationValue<string>("AuthenticatedUserCookieName", true); }
         }
     }
 
