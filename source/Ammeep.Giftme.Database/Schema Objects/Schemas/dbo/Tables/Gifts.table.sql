@@ -3,6 +3,7 @@
     [Name]                 NVARCHAR (50)  NOT NULL,
     [Description]          NVARCHAR (300) NOT NULL,
     [ImageLocation]        NVARCHAR (200) NOT NULL,
+    [Website]              NVARCHAR (200) NOT NULL,
     [SuggestedStores]      NVARCHAR (50)  NOT NULL,
     [SpecificItemRequried] BIT            NOT NULL,
     [QuantityRequired]     INT            NOT NULL,
