@@ -74,7 +74,12 @@ a:visited {
 
 .right {
     float: right;
-    margin: 25px;
+    margin-right: 25px;
+}
+
+.left {
+    float: left;
+    margin-left: 25px;
 }
 /* Header */
 
@@ -193,6 +198,7 @@ a:visited {
 
 .row {
   zoom: 1;
+  margin-left: 25px;
 }
 .row:before, .row:after {
   display: table;
@@ -230,13 +236,13 @@ a:visited {
 }
 
 .add_button {
-   background: url(Images/button_add.png) no-repeat scroll left top transparent;
+   background: url(Images/button_add.png) no-repeat scroll top transparent;
    height: 38px;
-   margin-left: 25px;
-   margin-top: 20px;
+    width: 150px;
    cursor: pointer;
-    -webkit-appearance: button; 
-     text-indent: -9999px; /* hides the link text */
+   -webkit-appearance: button; 
+   text-indent: -9999px; /* hides the link text */
+     padding: 4px;
 
 }
 #manage_button p {
@@ -445,14 +451,13 @@ a:visited {
 	padding-bottom:	20px;
 	}
 
-#registry_sort {
+.registry_sort {
 	width: 431px;
 	padding-top: 0px;
-	margin-bottom: 20px;
 	margin-left: 25px;
 	}
 	
-	#registry_sort p {
+	.registry_sort p {
 		font-size: 15px;
 		color: #633b1c;
 		font-family:Tahoma, Geneva, sans-serif;	

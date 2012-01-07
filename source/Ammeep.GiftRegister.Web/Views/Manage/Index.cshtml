@@ -7,13 +7,25 @@
 }
 <div class="manage_header"> </div>
 <div class="content">
-    <div class="add_button">
-         @Html.ActionLink("Image","Add")
+    <div class="row registry_sort">
+      
+          <p> Sort by:</p>
     </div>
-    <div id="registry_sort">
-        <p> Sort by:</p>
-    </div>
+    
+    <div>
+          <div class="right add_button">
+            @Html.ActionLink("Image","Add")
+        </div>
+        <div class="left">    
+            @Html.DropDownListFor(model => model.CategoriesSelectList, Model.CategoriesSelectList, new { id = "categoryDropdown" })          
+        </div>
+</div>
+  
+ 
 
+    <div class="row">
+      
+    </div>
     <div id="registryItemContainer">
         <div id="registryItemContainer">
             @foreach (var giftRow in Model.Gifts)

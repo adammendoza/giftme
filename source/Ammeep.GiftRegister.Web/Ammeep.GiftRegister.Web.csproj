@@ -134,6 +134,7 @@
     <Content Include="Content\Forms.css" />
     <Content Include="Content\Images\admin_text.png" />
     <Content Include="Content\Images\and.png" />
+    <Content Include="Content\Images\button_add.png" />
     <Content Include="Content\Images\button_ill_get_this.png" />
     <Content Include="Content\Images\button_ill_get_this_hover.png" />
     <Content Include="Content\Images\button_save.png" />
