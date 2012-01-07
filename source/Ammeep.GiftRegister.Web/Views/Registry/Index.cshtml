@@ -13,9 +13,16 @@
     <a name="registry" id="registry"></a> 
 </div>
 
-<div id="registry_sort">
-    <p> Sort by:</p>@Html.DropDownList("category", Model.CategoriesSelectList, new { id = "categoryDropdown" })
-</div>
+ <div class="registry_sort">    
+     <p> Sort by:</p>
+     @Html.DropDownListFor(model => model.CategoriesSelectList, Model.CategoriesSelectList, new { id = "categoryDropdown" })      
+     <br />    
+ </div>
+    
+  
+         
+
+ 
 
 <div id="registryItemContainer">
     @Html.Partial("RegistryItems", Model.Gifts) 
