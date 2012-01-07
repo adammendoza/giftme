@@ -198,7 +198,6 @@ a:visited {
 
 .row {
   zoom: 1;
-  margin-left: 25px;
 }
 .row:before, .row:after {
   display: table;
