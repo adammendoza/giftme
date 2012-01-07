@@ -234,15 +234,15 @@ a:visited {
     width: 265px;
 }
 
-.add_button {
+a.add_button {
    background: url(Images/button_add.png) no-repeat scroll top transparent;
    height: 38px;
     width: 150px;
    cursor: pointer;
    -webkit-appearance: button; 
    text-indent: -9999px; /* hides the link text */
-     padding: 4px;
-
+   padding: 4px;
+   display: block;
 }
 #manage_button p {
     color: #EC652A;

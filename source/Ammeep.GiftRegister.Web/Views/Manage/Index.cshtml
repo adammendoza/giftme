@@ -13,8 +13,8 @@
     </div>
     
     <div>
-          <div class="right add_button">
-            @Html.ActionLink("Image","Add")
+          <div class="right">
+            @Html.ActionLink("Image", "Add", null, new { @class = "add_button" })
         </div>
         <div class="left">    
             @Html.DropDownListFor(model => model.CategoriesSelectList, Model.CategoriesSelectList, new { id = "categoryDropdown" })          
