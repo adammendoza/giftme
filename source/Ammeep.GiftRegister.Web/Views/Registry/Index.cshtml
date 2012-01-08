@@ -19,70 +19,67 @@
      <br />    
  </div>
     
-  
-         
-
- 
-
+<div id="loading_spinner" class="loading_spinner_invisible">
+    <img src="../../Content/Images/ajax-loader.gif" alt="Loading"/>
+</div>
 <div id="registryItemContainer">
     @Html.Partial("RegistryItems", Model.Gifts) 
 </div>
 
 <nav id="page_nav">
-<a id="nextGiftUrl" href="@Url.Action("GetRegistryItems", new { pageSize = Model.PageSize, pageNumber = 2, categoryId = 0 })"></a>
+    <a id="nextGiftUrl" href="@Url.Action("GetRegistryItems", new { pageSize = Model.PageSize, pageNumber = 2, categoryId = 0 })"></a>
 </nav>
 
 @Html.Partial("Help")
 
 <script type="text/javascript">
-    var categoryPager    = function(pageSize, defaultCategory, nextItemsUrl) {
+    var categoryPager = function(pageSize, defaultCategory, nextItemsUrl) {
         this.pageSize = pageSize;
         this.currentCategory = defaultCategory;
         this.pageNumber = 0;
         this.nextItemsUrl = nextItemsUrl;
+
+        this.resetForCategory = function(newCategory) {
+            this.currentCategory = newCategory;
+            this.pageNumber = 0;
+        };
 
         this.incrementPageNumber = function() {
             this.pageNumber = this.pageNumber + 1;
         };
 
         this.getNextPageUrl = function() {
-            var nextPageParameters = { pageSize: this.pageSize, pageNumber: this.pageNumber, categoryId: this.currentCategory };
-            return this.nextItemsUrl + "?" + jQuery.param(nextPageParameters);
+            return this.nextItemsUrl + "/" + this.pageSize + "/" + this.pageNumber + "/" + this.currentCategory;
         };
 
+        this.getRegistryItems = function() {
+            $('.registry_container').fadeOut('slow', function() {
+                $("#registryItemContainer").empty();
+                $("#loading_spinner").addClass("loading_spinner_visible");
+                $("#loading_spinner").removeClass("loading_spinner_invisible");
+            });
+             
+            $.get(this.getNextPageUrl(), function(data) {              
+                $("#loading_spinner").addClass("loading_spinner_invisible");
+                $("#loading_spinner").removeClass("loading_spinner_visible").fadeOut();
+                $('#registryItemContainer').hide().append(data).fadeIn('slow');
+            });
+        };
+
+ 
+        
+
     };
+    
     $(document).ready(function () {
 
         var pager = new categoryPager(@Model.PageSize , 0, "@Url.Action("GetRegistryItems")");
-        var $container = $('#registryItemContainer');
-
-        $container.isotope({
-            itemSelector: '.registry_container'
-        });
-
-//        var infiniteScroller = $container.infinitescroll({
-//            navSelector: '#page_nav',    // selector for the paged navigation 
-//            nextSelector: '#page_nav a',  // selector for the NEXT link (to page 2)
-//            itemSelector: '.registry_container',     // selector for all items you'll retrieve
-//            loadingImg: 'http://i.imgur.com/qkKy8.gif',
-//            loadingText: 'No more pages to load.',               
-//            animate:true
-//            },
-//            // call Isotope as a callback
-//             function (newElements) {  
-//                pager.incrementPageNumber();
-//                $container.isotope('appended', $(newElements));          
-//            }
-//      );
-        
         
         $('#categoryDropdown').change(function () {
-            $container.isotope('remove', $('.registry_container'));
             var newCategory = $("#categoryDropdown option:selected").val();
-            alert(newCategory);
-            infiniteScroller.state.currPage = 1;
-            infiniteScroller.state.filterBy = newCategory;
-
+           
+            pager.resetForCategory(newCategory);
+            pager.getRegistryItems();
         });
     });
   

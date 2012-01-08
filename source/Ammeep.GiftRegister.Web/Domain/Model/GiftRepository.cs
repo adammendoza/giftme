@@ -42,7 +42,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         {
             pageNumber = pageNumber > 0 ? pageNumber-- : pageNumber;
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Gifts.FindAllByCategoryAndIsActive(categoryId).Skip(pageNumber).Take(pageSize).Cast<Gift>();
+            return connection.Gifts.FindAllByCategory(categoryId).Skip(pageNumber).Take(pageSize).Cast<Gift>();
         }
 
         public Gift GetGift(int giftId)

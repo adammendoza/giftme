@@ -28,7 +28,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
         public PartialViewResult GetRegistryItems(int pageSize, int pageNumber, int categoryId)
         {
             var nextItems = _registryManager.GetRegistry(pageSize, pageNumber, categoryId);
-            return PartialView("RegistryItems", nextItems.Select(gift => new GiftRow {Item = gift}));
+            return PartialView("RegistryItems", nextItems.Select((gift,i) => new GiftRow {Item = gift,IsFirst = i == 0}));
         }
     }
 }

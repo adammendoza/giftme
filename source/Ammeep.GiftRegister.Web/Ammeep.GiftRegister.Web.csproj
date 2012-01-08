@@ -129,6 +129,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\ajax-loader.gif" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Forms.css" />
@@ -194,6 +195,7 @@
     <Content Include="Scripts\Lobster_14_400.font.js" />
     <Content Include="Scripts\Museo_500_400.font.js" />
     <Content Include="Scripts\Site.js" />
+    <Content Include="Scripts\spin.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
