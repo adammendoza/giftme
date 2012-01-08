@@ -239,7 +239,6 @@ a.add_button {
    height: 38px;
     width: 150px;
    cursor: pointer;
-   -webkit-appearance: button; 
    text-indent: -9999px; /* hides the link text */
    padding: 4px;
    display: block;
@@ -689,7 +688,6 @@ a.add_button {
   div.loading_spinner_visible{
     display:block;
     top:200px;
-  
     width:100%;
     text-align:center;
     background:#fff;
