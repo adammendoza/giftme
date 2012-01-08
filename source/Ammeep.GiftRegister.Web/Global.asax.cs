@@ -27,11 +27,11 @@ namespace Ammeep.GiftRegister.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute("RegistryNextItems",
-                            "{controller}/NextItems/{pageSize}/{pageNumber}/{categoryId}",
+                            "{controller}/GetRegistryItems/{pageSize}/{pageNumber}/{categoryId}",
                             new
                                 {
                                     controller = "Gift",
-                                    action = "NextItems",
+                                    action = "GetRegistryItems",
                                     pageSize = 5,
                                     pageNumber = 0,
                                     categoryId = 0
