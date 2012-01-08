@@ -6,7 +6,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
     public interface IUserRepository
     {
         bool IsUsernameUnique(string userName);
-        void InsertAdminUser(Account account);
+        Account InsertAdminUser(Account account);
         Account GetAdminUserByUsername(string userName);
         IEnumerable<Account> GetAllAdminUsers();
         IEnumerable<Account> GetAllGuestUsers();
@@ -28,10 +28,10 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             return (connection.Account.FindByUserName(userName)) == null;
         }
 
-        public void InsertAdminUser(Account account)
+        public Account InsertAdminUser(Account account)
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            connection.Account.Insert(account);
+            return connection.Account.Insert(account);
         }
 
         public Account GetAdminUserByUsername(string userName)

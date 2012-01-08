@@ -76,7 +76,7 @@ namespace Ammeep.GiftRegister.Web.Domain
             MembershipCreateStatus createStatus;
             if (usernameUnique)
             {
-                _userRepository.InsertAdminUser(hostAccount);
+                hostAccount = _userRepository.InsertAdminUser(hostAccount);
                 createStatus = MembershipCreateStatus.Success;
             }
             else
