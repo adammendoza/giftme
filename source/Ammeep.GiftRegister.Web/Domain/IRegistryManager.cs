@@ -39,7 +39,7 @@ namespace Ammeep.GiftRegister.Web.Domain
 
         public void AddNewGift(Gift gift)
         {
-            _loggingService.LogDebug("Inserting a new gift.");
+            _loggingService.LogInformation(string.Format("User {0}({1}) is inserting a new gift.",_currentUser.UserName,_currentUser.AccountId));
             gift.CreatedDate = DateTime.Now;
             gift.CreatedBy = _currentUser.AccountId;
             gift.LastUpdatedBy = _currentUser.AccountId;
