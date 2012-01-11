@@ -39,12 +39,13 @@
 }
 .modal 
 {
-  position: fixed;
+  position : fixed; 
   top: 50%;
   left: 50%;
+  margin-top: -300px;
+  margin-left: -455px;
   z-index: 11000;
   width: 900px;
-  margin: -250px 0 0 -280px;
   background-color: #ffffff;
   border: 5px solid #C1E4F2;
 
