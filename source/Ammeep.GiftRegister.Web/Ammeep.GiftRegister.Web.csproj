@@ -139,6 +139,7 @@
     <Content Include="Content\Images\button_ill_get_this.png" />
     <Content Include="Content\Images\button_ill_get_this_hover.png" />
     <Content Include="Content\Images\button_save.png" />
+    <Content Include="Content\Images\button_yes.png" />
     <Content Include="Content\Images\damask.png" />
     <Content Include="Content\Images\date.png" />
     <Content Include="Content\Images\eat.png" />
@@ -153,11 +154,13 @@
     <Content Include="Content\Images\love.png" />
     <Content Include="Content\Images\love_img.png" />
     <Content Include="Content\Images\manage_registry.png" />
+    <Content Include="Content\Images\modal_get_this_flag.png" />
     <Content Include="Content\Images\nav_help.png" />
     <Content Include="Content\Images\shape.png" />
     <Content Include="Content\Images\tile.gif" />
     <Content Include="Content\Images\tile.png" />
     <Content Include="Content\Images\welcome_text.png" />
+    <Content Include="Content\Modal.css" />
     <Content Include="Content\Tables.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -338,6 +341,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Manage\EditableGift.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Registry\Popup.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
