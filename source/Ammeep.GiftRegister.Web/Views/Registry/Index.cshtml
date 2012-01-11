@@ -4,7 +4,8 @@
     ViewBag.Title = "Registry";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="../../Scripts/bootstrap-modal.js" type="text/javascript"></script>
+<link href="../../Content/Modal.css" rel="stylesheet" type="text/css" />
 
 @Html.Partial("Welcome")
 @Html.Partial("HowTo")
@@ -26,9 +27,9 @@
     @Html.Partial("RegistryItems", Model.Gifts) 
 </div>
 
-<nav id="page_nav">
-    <a id="nextGiftUrl" href="@Url.Action("GetRegistryItems", new { pageSize = Model.PageSize, pageNumber = 2, categoryId = 0 })"></a>
-</nav>
+ <!-- sample modal content -->
+ @Html.Partial("Popup")
+
 
 @Html.Partial("Help")
 
@@ -86,19 +87,3 @@
 
 </script>
 
-@*
- <!-- Modal -->
-<div id="moda" class="modal" style="position: relative; top: auto; left: auto; margin: 0 auto; z-index: 1">
-    <div class="modal-header">
-    <a href="#" class="close">&times;</a>
-    <h3>Modal Heading</h3>
-    </div>
-    <div class="modal-body">
-    <p>One fine body…</p>
-    </div>
-    <div class="modal-footer">
-    <a href="#" class="btn primary">Primary</a>
-    <a href="#" class="btn secondary">Secondary</a>
-    </div>
-</div>
-*@
