@@ -77,8 +77,7 @@
         var pager = new categoryPager(@Model.PageSize , 0, "@Url.Action("GetRegistryItems")");
         
         $('#categoryDropdown').change(function () {
-            var newCategory = $("#categoryDropdown option:selected").val();
-           
+            var newCategory = $("#categoryDropdown option:selected").val();          
             pager.resetForCategory(newCategory);
             pager.getRegistryItems();
         });

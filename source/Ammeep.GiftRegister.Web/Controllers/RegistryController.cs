@@ -30,5 +30,14 @@ namespace Ammeep.GiftRegister.Web.Controllers
             var nextItems = _registryManager.GetRegistry(pageSize, pageNumber, categoryId);
             return PartialView("RegistryItems", nextItems.Select((gift,i) => new GiftRow {Item = gift,IsFirst = i == 0}));
         }
+
+        public ActionResult KO()
+        {
+            var registryPageSize = _config.RegistryPageSize;
+            var gifts = _registryManager.GetRegistry(registryPageSize, 0, 0);
+            var categories = _registryManager.GetCategories();
+            RegistryItemsPage itemsPage = new RegistryItemsPage(gifts, categories, registryPageSize);
+            return View(itemsPage);            
+        }
     }
 }
