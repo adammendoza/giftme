@@ -81,8 +81,40 @@
             pager.resetForCategory(newCategory);
             pager.getRegistryItems();
         });
+
+        $('body').delegate('[data-controls-modal]', 'click', function(e) {
+            e.preventDefault();
+            var $this = $(this).data('show', true);
+            var parent = $this.parents(".registry_container").clone().addClass("first");
+            parent.find(".registry_box_right_display").hide();
+            var quantityRemaining = parent.find("#item_Item_QuantityRemaining").val();
+            $('#' + $this.attr('data-controls-modal')).find("#Quantity").val(quantityRemaining);
+            $("#gift-to-get").html(parent);
+            Cufon.refresh();
+            $('#' + $this.attr('data-controls-modal')).modal($this.data());
+        });
+
+        $("#decrementQuantity").click(function() {
+            var oldNumber = $("#Quantity").val();
+            var decremented = (oldNumber - 1 );
+            if(decremented > 0) {
+                $("#Quantity").val(decremented);
+            }
+        });
+        
+         $("#incrementQuantity").click(function() {
+            var oldNumber = $("#Quantity").val();
+
+            var incremented = ++oldNumber;
+
+            if(incremented <= 4) {
+                $("#Quantity").val(incremented);
+            }
+        });
     });
-  
+    
+ 
+
 
 </script>
 

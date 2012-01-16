@@ -89,10 +89,18 @@
     padding-left: 25px;
 }
 
-.modal-header-text h2 {
+.modal-header-text label {
     color: #8AC3DA;
     font-family: Museo300,sans-serif;
     font-size: 14px;
+}
+
+.modal-header-text .input {
+    padding-bottom: 10px;
+}
+
+.modal-header-text .input input{
+    width: 20px !important;
 }
 
 .modal-header-text p {
@@ -116,11 +124,16 @@
 		
 .modal-your_details_text {
 	padding-top: 10px;
+    padding-bottom: 10px;
+}
+.modal-your_details_text .input {
+     padding-bottom: 10px;
 }
 		
-.modal-your_details_text p{
+.modal-your_details_text label{
 	font-family: museo300,sans-serif;
 	padding-left: 20px;
+    width: 150px;
 	color: #633B1C;
     font-size: 15px;
    	font-weight: bold;

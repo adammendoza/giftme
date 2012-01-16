@@ -29,5 +29,7 @@
         <div class="registry_box_right_display">
             <a data-controls-modal="modal-from-dom" data-backdrop="static" data-keyboard="true">Get This</a>            
         </div>
+        @Html.HiddenFor(model=>Model.Item.GiftId)
+        @Html.HiddenFor(model=>Model.Item.QuantityRemaining)
     </div>
 </div>
