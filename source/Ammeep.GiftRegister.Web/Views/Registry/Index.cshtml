@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="../../Scripts/bootstrap-modal.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.validate.min.js" type="text/javascript"></script>
 <link href="../../Content/Modal.css" rel="stylesheet" type="text/css" />
 
 @Html.Partial("Welcome")
@@ -72,8 +73,29 @@
 
     };
     
-    $(document).ready(function () {
+function isValidEmailAddress(emailAddress) {
+    var pattern = new RegExp( /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i );
+    return pattern.test(emailAddress);
+}
 
+
+$(document).ready(function () {
+
+
+    $.ajax({
+        type: 'POST',
+        url: '@Url.Action("GetThis")',
+        data: JSON.stringify({ quantity: 1, Name: 'ss', Email: 'a.palamountain@@gmail.com', GiftId: 1 }),
+        dataType: "xml",
+        contentType: "application/json; charset=utf-8",
+        success: function() {
+            alert(data);
+
+        },
+        error:function (error) {
+            alert(error);
+        }
+    });
         var pager = new categoryPager(@Model.PageSize , 0, "@Url.Action("GetRegistryItems")");
         
         $('#categoryDropdown').change(function () {
@@ -88,9 +110,13 @@
             var parent = $this.parents(".registry_container").clone().addClass("first");
             parent.find(".registry_box_right_display").hide();
             var quantityRemaining = parent.find("#item_Item_QuantityRemaining").val();
+            var id = parent.find("#item_Item_GiftId").val();
             $('#' + $this.attr('data-controls-modal')).find("#Quantity").val(quantityRemaining);
+            $('#' + $this.attr('data-controls-modal')).find("#getthisid").val(id);
             $("#gift-to-get").html(parent);
             Cufon.refresh();
+            $("#resultcontent").hide();
+            $("#popupcontent").show();
             $('#' + $this.attr('data-controls-modal')).modal($this.data());
         });
 
@@ -109,6 +135,43 @@
 
             if(incremented <= 4) {
                 $("#Quantity").val(incremented);
+            }
+        });
+
+        $("#submitGift").click(function() {         
+            
+            var name = $("#Name").val();
+            var email = $("#Email").val();
+            if(!name) {
+                $("#Name").addClass("input-validation-error");
+            }else {
+                $("#Name").removeClass("input-validation-error");
+            }
+            var emailIsValid = isValidEmailAddress(email);
+
+            if(!email || !emailIsValid) {
+                $("#Email").addClass("input-validation-error");
+            }else {
+                 $("#Email").removeClass("input-validation-error");
+            }
+            if(name && email && emailIsValid) {
+                
+                var quantity = $("#Quantity").val();
+                var id = $("#getthisid").val();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetThis")',
+                    data: JSON.stringify({ quantity: quantity, Name: name, Email: email, GiftId: id }),
+      
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data) {
+                        $("#popupcontent").hide();
+                        $("#resultcontent").show();
+                        $("#resultcontent").html(data);
+                    }
+                });
+            
             }
         });
     });
