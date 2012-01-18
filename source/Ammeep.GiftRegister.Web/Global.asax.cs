@@ -19,24 +19,24 @@ namespace Ammeep.GiftRegister.Web
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-           // filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleErrorAttribute());
         }
 
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("RegistryNextItems",
-                            "Registry/GetRegistryItems/{pageSize}/{pageNumber}/{categoryId}",
-                            new
-                                {
-                                    controller = "Registry",
-                                    action = "GetRegistryItems",
-                                    pageSize = 5,
-                                    pageNumber = 0,
-                                    categoryId = 0
-                                }
-                );
+            //routes.MapRoute("RegistryNextItems",
+            //                "Registry/GetRegistryItems/{pageSize}/{pageNumber}/{categoryId}",
+            //                new
+            //                    {
+            //                        controller = "Registry",
+            //                        action = "GetRegistryItems",
+            //                        pageSize = 5,
+            //                        pageNumber = 0,
+            //                        categoryId = 0
+            //                    }
+            //    );
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

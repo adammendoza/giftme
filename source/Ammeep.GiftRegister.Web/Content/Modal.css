@@ -111,7 +111,6 @@
 		
 .modal-your_details_text {
 	padding-top: 10px;
-    padding-bottom: 10px;
 }
 .modal-your_details_text .input {
      padding-bottom: 10px;
@@ -158,13 +157,13 @@
 					font-size: 15px;
 					}
 					
-	.modal-your_details_thanks {
+	#your_details_thanks {
 		width: 650px;
 		padding-left: 226px;
 		padding-top: 20px;
 		}
 				
-		.modal-your_details_thanks p{	
+		#your_details_thanks p{	
 			color: #633B1C;
     		font-family: Tahoma,Geneva,sans-serif;
     		font-size: 14px;
@@ -216,4 +215,22 @@
 }
 .fade.in {
   opacity: 1;
+}
+
+.input .input-validation-error, .input .field-validation-error{
+  color: #EC008C;
+}
+.input .input-validation-error {
+  color: #EC008C;
+  border-color: #EC008C;
+}
+.input .input-validation-error input:focus, .input .input-validation-error textarea:focus {
+  border-color: #EC008C;
+  -webkit-box-shadow: 0 0 6px #f8b9b7;
+  -moz-box-shadow: 0 0 6px #f8b9b7;
+  box-shadow: 0 0 6px #f8b9b7;
+}
+.input .input-validation-error, . .input-validation-error {
+  color: #EC008C;
+  border-color: #EC008C;
 }
