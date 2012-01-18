@@ -308,20 +308,20 @@ Error.argumentOutOfRange = function Error$argumentOutOfRange(paramName, actualVa
     return err;
 }
 Error.argumentType = function Error$argumentType(paramName, actualType, expectedType, message) {
-    /// <summary locid="M:J#Error.argumentAccountType" />
+    /// <summary locid="M:J#Error.argumentType" />
     /// <param name="paramName" type="String" optional="true" mayBeNull="true"></param>
-    /// <param name="actualAccountType" type="AccountType" optional="true" mayBeNull="true"></param>
-    /// <param name="expectedAccountType" type="AccountType" optional="true" mayBeNull="true"></param>
+    /// <param name="actualType" type="Type" optional="true" mayBeNull="true"></param>
+    /// <param name="expectedType" type="Type" optional="true" mayBeNull="true"></param>
     /// <param name="message" type="String" optional="true" mayBeNull="true"></param>
     /// <returns></returns>
     var e = Function._validateParams(arguments, [
         {name: "paramName", type: String, mayBeNull: true, optional: true},
-        {name: "actualAccountType", type: Type, mayBeNull: true, optional: true},
-        {name: "expectedAccountType", type: Type, mayBeNull: true, optional: true},
+        {name: "actualType", type: Type, mayBeNull: true, optional: true},
+        {name: "expectedType", type: Type, mayBeNull: true, optional: true},
         {name: "message", type: String, mayBeNull: true, optional: true}
     ]);
     if (e) throw e;
-    var displayMessage = "Sys.ArgumentAccountTypeException: ";
+    var displayMessage = "Sys.ArgumentTypeException: ";
     if (message) {
         displayMessage += message;
     }
@@ -336,7 +336,7 @@ Error.argumentType = function Error$argumentType(paramName, actualType, expected
         displayMessage += "\n" + String.format(Sys.Res.paramName, paramName);
     }
     var err = Error.create(displayMessage, {
-        name: "Sys.ArgumentAccountTypeException",
+        name: "Sys.ArgumentTypeException",
         paramName: paramName,
         actualType: actualType,
         expectedType: expectedType
@@ -448,9 +448,9 @@ Error.prototype.popStackFrame = function Error$popStackFrame() {
 Object.__typeName = 'Object';
 Object.__class = true;
 Object.getType = function Object$getType(instance) {
-    /// <summary locid="M:J#Object.getAccountType" />
+    /// <summary locid="M:J#Object.getType" />
     /// <param name="instance"></param>
-    /// <returns type="AccountType"></returns>
+    /// <returns type="Type"></returns>
     var e = Function._validateParams(arguments, [
         {name: "instance"}
     ]);
@@ -462,7 +462,7 @@ Object.getType = function Object$getType(instance) {
     return ctor;
 }
 Object.getTypeName = function Object$getTypeName(instance) {
-    /// <summary locid="M:J#Object.getAccountTypeName" />
+    /// <summary locid="M:J#Object.getTypeName" />
     /// <param name="instance"></param>
     /// <returns type="String"></returns>
     var e = Function._validateParams(arguments, [
@@ -605,7 +605,7 @@ window.Type = Function;
 Type.__fullyQualifiedIdentifierRegExp = new RegExp("^[^.0-9 \\s|,;:&*=+\\-()\\[\\]{}^%#@!~\\n\\r\\t\\f\\\\]([^ \\s|,;:&*=+\\-()\\[\\]{}^%#@!~\\n\\r\\t\\f\\\\]*[^. \\s|,;:&*=+\\-()\\[\\]{}^%#@!~\\n\\r\\t\\f\\\\])?$", "i");
 Type.__identifierRegExp = new RegExp("^[^.0-9 \\s|,;:&*=+\\-()\\[\\]{}^%#@!~\\n\\r\\t\\f\\\\][^. \\s|,;:&*=+\\-()\\[\\]{}^%#@!~\\n\\r\\t\\f\\\\]*$", "i");
 Type.prototype.callBaseMethod = function Type$callBaseMethod(instance, name, baseArguments) {
-    /// <summary locid="M:J#AccountType.callBaseMethod" />
+    /// <summary locid="M:J#Type.callBaseMethod" />
     /// <param name="instance"></param>
     /// <param name="name" type="String"></param>
     /// <param name="baseArguments" type="Array" optional="true" mayBeNull="true" elementMayBeNull="true"></param>
@@ -626,7 +626,7 @@ Type.prototype.callBaseMethod = function Type$callBaseMethod(instance, name, bas
     }
 }
 Type.prototype.getBaseMethod = function Type$getBaseMethod(instance, name) {
-    /// <summary locid="M:J#AccountType.getBaseMethod" />
+    /// <summary locid="M:J#Type.getBaseMethod" />
     /// <param name="instance"></param>
     /// <param name="name" type="String"></param>
     /// <returns type="Function" mayBeNull="true"></returns>
@@ -638,14 +638,14 @@ Type.prototype.getBaseMethod = function Type$getBaseMethod(instance, name) {
     return Sys._getBaseMethod(this, instance, name);
 }
 Type.prototype.getBaseType = function Type$getBaseType() {
-    /// <summary locid="M:J#AccountType.getBaseAccountType" />
-    /// <returns type="AccountType" mayBeNull="true"></returns>
+    /// <summary locid="M:J#Type.getBaseType" />
+    /// <returns type="Type" mayBeNull="true"></returns>
     if (arguments.length !== 0) throw Error.parameterCount();
     return (typeof(this.__baseType) === "undefined") ? null : this.__baseType;
 }
 Type.prototype.getInterfaces = function Type$getInterfaces() {
-    /// <summary locid="M:J#AccountType.getInterfaces" />
-    /// <returns type="Array" elementAccountType="AccountType" mayBeNull="false" elementMayBeNull="false"></returns>
+    /// <summary locid="M:J#Type.getInterfaces" />
+    /// <returns type="Array" elementType="Type" mayBeNull="false" elementMayBeNull="false"></returns>
     if (arguments.length !== 0) throw Error.parameterCount();
     var result = [];
     var type = this;
@@ -664,17 +664,17 @@ Type.prototype.getInterfaces = function Type$getInterfaces() {
     return result;
 }
 Type.prototype.getName = function Type$getName() {
-    /// <summary locid="M:J#AccountType.getName" />
+    /// <summary locid="M:J#Type.getName" />
     /// <returns type="String"></returns>
     if (arguments.length !== 0) throw Error.parameterCount();
     return (typeof(this.__typeName) === "undefined") ? "" : this.__typeName;
 }
 Type.prototype.implementsInterface = function Type$implementsInterface(interfaceType) {
-    /// <summary locid="M:J#AccountType.implementsInterface" />
-    /// <param name="interfaceAccountType" type="AccountType"></param>
+    /// <summary locid="M:J#Type.implementsInterface" />
+    /// <param name="interfaceType" type="Type"></param>
     /// <returns type="Boolean"></returns>
     var e = Function._validateParams(arguments, [
-        {name: "interfaceAccountType", type: Type}
+        {name: "interfaceType", type: Type}
     ]);
     if (e) throw e;
     this.resolveInheritance();
@@ -700,11 +700,11 @@ Type.prototype.implementsInterface = function Type$implementsInterface(interface
     return cache[interfaceName] = false;
 }
 Type.prototype.inheritsFrom = function Type$inheritsFrom(parentType) {
-    /// <summary locid="M:J#AccountType.inheritsFrom" />
-    /// <param name="parentAccountType" type="AccountType"></param>
+    /// <summary locid="M:J#Type.inheritsFrom" />
+    /// <param name="parentType" type="Type"></param>
     /// <returns type="Boolean"></returns>
     var e = Function._validateParams(arguments, [
-        {name: "parentAccountType", type: Type}
+        {name: "parentType", type: Type}
     ]);
     if (e) throw e;
     this.resolveInheritance();
@@ -718,7 +718,7 @@ Type.prototype.inheritsFrom = function Type$inheritsFrom(parentType) {
     return false;
 }
 Type.prototype.initializeBase = function Type$initializeBase(instance, baseArguments) {
-    /// <summary locid="M:J#AccountType.initializeBase" />
+    /// <summary locid="M:J#Type.initializeBase" />
     /// <param name="instance"></param>
     /// <param name="baseArguments" type="Array" optional="true" mayBeNull="true" elementMayBeNull="true"></param>
     /// <returns></returns>
@@ -740,7 +740,7 @@ Type.prototype.initializeBase = function Type$initializeBase(instance, baseArgum
     return instance;
 }
 Type.prototype.isImplementedBy = function Type$isImplementedBy(instance) {
-    /// <summary locid="M:J#AccountType.isImplementedBy" />
+    /// <summary locid="M:J#Type.isImplementedBy" />
     /// <param name="instance" mayBeNull="true"></param>
     /// <returns type="Boolean"></returns>
     var e = Function._validateParams(arguments, [
@@ -752,7 +752,7 @@ Type.prototype.isImplementedBy = function Type$isImplementedBy(instance) {
     return !!(instanceType.implementsInterface && instanceType.implementsInterface(this));
 }
 Type.prototype.isInstanceOfType = function Type$isInstanceOfType(instance) {
-    /// <summary locid="M:J#AccountType.isInstanceOfAccountType" />
+    /// <summary locid="M:J#Type.isInstanceOfType" />
     /// <param name="instance" mayBeNull="true"></param>
     /// <returns type="Boolean"></returns>
     var e = Function._validateParams(arguments, [
@@ -762,15 +762,15 @@ Type.prototype.isInstanceOfType = function Type$isInstanceOfType(instance) {
     return Sys._isInstanceOfType(this, instance);
 }
 Type.prototype.registerClass = function Type$registerClass(typeName, baseType, interfaceTypes) {
-    /// <summary locid="M:J#AccountType.registerClass" />
+    /// <summary locid="M:J#Type.registerClass" />
     /// <param name="typeName" type="String"></param>
-    /// <param name="baseAccountType" type="AccountType" optional="true" mayBeNull="true"></param>
-    /// <param name="interfaceAccountTypes" parameterArray="true" type="AccountType"></param>
-    /// <returns type="AccountType"></returns>
+    /// <param name="baseType" type="Type" optional="true" mayBeNull="true"></param>
+    /// <param name="interfaceTypes" parameterArray="true" type="Type"></param>
+    /// <returns type="Type"></returns>
     var e = Function._validateParams(arguments, [
         {name: "typeName", type: String},
-        {name: "baseAccountType", type: Type, mayBeNull: true, optional: true},
-        {name: "interfaceAccountTypes", type: Type, parameterArray: true}
+        {name: "baseType", type: Type, mayBeNull: true, optional: true},
+        {name: "interfaceTypes", type: Type, parameterArray: true}
     ]);
     if (e) throw e;
     if (!Type.__fullyQualifiedIdentifierRegExp.test(typeName)) throw Error.argument('typeName', Sys.Res.notATypeName);
@@ -783,8 +783,8 @@ Type.prototype.registerClass = function Type$registerClass(typeName, baseType, i
     }
     if (parsedName !== this) throw Error.argument('typeName', Sys.Res.badTypeName);
     if (Sys.__registeredTypes[typeName]) throw Error.invalidOperation(String.format(Sys.Res.typeRegisteredTwice, typeName));
-    if ((arguments.length > 1) && (typeof(baseType) === 'undefined')) throw Error.argumentUndefined('baseAccountType');
-    if (baseType && !baseType.__class) throw Error.argument('baseAccountType', Sys.Res.baseNotAClass);
+    if ((arguments.length > 1) && (typeof(baseType) === 'undefined')) throw Error.argumentUndefined('baseType');
+    if (baseType && !baseType.__class) throw Error.argument('baseType', Sys.Res.baseNotAClass);
     this.prototype.constructor = this;
     this.__typeName = typeName;
     this.__class = true;
@@ -798,7 +798,7 @@ Type.prototype.registerClass = function Type$registerClass(typeName, baseType, i
         this.resolveInheritance();
         for (var i = 2, l = arguments.length; i < l; i++) {
             var interfaceType = arguments[i];
-            if (!interfaceType.__interface) throw Error.argument('interfaceAccountTypes[' + (i - 2) + ']', Sys.Res.notAnInterface);
+            if (!interfaceType.__interface) throw Error.argument('interfaceTypes[' + (i - 2) + ']', Sys.Res.notAnInterface);
             for (var methodName in interfaceType.prototype) {
                 var method = interfaceType.prototype[methodName];
                 if (!this.prototype[methodName]) {
@@ -812,9 +812,9 @@ Type.prototype.registerClass = function Type$registerClass(typeName, baseType, i
     return this;
 }
 Type.prototype.registerInterface = function Type$registerInterface(typeName) {
-    /// <summary locid="M:J#AccountType.registerInterface" />
+    /// <summary locid="M:J#Type.registerInterface" />
     /// <param name="typeName" type="String"></param>
-    /// <returns type="AccountType"></returns>
+    /// <returns type="Type"></returns>
     var e = Function._validateParams(arguments, [
         {name: "typeName", type: String}
     ]);
@@ -837,7 +837,7 @@ Type.prototype.registerInterface = function Type$registerInterface(typeName) {
     return this;
 }
 Type.prototype.resolveInheritance = function Type$resolveInheritance() {
-    /// <summary locid="M:J#AccountType.resolveInheritance" />
+    /// <summary locid="M:J#Type.resolveInheritance" />
     if (arguments.length !== 0) throw Error.parameterCount();
     if (this.__basePrototypePending) {
         var baseType = this.__baseType;
@@ -852,13 +852,13 @@ Type.prototype.resolveInheritance = function Type$resolveInheritance() {
     }
 }
 Type.getRootNamespaces = function Type$getRootNamespaces() {
-    /// <summary locid="M:J#AccountType.getRootNamespaces" />
+    /// <summary locid="M:J#Type.getRootNamespaces" />
     /// <returns type="Array"></returns>
     if (arguments.length !== 0) throw Error.parameterCount();
     return Array.clone(Sys.__rootNamespaces);
 }
 Type.isClass = function Type$isClass(type) {
-    /// <summary locid="M:J#AccountType.isClass" />
+    /// <summary locid="M:J#Type.isClass" />
     /// <param name="type" mayBeNull="true"></param>
     /// <returns type="Boolean"></returns>
     var e = Function._validateParams(arguments, [
@@ -869,7 +869,7 @@ Type.isClass = function Type$isClass(type) {
     return !!type.__class;
 }
 Type.isInterface = function Type$isInterface(type) {
-    /// <summary locid="M:J#AccountType.isInterface" />
+    /// <summary locid="M:J#Type.isInterface" />
     /// <param name="type" mayBeNull="true"></param>
     /// <returns type="Boolean"></returns>
     var e = Function._validateParams(arguments, [
@@ -880,7 +880,7 @@ Type.isInterface = function Type$isInterface(type) {
     return !!type.__interface;
 }
 Type.isNamespace = function Type$isNamespace(object) {
-    /// <summary locid="M:J#AccountType.isNamespace" />
+    /// <summary locid="M:J#Type.isNamespace" />
     /// <param name="object" mayBeNull="true"></param>
     /// <returns type="Boolean"></returns>
     var e = Function._validateParams(arguments, [
@@ -891,10 +891,10 @@ Type.isNamespace = function Type$isNamespace(object) {
     return !!object.__namespace;
 }
 Type.parse = function Type$parse(typeName, ns) {
-    /// <summary locid="M:J#AccountType.parse" />
+    /// <summary locid="M:J#Type.parse" />
     /// <param name="typeName" type="String" mayBeNull="true"></param>
     /// <param name="ns" optional="true" mayBeNull="true"></param>
-    /// <returns type="AccountType" mayBeNull="true"></returns>
+    /// <returns type="Type" mayBeNull="true"></returns>
     var e = Function._validateParams(arguments, [
         {name: "typeName", type: String, mayBeNull: true},
         {name: "ns", mayBeNull: true, optional: true}
@@ -918,7 +918,7 @@ Type.parse = function Type$parse(typeName, ns) {
     return fn;
 }
 Type.registerNamespace = function Type$registerNamespace(namespacePath) {
-    /// <summary locid="M:J#AccountType.registerNamespace" />
+    /// <summary locid="M:J#Type.registerNamespace" />
     /// <param name="namespacePath" type="String"></param>
     var e = Function._validateParams(arguments, [
         {name: "namespacePath", type: String}
@@ -1627,7 +1627,7 @@ function Sys$Enum$toString(value) {
     throw Error.argumentOutOfRange('value', value, String.format(Sys.Res.enumInvalidValue, value, this.__typeName));
 }
 Type.prototype.registerEnum = function Type$registerEnum(name, flags) {
-    /// <summary locid="M:J#Sys.UI.LineAccountType.#ctor" />
+    /// <summary locid="M:J#Sys.UI.LineType.#ctor" />
     /// <param name="name" type="String"></param>
     /// <param name="flags" type="Boolean" optional="true"></param>
     var e = Function._validateParams(arguments, [
@@ -1664,7 +1664,7 @@ Type.prototype.registerEnum = function Type$registerEnum(name, flags) {
     Sys.__registeredTypes[name] = true;
 }
 Type.isEnum = function Type$isEnum(type) {
-    /// <summary locid="M:J#AccountType.isEnum" />
+    /// <summary locid="M:J#Type.isEnum" />
     /// <param name="type" mayBeNull="true"></param>
     /// <returns type="Boolean"></returns>
     var e = Function._validateParams(arguments, [
@@ -1675,7 +1675,7 @@ Type.isEnum = function Type$isEnum(type) {
     return !!type.__enum;
 }
 Type.isFlags = function Type$isFlags(type) {
-    /// <summary locid="M:J#AccountType.isFlags" />
+    /// <summary locid="M:J#Type.isFlags" />
     /// <param name="type" mayBeNull="true"></param>
     /// <returns type="Boolean"></returns>
     var e = Function._validateParams(arguments, [
@@ -1744,7 +1744,7 @@ Sys.NotifyCollectionChangedAction.prototype = {
 Sys.NotifyCollectionChangedAction.registerEnum('Sys.NotifyCollectionChangedAction');
 Sys.NotifyCollectionChangedEventArgs = function Sys$NotifyCollectionChangedEventArgs(changes) {
     /// <summary locid="M:J#Sys.NotifyCollectionChangedEventArgs.#ctor" />
-    /// <param name="changes" type="Array" elementAccountType="Sys.CollectionChange"></param>
+    /// <param name="changes" type="Array" elementType="Sys.CollectionChange"></param>
     var e = Function._validateParams(arguments, [
         {name: "changes", type: Array, elementType: Sys.CollectionChange}
     ]);
@@ -1753,7 +1753,7 @@ Sys.NotifyCollectionChangedEventArgs = function Sys$NotifyCollectionChangedEvent
     Sys.NotifyCollectionChangedEventArgs.initializeBase(this);
 }
     function Sys$NotifyCollectionChangedEventArgs$get_changes() {
-        /// <value type="Array" elementAccountType="Sys.CollectionChange" locid="P:J#Sys.NotifyCollectionChangedEventArgs.changes"></value>
+        /// <value type="Array" elementType="Sys.CollectionChange" locid="P:J#Sys.NotifyCollectionChangedEventArgs.changes"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._changes || [];
     }
@@ -2104,7 +2104,7 @@ Sys.Observer.removeAt = function Sys$Observer$removeAt(target, index) {
 Sys.Observer.raiseCollectionChanged = function Sys$Observer$raiseCollectionChanged(target, changes) {
     /// <summary locid="M:J#Sys.Observer.raiseCollectionChanged" />
     /// <param name="target"></param>
-    /// <param name="changes" type="Array" elementAccountType="Sys.CollectionChange"></param>
+    /// <param name="changes" type="Array" elementType="Sys.CollectionChange"></param>
     Sys.Observer.raiseEvent(target, "collectionChanged", new Sys.NotifyCollectionChangedEventArgs(changes));
 }
 Sys.Observer._observeMethods = {
@@ -2212,7 +2212,7 @@ Sys.Observer._arrayMethods = {
     },
     raiseCollectionChanged: function(changes) {
         /// <summary locid="M:J#Sys.Observer.raiseCollectionChanged" />
-        /// <param name="changes" type="Array" elementAccountType="Sys.CollectionChange"></param>
+        /// <param name="changes" type="Array" elementType="Sys.CollectionChange"></param>
         Sys.Observer.raiseEvent(this, "collectionChanged", new Sys.NotifyCollectionChangedEventArgs(changes));
     }
 }
@@ -3795,7 +3795,7 @@ function Sys$Component$_setReferences(component, references) {
 }
 var $create = Sys.Component.create = function Sys$Component$create(type, properties, events, references, element) {
     /// <summary locid="M:J#Sys.Component.create" />
-    /// <param name="type" type="AccountType"></param>
+    /// <param name="type" type="Type"></param>
     /// <param name="properties" optional="true" mayBeNull="true"></param>
     /// <param name="events" optional="true" mayBeNull="true"></param>
     /// <param name="references" optional="true" mayBeNull="true"></param>
@@ -4669,7 +4669,7 @@ Sys.IContainer = function Sys$IContainer() {
     }
     function Sys$IContainer$getComponents() {
         /// <summary locid="M:J#Sys.IContainer.getComponents" />
-        /// <returns type="Array" elementAccountType="Sys.Component"></returns>
+        /// <returns type="Array" elementType="Sys.Component"></returns>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
     }
@@ -4683,7 +4683,7 @@ Sys.IContainer.registerInterface("Sys.IContainer");
  
 Sys.ApplicationLoadEventArgs = function Sys$ApplicationLoadEventArgs(components, isPartialLoad) {
     /// <summary locid="M:J#Sys.ApplicationLoadEventArgs.#ctor" />
-    /// <param name="components" type="Array" elementAccountType="Sys.Component"></param>
+    /// <param name="components" type="Array" elementType="Sys.Component"></param>
     /// <param name="isPartialLoad" type="Boolean"></param>
     var e = Function._validateParams(arguments, [
         {name: "components", type: Array, elementType: Sys.Component},
@@ -4696,7 +4696,7 @@ Sys.ApplicationLoadEventArgs = function Sys$ApplicationLoadEventArgs(components,
 }
  
     function Sys$ApplicationLoadEventArgs$get_components() {
-        /// <value type="Array" elementAccountType="Sys.Component" locid="P:J#Sys.ApplicationLoadEventArgs.components"></value>
+        /// <value type="Array" elementType="Sys.Component" locid="P:J#Sys.ApplicationLoadEventArgs.components"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._components;
     }
@@ -4879,7 +4879,7 @@ Sys._Application = function Sys$_Application() {
     }
     function Sys$_Application$getComponents() {
         /// <summary locid="M:J#Sys.Application.getComponents" />
-        /// <returns type="Array" elementAccountType="Sys.Component"></returns>
+        /// <returns type="Array" elementType="Sys.Component"></returns>
         if (arguments.length !== 0) throw Error.parameterCount();
         var res = [];
         var components = this._components;
@@ -5204,7 +5204,7 @@ Sys.UI.Behavior.getBehaviorByName = function Sys$UI$Behavior$getBehaviorByName(e
 Sys.UI.Behavior.getBehaviors = function Sys$UI$Behavior$getBehaviors(element) {
     /// <summary locid="M:J#Sys.UI.Behavior.getBehaviors" />
     /// <param name="element" domElement="true"></param>
-    /// <returns type="Array" elementAccountType="Sys.UI.Behavior"></returns>
+    /// <returns type="Array" elementType="Sys.UI.Behavior"></returns>
     var e = Function._validateParams(arguments, [
         {name: "element", domElement: true}
     ]);
@@ -5213,10 +5213,10 @@ Sys.UI.Behavior.getBehaviors = function Sys$UI$Behavior$getBehaviors(element) {
     return Array.clone(element._behaviors);
 }
 Sys.UI.Behavior.getBehaviorsByType = function Sys$UI$Behavior$getBehaviorsByType(element, type) {
-    /// <summary locid="M:J#Sys.UI.Behavior.getBehaviorsByAccountType" />
+    /// <summary locid="M:J#Sys.UI.Behavior.getBehaviorsByType" />
     /// <param name="element" domElement="true"></param>
-    /// <param name="type" type="AccountType"></param>
-    /// <returns type="Array" elementAccountType="Sys.UI.Behavior"></returns>
+    /// <param name="type" type="Type"></param>
+    /// <returns type="Array" elementType="Sys.UI.Behavior"></returns>
     var e = Function._validateParams(arguments, [
         {name: "element", domElement: true},
         {name: "type", type: Type}
@@ -6019,7 +6019,7 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
         }
         if (verb.toLowerCase() === "post") {
             if ((headers === null) || !headers['Content-Type']) {
-                this._xmlHttpRequest.setRequestHeader('Content-AccountType', 'application/x-www-form-urlencoded; charset=utf-8');
+                this._xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
             }
             if (!body) {
                 body = "";
@@ -6216,7 +6216,7 @@ Sys.Net._WebRequestManager = function Sys$Net$_WebRequestManager() {
         this._defaultTimeout = value;
     }
     function Sys$Net$_WebRequestManager$get_defaultExecutorType() {
-        /// <value type="String" locid="P:J#Sys.Net.WebRequestManager.defaultExecutorAccountType"></value>
+        /// <value type="String" locid="P:J#Sys.Net.WebRequestManager.defaultExecutorType"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._defaultExecutorType;
     }
@@ -6242,7 +6242,7 @@ Sys.Net._WebRequestManager = function Sys$Net$_WebRequestManager() {
                 failed = true;
             }
             if (failed  || !Sys.Net.WebRequestExecutor.isInstanceOfType(executor) || !executor) {
-                throw Error.argument("defaultExecutorAccountType", String.format(Sys.Res.invalidExecutorType, this._defaultExecutorType));
+                throw Error.argument("defaultExecutorType", String.format(Sys.Res.invalidExecutorType, this._defaultExecutorType));
             }
             webRequest.set_executor(executor);
         }
@@ -6862,7 +6862,7 @@ Sys.Net.WebServiceProxy.invoke = function Sys$Net$WebServiceProxy$invoke(service
             var result = null;
            
             try {
-                var contentType = response.getResponseHeader("Content-AccountType");
+                var contentType = response.getResponseHeader("Content-Type");
                 if (contentType.startsWith("application/json")) {
                     result = response.get_object();
                 }
@@ -6952,13 +6952,13 @@ Sys.Net.WebServiceError = function Sys$Net$WebServiceError(timedOut, message, st
     /// <param name="timedOut" type="Boolean"></param>
     /// <param name="message" type="String" mayBeNull="true"></param>
     /// <param name="stackTrace" type="String" mayBeNull="true" optional="true"></param>
-    /// <param name="exceptionAccountType" type="String" mayBeNull="true" optional="true"></param>
+    /// <param name="exceptionType" type="String" mayBeNull="true" optional="true"></param>
     /// <param name="errorObject" type="Object" mayBeNull="true" optional="true"></param>
     var e = Function._validateParams(arguments, [
         {name: "timedOut", type: Boolean},
         {name: "message", type: String, mayBeNull: true},
         {name: "stackTrace", type: String, mayBeNull: true, optional: true},
-        {name: "exceptionAccountType", type: String, mayBeNull: true, optional: true},
+        {name: "exceptionType", type: String, mayBeNull: true, optional: true},
         {name: "errorObject", type: Object, mayBeNull: true, optional: true}
     ]);
     if (e) throw e;
@@ -6990,7 +6990,7 @@ Sys.Net.WebServiceError = function Sys$Net$WebServiceError(timedOut, message, st
         return this._stackTrace || "";
     }
     function Sys$Net$WebServiceError$get_exceptionType() {
-        /// <value type="String" locid="P:J#Sys.Net.WebServiceError.exceptionAccountType"></value>
+        /// <value type="String" locid="P:J#Sys.Net.WebServiceError.exceptionType"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._exceptionType || "";
     }
@@ -7044,7 +7044,7 @@ Sys.Res={
 'eventHandlerNotFunction':'Handler must be a function.',
 'propertyNotAnArray':'\'{0}\' is not an Array property.',
 'namespaceContainsClass':'Object {0} already exists as a class, enum, or interface.',
-'typeRegisteredTwice':'AccountType {0} has already been registered. The type may be defined multiple times or the script file that defines it may have already been loaded. A possible cause is a change of settings during a partial update.',
+'typeRegisteredTwice':'Type {0} has already been registered. The type may be defined multiple times or the script file that defines it may have already been loaded. A possible cause is a change of settings during a partial update.',
 'cantSetNameAfterInit':'The name property can\'t be set on this object after initialization.',
 'historyMissingFrame':'For the history feature to work in IE, the page must have an iFrame element with id \'__historyFrame\' pointed to a page that gets its title from the \'title\' query string parameter and calls Sys.Application._onIFrameLoad() on the parent window. This can be done by setting EnableHistory to true on ScriptManager.',
 'appDuplicateComponent':'Two components with the same id \'{0}\' can\'t be added to the application.',

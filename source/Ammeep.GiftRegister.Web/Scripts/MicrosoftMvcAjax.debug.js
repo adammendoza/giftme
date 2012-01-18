@@ -315,7 +315,7 @@ Sys.Mvc.MvcHelpers._onComplete = function Sys_Mvc_MvcHelpers$_onComplete(request
     var statusCode = ajaxContext.get_response().get_statusCode();
     if ((statusCode >= 200 && statusCode < 300) || statusCode === 304 || statusCode === 1223) {
         if (statusCode !== 204 && statusCode !== 304 && statusCode !== 1223) {
-            var contentType = ajaxContext.get_response().getResponseHeader('Content-AccountType');
+            var contentType = ajaxContext.get_response().getResponseHeader('Content-Type');
             if ((contentType) && (contentType.indexOf('application/x-javascript') !== -1)) {
                 eval(ajaxContext.get_data());
             }
