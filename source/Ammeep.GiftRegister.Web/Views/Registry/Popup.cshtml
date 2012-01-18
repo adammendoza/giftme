@@ -1,54 +1,55 @@
 ﻿
  <div id="modal-from-dom" class="modal hide fade">
-     <div class="modal-header-flag">       
-     </div>  
-     <div class="modal-header-text">
-         <h2> You have opted to gift Ian & Joanne:</h2>
-         <div class="input">
-             @Html.Label("Quantity:")
-             <a id="decrementQuantity">-</a>
-             @Html.TextBox("Quantity", null, new { disabled = "disabled"})    
-             <a id="incrementQuantity">+</a>                
-              
-         </div>
-     </div>
     
-     <div id="gift-to-get"><!--Selected item here--></div>
-     <div class="modal-header-text">
-         <h2>Your details:</h2>
-     </div>
-     <div class="modal-your_details_title">
-
-         <div class="modal-your_details_box">
-             <div class="modal-your_details_text">
+     <div class="modal-header-flag">
+         <p id="getthisid" style="display: none">1</p>       
+     </div> 
+     <div id="resultcontent"></div> 
+     <div id="popupcontent">
+         @using (Html.BeginForm("GetThis","Registry",new{id="getThisForm"}))
+         {
+             <div class="modal-header-text">
+                 <h2> You have opted to gift Ian & Joanne:</h2>
                  <div class="input">
-                     @Html.Label("Your Name:")
-                     @Html.TextBox("Name")
+                     @Html.Label("Quantity:")
+                     <a id="decrementQuantity">-</a>
+                     @Html.TextBox("Quantity", null, new {disabled = "disabled"})    
+                     <a id="incrementQuantity">+</a>                
+              
                  </div>
+             </div>
+
+             <div id="gift-to-get"><!--Selected item here--></div>
+             <div class="modal-header-text">
+                 <h2>Your details:</h2>
+             </div>
+             <div class="modal-your_details_title">
+
+                 <div class="modal-your_details_box">
+                     <div class="modal-your_details_text">
+               
+                         <div class="input">
+                             @Html.Label("Your Name:")
+                             @Html.TextBox("Name")
+                         </div>
                     
-                 <div class="input">
-                     @Html.Label("Your Email Address:")
-                     @Html.TextBox("Email")
-                 </div>
-             </div>
-             <div class="modal-your_details_button">
-
-                 <a href="#">I intend to make this purchase.</a>
+                         <div class="input">
+                             @Html.Label("Your Email Address:")
+                             @Html.TextBox("Email", "", new {@class = "required", type = "email"})
+                         </div>
+                     </div>
+                     <div class="modal-your_details_button">
+                         <a id="submitGift">I intend to make this purchase.</a>
             	
-             </div>
-             <div class="no_wait">
-                 <br /><br /><p><a class="close">No wait, i've changed my mind</a>.</p>
-             </div>
+                     </div>
+                     <div class="no_wait">
+                         <br /><br /><p><a class="close">No wait, i've changed my mind</a>.</p>
+                     </div>
            
-         </div>
-         @*<div id="your_details_thanks">
-
-    <p><strong>Thank you! You're almost done! </strong>
-    <br />You've been sent a confirmation email with the remaining 
-    step.
-    <br /><br />Before this item will be checked off the registry you must confirm your intent to purchase 
-    via email. Please check your email and follow the instructions provided.</p>
-    </div>*@
+                 </div>
+       
+             </div>
+         }
      </div>
  </div>
 
