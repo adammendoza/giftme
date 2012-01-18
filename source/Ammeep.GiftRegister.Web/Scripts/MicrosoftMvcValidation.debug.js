@@ -90,7 +90,7 @@ Sys.Mvc.FormContext = function Sys_Mvc_FormContext(formElement, validationSummar
     /// </field>
     /// <field name="_validationSummaryULElement" type="Object" domElement="true">
     /// </field>
-    /// <field name="fields" type="Array" elementAccountType="FieldContext">
+    /// <field name="fields" type="Array" elementType="FieldContext">
     /// </field>
     /// <field name="_formElement" type="Object" domElement="true">
     /// </field>
@@ -124,7 +124,7 @@ Sys.Mvc.FormContext._getFormElementsWithName = function Sys_Mvc_FormContext$_get
     /// </param>
     /// <param name="name" type="String">
     /// </param>
-    /// <returns type="Array" elementAccountType="Object" elementDomElement="true"></returns>
+    /// <returns type="Array" elementType="Object" elementDomElement="true"></returns>
     var allElementsWithNameInForm = [];
     var allElementsWithName = document.getElementsByName(name);
     for (var i = 0; i < allElementsWithName.length; i++) {
@@ -211,7 +211,7 @@ Sys.Mvc.FormContext.prototype = {
     },
     
     addErrors: function Sys_Mvc_FormContext$addErrors(messages) {
-        /// <param name="messages" type="Array" elementAccountType="String">
+        /// <param name="messages" type="Array" elementType="String">
         /// </param>
         if (!Sys.Mvc._validationUtil.arrayIsNullOrEmpty(messages)) {
             Array.addRange(this._errors, messages);
@@ -309,7 +309,7 @@ Sys.Mvc.FormContext.prototype = {
     validate: function Sys_Mvc_FormContext$validate(eventName) {
         /// <param name="eventName" type="String">
         /// </param>
-        /// <returns type="Array" elementAccountType="String"></returns>
+        /// <returns type="Array" elementType="String"></returns>
         var fields = this.fields;
         var errors = [];
         for (var i = 0; i < fields.length; i++) {
@@ -360,7 +360,7 @@ Sys.Mvc.FieldContext = function Sys_Mvc_FieldContext(formContext) {
     /// </field>
     /// <field name="defaultErrorMessage" type="String">
     /// </field>
-    /// <field name="elements" type="Array" elementAccountType="Object" elementDomElement="true">
+    /// <field name="elements" type="Array" elementType="Object" elementDomElement="true">
     /// </field>
     /// <field name="formContext" type="Sys.Mvc.FormContext">
     /// </field>
@@ -368,7 +368,7 @@ Sys.Mvc.FieldContext = function Sys_Mvc_FieldContext(formContext) {
     /// </field>
     /// <field name="validationMessageElement" type="Object" domElement="true">
     /// </field>
-    /// <field name="validations" type="Array" elementAccountType="Validation">
+    /// <field name="validations" type="Array" elementType="Validation">
     /// </field>
     this._errors = [];
     this.elements = new Array(0);
@@ -396,7 +396,7 @@ Sys.Mvc.FieldContext.prototype = {
     },
     
     addErrors: function Sys_Mvc_FieldContext$addErrors(messages) {
-        /// <param name="messages" type="Array" elementAccountType="String">
+        /// <param name="messages" type="Array" elementType="String">
         /// </param>
         if (!Sys.Mvc._validationUtil.arrayIsNullOrEmpty(messages)) {
             Array.addRange(this._errors, messages);
@@ -537,7 +537,7 @@ Sys.Mvc.FieldContext.prototype = {
     validate: function Sys_Mvc_FieldContext$validate(eventName) {
         /// <param name="eventName" type="String">
         /// </param>
-        /// <returns type="Array" elementAccountType="String"></returns>
+        /// <returns type="Array" elementType="String"></returns>
         var validations = this.validations;
         var errors = [];
         var value = this._getStringValue();
@@ -690,7 +690,7 @@ Sys.Mvc.RequiredValidator._isTextualInputElement = function Sys_Mvc_RequiredVali
     return false;
 }
 Sys.Mvc.RequiredValidator._validateRadioInput = function Sys_Mvc_RequiredValidator$_validateRadioInput(elements) {
-    /// <param name="elements" type="Array" elementAccountType="Object" elementDomElement="true">
+    /// <param name="elements" type="Array" elementType="Object" elementDomElement="true">
     /// </param>
     /// <returns type="Object"></returns>
     for (var i = 0; i < elements.length; i++) {
@@ -795,7 +795,7 @@ Sys.Mvc.StringLengthValidator.prototype = {
 Sys.Mvc._validationUtil = function Sys_Mvc__validationUtil() {
 }
 Sys.Mvc._validationUtil.arrayIsNullOrEmpty = function Sys_Mvc__validationUtil$arrayIsNullOrEmpty(array) {
-    /// <param name="array" type="Array" elementAccountType="Object">
+    /// <param name="array" type="Array" elementType="Object">
     /// </param>
     /// <returns type="Boolean"></returns>
     return (!array || !array.length);
