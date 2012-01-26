@@ -4,9 +4,10 @@
     ViewBag.Title = "Registry";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="../../Scripts/bootstrap-modal.js" type="text/javascript"></script>
-<script src="../../Scripts/jquery.validate.min.js" type="text/javascript"></script>
-<link href="../../Content/Modal.css" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/bootstrap-modal.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/Modal.css")" rel="stylesheet" type="text/css" />
+
 
 @Html.Partial("Welcome")
 @Html.Partial("HowTo")
@@ -14,65 +15,23 @@
 <div id="registry_flag">
     <a name="registry" id="registry"></a> 
 </div>
-
- <div class="registry_sort">    
-     <p> Sort by:</p>
-     @Html.DropDownListFor(model => model.CategoriesSelectList, Model.CategoriesSelectList, new { id = "categoryDropdown" })      
-     <br />    
- </div>
+ 
+<div class="registry_sort">    
+    <p> Sort by:</p> 
+    @Html.DropDownList("categoryDropdown", new SelectList(Model.Categories, "CategoryId", "Name", Model.SelectedCategoryId))
+    <br />    
+</div>
     
-<div id="loading_spinner" class="loading_spinner_invisible">
-    <img src="../../Content/Images/ajax-loader.gif" alt="Loading"/>
-</div>
-<div id="registryItemContainer">
-    @Html.Partial("RegistryItems", Model.Gifts) 
-</div>
+@Html.Partial("RegistryPage")
 
- <!-- sample modal content -->
+<!-- sample modal content -->
  @Html.Partial("Popup")
 
 
 @Html.Partial("Help")
 
 <script type="text/javascript">
-    var categoryPager = function(pageSize, defaultCategory, nextItemsUrl) {
-        this.pageSize = pageSize;
-        this.currentCategory = defaultCategory;
-        this.pageNumber = 0;
-        this.nextItemsUrl = nextItemsUrl;
-
-        this.resetForCategory = function(newCategory) {
-            this.currentCategory = newCategory;
-            this.pageNumber = 0;
-        };
-
-        this.incrementPageNumber = function() {
-            this.pageNumber = this.pageNumber + 1;
-        };
-
-        this.getNextPageUrl = function() {
-            return this.nextItemsUrl + "/" + this.pageSize + "/" + this.pageNumber + "/" + this.currentCategory;
-        };
-
-        this.getRegistryItems = function() {
-            $('.registry_container').fadeOut('slow', function() {
-                $("#registryItemContainer").empty();
-                $("#loading_spinner").addClass("loading_spinner_visible");
-                $("#loading_spinner").removeClass("loading_spinner_invisible");
-            });
-             
-            $.get(this.getNextPageUrl(), function(data) {              
-                $("#loading_spinner").addClass("loading_spinner_invisible");
-                $("#loading_spinner").removeClass("loading_spinner_visible").fadeOut();
-                $('#registryItemContainer').hide().append(data).fadeIn('slow');
-            });
-        };
-
  
-        
-
-    };
-    
 function isValidEmailAddress(emailAddress) {
     var pattern = new RegExp( /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i );
     return pattern.test(emailAddress);
@@ -81,27 +40,12 @@ function isValidEmailAddress(emailAddress) {
 
 $(document).ready(function () {
 
-
-    $.ajax({
-        type: 'POST',
-        url: '@Url.Action("GetThis")',
-        data: JSON.stringify({ quantity: 1, Name: 'ss', Email: 'a.palamountain@@gmail.com', GiftId: 1 }),
-        dataType: "xml",
-        contentType: "application/json; charset=utf-8",
-        success: function() {
-            alert(data);
-
-        },
-        error:function (error) {
-            alert(error);
-        }
-    });
-        var pager = new categoryPager(@Model.PageSize , 0, "@Url.Action("GetRegistryItems")");
         
         $('#categoryDropdown').change(function () {
-            var newCategory = $("#categoryDropdown option:selected").val();          
-            pager.resetForCategory(newCategory);
-            pager.getRegistryItems();
+            var newCategory = $("#categoryDropdown option:selected").val();
+            var actionUrl ="@Url.Action("RegistryPage", new { page = "0", categoryId = "CATEGORY" })";
+            window.location =actionUrl.replace('CATEGORY', newCategory).concat("#registry");
+
         });
 
         $('body').delegate('[data-controls-modal]', 'click', function(e) {

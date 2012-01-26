@@ -596,3 +596,39 @@ a.add_button {
     -moz-opacity: 0.75;       /* mozilla, netscape */
     opacity: 0.75;           /* fx, safari, opera */
   }
+
+div.pagination {
+    color: #633b1c;
+    overflow: auto;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+    }
+.pageInformation {
+    color: #633b1c;
+    margin-top: 25px;
+    }
+.pageNumbers {
+    float: right;
+    list-style: none outside none;
+    margin: 0 !important;
+    }
+.pageNumbers li {   
+    float: left;
+    padding: 0 3px !important;
+    }
+.pageNumbers li:last-child {
+    border-right: none;
+    }
+.pageNumbers li a {
+    color: #166FC3;
+    text-decoration: underline;
+    }
+.pageNumbers li a.prevLink {
+    background: url("Images/iconArrowBlueLeft.png") no-repeat scroll left top transparent;
+    padding-left: 22px;
+    }
+.pageNumbers li a.nextLink {
+    background: url("Images/iconArrowBlue.png") no-repeat scroll right top transparent;
+    padding-right: 22px;
+    }

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Models;
 
@@ -22,15 +20,21 @@ namespace Ammeep.GiftRegister.Web.Controllers
             var registryPageSize = _config.RegistryPageSize;
             var gifts = _registryManager.GetRegistry(registryPageSize, 0, 0);
             var categories = _registryManager.GetCategories();
-            RegistryItemsPage itemsPage = new RegistryItemsPage(gifts,categories,registryPageSize);
+            RegistryItemsPage itemsPage = new RegistryItemsPage(gifts,categories,registryPageSize,0);
             return View(itemsPage);
         }
 
-        public PartialViewResult GetRegistryItems(int pageSize, int pageNumber, int categoryId)
+        public ActionResult RegistryPage(int page,int categoryId)
         {
-            var nextItems = _registryManager.GetRegistry(pageSize, pageNumber, categoryId);
-            return PartialView("RegistryItems", nextItems.Select((gift,i) => new GiftRow {Item = gift,IsFirst = i == 0}));
+            var registryPageSize = _config.RegistryPageSize;
+            var gifts = _registryManager.GetRegistry(registryPageSize, page, categoryId);
+            var categories = _registryManager.GetCategories();
+            RegistryItemsPage itemsPage = new RegistryItemsPage(gifts, categories, registryPageSize,categoryId);
+            return View("Index",itemsPage);
         }
+
+
+    
 
         [HttpPost]
         public ActionResult GetThis(GetThisModel getThisModel)

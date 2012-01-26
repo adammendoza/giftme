@@ -26,17 +26,28 @@ namespace Ammeep.GiftRegister.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //routes.MapRoute("RegistryNextItems",
-            //                "Registry/GetRegistryItems/{pageSize}/{pageNumber}/{categoryId}",
-            //                new
-            //                    {
-            //                        controller = "Registry",
-            //                        action = "GetRegistryItems",
-            //                        pageSize = 5,
-            //                        pageNumber = 0,
-            //                        categoryId = 0
-            //                    }
-            //    );
+            routes.MapRoute("RegistryPage",
+                            "Registry/RegistryPage/{page}/{categoryId}",
+                            new
+                                {
+                                    controller = "Registry",
+                                    action = "RegistryPage",
+                                    page = 0,
+                                    categoryId = 0
+                                }
+                );
+
+            routes.MapRoute("ManageRegistryPage",
+                           "Manage/ManageRegistryPage/{page}/{categoryId}",
+                           new
+                           {
+                               controller = "Manage",
+                               action = "ManageRegistryPage",
+                               page = 0,
+                               categoryId = 0
+                           }
+               );
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

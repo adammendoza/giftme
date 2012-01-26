@@ -22,9 +22,20 @@ namespace Ammeep.GiftRegister.Web.Controllers
             var registryPageSize = _configuration.RegistryPageSize;
             var gifts = _registryManager.GetRegistry(registryPageSize, 0, 0);
             var categories = _registryManager.GetCategories();
-            RegistryItemsPage itemsPage = new RegistryItemsPage(gifts, categories, registryPageSize);
+            RegistryItemsPage itemsPage = new RegistryItemsPage(gifts, categories, registryPageSize,0);
             return View(itemsPage);
         }
+
+        public ActionResult ManageRegistryPage(int page, int categoryId)
+        {
+            var registryPageSize = _configuration.RegistryPageSize;
+            var gifts = _registryManager.GetRegistry(registryPageSize, page, categoryId);
+            var categories = _registryManager.GetCategories();
+            RegistryItemsPage itemsPage = new RegistryItemsPage(gifts, categories, registryPageSize, categoryId);
+            return View("Index", itemsPage);
+        }
+
+
 
         public ActionResult Edit(int id)
         {

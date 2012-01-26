@@ -9,15 +9,15 @@
 <div class="content">
     <div class="row registry_sort">
       
-          <p> Sort by:</p>
+        <p> Sort by:</p>
     </div>
     
     <div>
-          <div class="right">
+        <div class="right">
             @Html.ActionLink("Image", "Add", null, new { @class = "add_button" })
         </div>
         <div class="left">    
-            @Html.DropDownListFor(model => model.CategoriesSelectList, Model.CategoriesSelectList, new { id = "categoryDropdown" })          
+            @Html.DropDownList("categoryDropdown", new SelectList(Model.Categories, "CategoryId", "Name", Model.SelectedCategoryId))
         </div>
     </div>
   
@@ -26,15 +26,16 @@
     <div class="row">
       
     </div>
-    <div id="registryItemContainer">
-        <div id="registryItemContainer">
-            @foreach (var giftRow in Model.Gifts)
-            {
-                @Html.EditorFor(item => giftRow);
-            }
-        </div>
-    </div>
-
+    @Html.Partial("RegistryPage")
 
 </div>
+<script type="text/javascript">
+     
+        $('#categoryDropdown').change(function () {
+            var newCategory = $("#categoryDropdown option:selected").val();
+            var actionUrl ="@Url.Action("ManageRegistryPage", new { page = "0", categoryId = "CATEGORY" })";
+            window.location =actionUrl.replace('CATEGORY', newCategory).concat("#registry");
+
+        });
+</script>
 

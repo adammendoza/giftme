@@ -1,0 +1,27 @@
+﻿ @using Ammeep.GiftRegister.Web
+ @model Ammeep.GiftRegister.Web.Models.RegistryItemsPage
+
+<div id="registryItemContainer">
+    @Html.Partial("RegistryItems", Model.Gifts) 
+</div>
+ <div class="pagination">
+ <tr class="pagination">
+     <td class="space_column">
+     </td>
+     <td colspan="2">
+         <span class="pageInformation">       
+             @Model.PageSummary()
+         </span>
+     </td>
+     <td colspan="3">
+            
+         @if (Model.HasItemsToDisplay)
+         {
+             @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalNumberOfItems, "RegistryPage", new { categoryId = Model.SelectedCategoryId })
+         }
+        
+     </td>
+     <td class="space_column">
+     </td>
+ </tr>
+ </div>

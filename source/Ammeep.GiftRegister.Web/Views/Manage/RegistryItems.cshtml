@@ -1,0 +1,5 @@
+﻿@model IEnumerable<Ammeep.GiftRegister.Web.Models.GiftRow>
+    @foreach (var item in Model)
+    {
+        @Html.EditorFor(gift => item);
+    }
