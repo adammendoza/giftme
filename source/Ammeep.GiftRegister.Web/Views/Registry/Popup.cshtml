@@ -6,15 +6,13 @@
      </div> 
      <div id="resultcontent"></div> 
      <div id="popupcontent">
-         @using (Html.BeginForm("GetThis","Registry",new{id="getThisForm"}))
-         {
-             <div class="modal-header-text">
+       <div class="modal-header-text">
                  <h2> You have opted to gift Ian & Joanne:</h2>
                  <div class="input">
                      @Html.Label("Quantity:")
-                     <a id="decrementQuantity">-</a>
+                     <a id="decrementQuantity" class="decrement"></a>
                      @Html.TextBox("Quantity", null, new {disabled = "disabled"})    
-                     <a id="incrementQuantity">+</a>                
+                     <a id="incrementQuantity" class="increment"></a>                
               
                  </div>
              </div>
@@ -49,7 +47,6 @@
                  </div>
        
              </div>
-         }
      </div>
  </div>
 

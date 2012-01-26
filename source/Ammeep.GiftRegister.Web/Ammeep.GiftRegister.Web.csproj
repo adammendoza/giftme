@@ -141,6 +141,8 @@
     <Content Include="Content\Images\button_ill_get_this_hover.png" />
     <Content Include="Content\Images\button_save.png" />
     <Content Include="Content\Images\button_yes.png" />
+    <Content Include="Content\Images\iconArrowBlueUp.png" />
+    <Content Include="Content\Images\iconArrowBlueDown.png" />
     <Content Include="Content\Images\damask.png" />
     <Content Include="Content\Images\date.png" />
     <Content Include="Content\Images\eat.png" />
