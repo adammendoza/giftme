@@ -1,29 +1,27 @@
-﻿using System;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ammeep.GiftRegister.Web.Attributes;
 using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Domain.Authentication;
-using Ammeep.GiftRegister.Web.Domain.Logging;
 
 namespace Ammeep.GiftRegister.Web
 {
-    public class GiftmeApplication : System.Web.HttpApplication
+    public class GiftmeApplication : HttpApplication
     {
         private readonly IConfiguration _configuration;
         private readonly IAuthenticationService _authenticationService;
-        private readonly ILoggingService _loggingService;
 
         public GiftmeApplication()
         {
             _configuration = DependencyResolver.Current.GetService<IConfiguration>();
             _authenticationService = DependencyResolver.Current.GetService<IAuthenticationService>();
-            _loggingService = DependencyResolver.Current.GetService<ILoggingService>();
+     
         }
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+           // filters.Add(new HandleAllTheThingsAttribute());
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -77,10 +75,6 @@ namespace Ammeep.GiftRegister.Web
            _authenticationService.AuthenticateRequest(authenticationCookie);
         }
 
-        protected void Application_Error()
-        {
-            Exception exception = Server.GetLastError();
-            _loggingService.LogFatal("Epic Fail", exception);
-        }
+
     }
 }

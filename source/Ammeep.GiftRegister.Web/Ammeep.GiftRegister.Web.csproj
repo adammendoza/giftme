@@ -92,6 +92,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectActivation.cs" />
     <Compile Include="Attributes\DataBindHtmlAttribute.cs" />
+    <Compile Include="Attributes\HandleAllTheThingsAttribute.cs" />
     <Compile Include="Attributes\PropertiesMustMatchAttribute.cs" />
     <Compile Include="Attributes\ValidatePasswordLengthAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />

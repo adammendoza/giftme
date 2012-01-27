@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
+using Ammeep.GiftRegister.Web.Attributes;
 using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {
-
-    [HandleError]
     public class RegistryController : Controller
     {
         private readonly IRegistryManager _registryManager;

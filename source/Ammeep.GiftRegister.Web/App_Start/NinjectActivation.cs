@@ -1,7 +1,9 @@
+using Ammeep.GiftRegister.Web.Attributes;
 using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Domain.Authentication;
 using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Domain.Model;
+using Ninject.Web.Mvc.FilterBindingSyntax;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Ammeep.GiftRegister.Web.App_Start.NinjectActivation), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Ammeep.GiftRegister.Web.App_Start.NinjectActivation), "Stop")]
@@ -60,6 +62,8 @@ namespace Ammeep.GiftRegister.Web.App_Start
             kernel.Bind<IUserManager>().To<UserManager>();
             kernel.Bind<IRegistryManager>().To<RegistryManager>();
             kernel.Bind<IMailService>().To<MailService>();
+
+            kernel.BindFilter<HandleAllTheThingsAttribute>(System.Web.Mvc.FilterScope.Controller, 0);
         }        
     }
 }

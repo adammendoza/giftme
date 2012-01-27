@@ -6,8 +6,6 @@ using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {
-
-    [HandleError]
     public class AccountController : Controller
     {
         private readonly IUserManager _userManager;
