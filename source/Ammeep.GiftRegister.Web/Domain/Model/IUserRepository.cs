@@ -11,6 +11,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         IEnumerable<Account> GetAllAdminUsers();
         IEnumerable<Account> GetAllGuestUsers();
         Account GetAccountById(int accountId);
+        void InserstGuestGiftReservation(Guest guest, GiftPruchase pruchase);
     }
 
     public class UserRepository : IUserRepository
@@ -58,6 +59,14 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             var findByUserName = connection.Account.FindByAccountId(accountId);
             return (Account)findByUserName;
+        }
+
+        public void InserstGuestGiftReservation(Guest guest, GiftPruchase pruchase)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            Guest savedGuest = connection.Guest.Insert(guest);
+            pruchase.GuestId = savedGuest.GuestId;
+            connection.GiftPurchase.Insert(pruchase);
         }
     }
 }

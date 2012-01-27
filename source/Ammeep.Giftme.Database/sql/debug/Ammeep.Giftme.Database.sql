@@ -242,12 +242,12 @@ PRINT N'Creating [dbo].[GiftPurchase]...';
 GO
 CREATE TABLE [dbo].[GiftPurchase] (
     [GiftPurchaseId] INT      IDENTITY (1, 1) NOT NULL,
-    [AccountId]      INT      NOT NULL,
+    [GuestId]        INT      NOT NULL,
     [GiftId]         INT      NOT NULL,
     [Quantity]       INT      NOT NULL,
     [Confirmed]      BIT      NOT NULL,
     [CreatedOn]      DATETIME NOT NULL,
-    [ConfimedOn]     DATETIME NOT NULL
+    [ConfimedOn]     DATETIME NULL
 );
 
 
@@ -292,6 +292,28 @@ PRINT N'Creating PK_Gifts...';
 GO
 ALTER TABLE [dbo].[Gifts]
     ADD CONSTRAINT [PK_Gifts] PRIMARY KEY CLUSTERED ([GiftId] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[Guest]...';
+
+
+GO
+CREATE TABLE [dbo].[Guest] (
+    [GuestId]        INT            IDENTITY (1, 1) NOT NULL,
+    [Name]           NVARCHAR (100) NOT NULL,
+    [Email]          NVARCHAR (200) NOT NULL,
+    [GiftPurchaseId] INT            NOT NULL
+);
+
+
+GO
+PRINT N'Creating PK_Guest...';
+
+
+GO
+ALTER TABLE [dbo].[Guest]
+    ADD CONSTRAINT [PK_Guest] PRIMARY KEY CLUSTERED ([GuestId] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
 
 
 GO
@@ -340,21 +362,21 @@ ALTER TABLE [dbo].[Category] WITH NOCHECK
 
 
 GO
-PRINT N'Creating FK_GiftPurchase_Account...';
-
-
-GO
-ALTER TABLE [dbo].[GiftPurchase] WITH NOCHECK
-    ADD CONSTRAINT [FK_GiftPurchase_Account] FOREIGN KEY ([AccountId]) REFERENCES [dbo].[Account] ([AccountId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-GO
 PRINT N'Creating FK_GiftPurchase_Gifts...';
 
 
 GO
 ALTER TABLE [dbo].[GiftPurchase] WITH NOCHECK
     ADD CONSTRAINT [FK_GiftPurchase_Gifts] FOREIGN KEY ([GiftId]) REFERENCES [dbo].[Gifts] ([GiftId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating FK_GiftPurchase_Guest...';
+
+
+GO
+ALTER TABLE [dbo].[GiftPurchase] WITH NOCHECK
+    ADD CONSTRAINT [FK_GiftPurchase_Guest] FOREIGN KEY ([GuestId]) REFERENCES [dbo].[Guest] ([GuestId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -533,9 +555,9 @@ ALTER TABLE [dbo].[Category] WITH CHECK CHECK CONSTRAINT [FK_Category_Users];
 
 ALTER TABLE [dbo].[Category] WITH CHECK CHECK CONSTRAINT [FK_Category_Users1];
 
-ALTER TABLE [dbo].[GiftPurchase] WITH CHECK CHECK CONSTRAINT [FK_GiftPurchase_Account];
-
 ALTER TABLE [dbo].[GiftPurchase] WITH CHECK CHECK CONSTRAINT [FK_GiftPurchase_Gifts];
+
+ALTER TABLE [dbo].[GiftPurchase] WITH CHECK CHECK CONSTRAINT [FK_GiftPurchase_Guest];
 
 ALTER TABLE [dbo].[Gifts] WITH CHECK CHECK CONSTRAINT [FK_Gifts_Category];
 

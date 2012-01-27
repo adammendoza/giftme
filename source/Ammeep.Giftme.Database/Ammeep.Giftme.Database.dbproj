@@ -163,7 +163,7 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_GuestPurchase_Gifts.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_GuestPurchase_Guest.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_GiftPurchase_Guest.fkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Guest.pkey.sql">

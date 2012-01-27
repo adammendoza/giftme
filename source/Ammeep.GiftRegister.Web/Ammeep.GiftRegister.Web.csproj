@@ -100,6 +100,8 @@
     <Compile Include="Domain\Authentication\UserPrincipal.cs" />
     <Compile Include="Domain\ICurrentUser.cs" />
     <Compile Include="Domain\Model\Account.cs" />
+    <Compile Include="Domain\Model\GiftPruchase.cs" />
+    <Compile Include="Domain\Model\Guest.cs" />
     <Compile Include="Domain\Result.cs" />
     <Compile Include="Domain\IConfiguration.cs" />
     <Compile Include="Domain\Authentication\IAuthenticationService.cs" />
@@ -139,6 +141,7 @@
     <Content Include="Content\Images\button_add.png" />
     <Content Include="Content\Images\button_ill_get_this.png" />
     <Content Include="Content\Images\button_ill_get_this_hover.png" />
+    <Content Include="Content\Images\button_ok_will_do.png" />
     <Content Include="Content\Images\button_save.png" />
     <Content Include="Content\Images\button_yes.png" />
     <Content Include="Content\Images\iconArrowBlueUp.png" />

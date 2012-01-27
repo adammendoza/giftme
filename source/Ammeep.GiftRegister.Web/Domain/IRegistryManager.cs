@@ -16,6 +16,7 @@ namespace Ammeep.GiftRegister.Web.Domain
         void DeleteGift(int giftId);
         IEnumerable<Category> GetCategories();
         void AddNewGift(Gift gift);
+        void ReserveGift(string guestName, string guestEmail, int giftId, int quantityReserved);
     }
 
     public class RegistryManager : IRegistryManager
@@ -23,12 +24,14 @@ namespace Ammeep.GiftRegister.Web.Domain
         private readonly IGiftRepository _giftRepository;
         private readonly ILoggingService _loggingService;
         private readonly ICurrentUser _currentUser;
+        private IUserRepository _userRepository;
 
-        public RegistryManager(IGiftRepository giftRepository, ILoggingService loggingService,ICurrentUser currentUser)
+        public RegistryManager(IGiftRepository giftRepository, ILoggingService loggingService,ICurrentUser currentUser, IUserRepository userRepository)
         {
             _giftRepository = giftRepository;
             _loggingService = loggingService;
             _currentUser = currentUser;
+            _userRepository = userRepository;
         }
 
         public IEnumerable<Category> GetCategories()
@@ -47,6 +50,15 @@ namespace Ammeep.GiftRegister.Web.Domain
             gift.QuantityRemaining = gift.QuantityRequired;
             gift.IsActive = true;
             _giftRepository.InsertGift(gift);
+        }
+
+        public void ReserveGift(string guestName, string guestEmail, int giftId, int quantityReserved)
+        {
+            _loggingService.LogInformation(string.Format("Guest {0}({1}) is reserving {2} of gift {3}", guestName,guestEmail,giftId,quantityReserved));
+            var guest = new Guest{Email = guestEmail, Name = guestName};
+            var guestPurchase = new GiftPruchase {GiftId = giftId,CreatedOn = DateTime.Now,Quantity = quantityReserved};
+            _userRepository.InserstGuestGiftReservation(guest, guestPurchase);
+
         }
 
         public IEnumerable<Gift> GetRegistry()

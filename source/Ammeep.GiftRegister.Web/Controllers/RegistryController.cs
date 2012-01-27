@@ -41,6 +41,8 @@ namespace Ammeep.GiftRegister.Web.Controllers
         {
             if(ModelState.IsValid)
             {
+                _registryManager.ReserveGift(getThisModel.Name, getThisModel.Email, getThisModel.GiftId,
+                                             getThisModel.Quantity);
                 return PartialView("ThankYou");
                 
             }
