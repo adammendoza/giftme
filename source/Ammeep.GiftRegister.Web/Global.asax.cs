@@ -77,10 +77,10 @@ namespace Ammeep.GiftRegister.Web
            _authenticationService.AuthenticateRequest(authenticationCookie);
         }
 
-        //protected void Application_Error()
-        //{
-        //    Exception exception = Server.GetLastError();
-        //    _loggingService.LogFatal("Epic Fail", exception);
-        //}
+        protected void Application_Error()
+        {
+            Exception exception = Server.GetLastError();
+            _loggingService.LogFatal("Epic Fail", exception);
+        }
     }
 }

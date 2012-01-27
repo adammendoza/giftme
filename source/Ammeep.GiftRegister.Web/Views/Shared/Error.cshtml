@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    Layout ="_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 <body>
     <h2>
       <strong>There was an error! </strong>
-        @Server.GetLastError().ToString()
+
     </h2>
     
     <div id="your_details_thanks">
@@ -20,7 +20,7 @@
       
         <br /><br />If you continue to have issues, fire us an email.</p>
        <br /> 
-    <a class="close">
+    <a href="@Url.Action("Index","Registry")">
         <img src="../../Content/Images/button_ok_will_do.png"/>
     </a>
 </div>
