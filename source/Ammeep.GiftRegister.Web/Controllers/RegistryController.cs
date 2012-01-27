@@ -1,9 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
 {
+
+    [HandleError]
     public class RegistryController : Controller
     {
         private readonly IRegistryManager _registryManager;
@@ -17,6 +20,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
 
         public ActionResult Index()
         {
+            throw new Exception();
             var registryPageSize = _config.RegistryPageSize;
             var gifts = _registryManager.GetRegistry(registryPageSize, 0, 0);
             var categories = _registryManager.GetCategories();
@@ -46,7 +50,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
                 return PartialView("ThankYou");
                 
             }
-            return PartialView("Error");
+            return PartialView("OppsError");
         }
     }
 }

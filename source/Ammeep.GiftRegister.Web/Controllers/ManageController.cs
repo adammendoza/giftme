@@ -6,6 +6,7 @@ using Ammeep.GiftRegister.Web.Models;
 namespace Ammeep.GiftRegister.Web.Controllers
 {
     [Authorize]
+    [HandleError]
     public class ManageController :Controller
     {
         private readonly IRegistryManager _registryManager;

@@ -367,7 +367,7 @@
     <Content Include="Views\Registry\ThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Registry\Error.cshtml" />
+    <Content Include="Views\Registry\OppsError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Manage\RegistryPage.cshtml" />

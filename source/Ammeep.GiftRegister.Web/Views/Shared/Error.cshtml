@@ -9,7 +9,20 @@
 </head>
 <body>
     <h2>
-        Sorry, an error occurred while processing your request.
+      <strong>There was an error! </strong>
+        @Server.GetLastError().ToString()
     </h2>
+    
+    <div id="your_details_thanks">
+
+    <p>
+        <br />Please try again...
+      
+        <br /><br />If you continue to have issues, fire us an email.</p>
+       <br /> 
+    <a class="close">
+        <img src="../../Content/Images/button_ok_will_do.png"/>
+    </a>
+</div>
 </body>
 </html>
