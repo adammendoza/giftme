@@ -57,7 +57,7 @@ namespace Ammeep.GiftRegister.Web.Domain
         public void ReserveGift(string guestName, string guestEmail, int giftId, int quantityReserved)
         {
             _loggingService.LogInformation(string.Format("Guest {0}({1}) is reserving {2} of gift {3}", guestName,guestEmail,giftId,quantityReserved));
-            var guest = new Guest{Email = guestEmail, Name = guestName,CreatedOn = DateTime.Now};
+            var guest = new Guest{Email = guestEmail, Name = guestName,CreatedDate = DateTime.Now};
             var guestPurchase = new GiftPruchase {GiftId = giftId,CreatedOn = DateTime.Now,Quantity = quantityReserved};
             _userRepository.InserstGuestGiftReservation(guest, guestPurchase);
             Gift gift = _giftRepository.GetGift(giftId);
