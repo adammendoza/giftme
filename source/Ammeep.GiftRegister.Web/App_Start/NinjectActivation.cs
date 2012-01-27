@@ -59,6 +59,7 @@ namespace Ammeep.GiftRegister.Web.App_Start
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IUserManager>().To<UserManager>();
             kernel.Bind<IRegistryManager>().To<RegistryManager>();
+            kernel.Bind<IMailService>().To<MailService>();
         }        
     }
 }

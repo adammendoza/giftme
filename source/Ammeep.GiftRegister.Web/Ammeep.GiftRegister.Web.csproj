@@ -99,6 +99,7 @@
     <Compile Include="Domain\Authentication\AuthenticationService.cs" />
     <Compile Include="Domain\Authentication\UserPrincipal.cs" />
     <Compile Include="Domain\ICurrentUser.cs" />
+    <Compile Include="Domain\IMailService.cs" />
     <Compile Include="Domain\Model\Account.cs" />
     <Compile Include="Domain\Model\GiftPruchase.cs" />
     <Compile Include="Domain\Model\Guest.cs" />

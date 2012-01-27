@@ -24,14 +24,16 @@ namespace Ammeep.GiftRegister.Web.Domain
         private readonly IGiftRepository _giftRepository;
         private readonly ILoggingService _loggingService;
         private readonly ICurrentUser _currentUser;
-        private IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IMailService _mailService;
 
-        public RegistryManager(IGiftRepository giftRepository, ILoggingService loggingService,ICurrentUser currentUser, IUserRepository userRepository)
+        public RegistryManager(IGiftRepository giftRepository, ILoggingService loggingService,ICurrentUser currentUser, IUserRepository userRepository, IMailService mailService)
         {
             _giftRepository = giftRepository;
             _loggingService = loggingService;
             _currentUser = currentUser;
             _userRepository = userRepository;
+            _mailService = mailService;
         }
 
         public IEnumerable<Category> GetCategories()
@@ -55,10 +57,11 @@ namespace Ammeep.GiftRegister.Web.Domain
         public void ReserveGift(string guestName, string guestEmail, int giftId, int quantityReserved)
         {
             _loggingService.LogInformation(string.Format("Guest {0}({1}) is reserving {2} of gift {3}", guestName,guestEmail,giftId,quantityReserved));
-            var guest = new Guest{Email = guestEmail, Name = guestName};
+            var guest = new Guest{Email = guestEmail, Name = guestName,CreatedOn = DateTime.Now};
             var guestPurchase = new GiftPruchase {GiftId = giftId,CreatedOn = DateTime.Now,Quantity = quantityReserved};
             _userRepository.InserstGuestGiftReservation(guest, guestPurchase);
-
+            Gift gift = _giftRepository.GetGift(giftId);
+            _mailService.SendPurchaseConfirmationEmail(guest, guestPurchase, gift);
         }
 
         public IEnumerable<Gift> GetRegistry()

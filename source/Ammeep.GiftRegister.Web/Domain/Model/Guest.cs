@@ -1,4 +1,6 @@
-﻿namespace Ammeep.GiftRegister.Web.Domain.Model
+﻿using System;
+
+namespace Ammeep.GiftRegister.Web.Domain.Model
 {
     public class Guest
     {
@@ -6,5 +8,6 @@
         public string Name { get; set; }
         public string Email { get; set; }
         public int GiftPurchaseId { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }
