@@ -57,11 +57,12 @@ namespace Ammeep.GiftRegister.Web.Domain
         public void ReserveGift(string guestName, string guestEmail, int giftId, int quantityReserved)
         {
             _loggingService.LogInformation(string.Format("Guest {0}({1}) is reserving {2} of gift {3}", guestName,guestEmail,giftId,quantityReserved));
-            var guest = new Guest{Email = guestEmail, Name = guestName,CreatedDate = DateTime.Now};
-            var guestPurchase = new GiftPruchase {GiftId = giftId,CreatedOn = DateTime.Now,Quantity = quantityReserved};
-            _userRepository.InserstGuestGiftReservation(guest, guestPurchase);
+            Guest guest = new Guest{Email = guestEmail, Name = guestName,CreatedDate = DateTime.Now};           
+            var giftPurchase = new GiftPruchase(giftId,quantityReserved);
+            _userRepository.InserstGuestGiftReservation(guest, giftPurchase);
             Gift gift = _giftRepository.GetGift(giftId);
-            _mailService.SendPurchaseConfirmationEmail(guest, guestPurchase, gift);
+
+            _mailService.SendPurchaseConfirmationEmail(guest, giftPurchase, gift);
         }
 
         public IEnumerable<Gift> GetRegistry()

@@ -102,6 +102,10 @@ $(document).ready(function () {
                 
                 var quantity = $("#Quantity").val();
                 var id = $("#getthisid").val();
+                $("#popupcontent").hide();
+                
+                $("#spinner").removeClass("loading_spinner_invisible");
+                $("#spinner").addClass("loading_spinner_visible");
                 
                 $.ajax({
                     type: 'POST',
@@ -109,8 +113,9 @@ $(document).ready(function () {
                     data: JSON.stringify({ quantity: quantity, Name: name, Email: email, GiftId: id }),
       
                     contentType: "application/json; charset=utf-8",
-                    success: function(data) {
-                        $("#popupcontent").hide();
+                    success: function(data) {  
+                        $("#spinner").addClass("loading_spinner_invisible");
+                        $("#spinner").removeClass("loading_spinner_visible").fadeOut();
                         $("#resultcontent").show();
                         $("#resultcontent").html(data);
                     }

@@ -1,7 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Ammeep.GiftRegister.Web.Attributes;
 using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Domain.Authentication;
 
@@ -21,7 +20,7 @@ namespace Ammeep.GiftRegister.Web
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-           // filters.Add(new HandleAllTheThingsAttribute());
+            filters.Add(new HandleErrorAttribute());
         }
 
         public static void RegisterRoutes(RouteCollection routes)

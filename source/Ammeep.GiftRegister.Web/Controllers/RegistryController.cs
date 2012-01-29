@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Threading;
 using System.Web.Mvc;
-using Ammeep.GiftRegister.Web.Attributes;
 using Ammeep.GiftRegister.Web.Domain;
+using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Controllers
@@ -10,16 +11,17 @@ namespace Ammeep.GiftRegister.Web.Controllers
     {
         private readonly IRegistryManager _registryManager;
         private readonly IConfiguration _config;
+        private readonly ILoggingService _loggingService;
 
-        public RegistryController(IRegistryManager registryManager, IConfiguration configuration)
+        public RegistryController(IRegistryManager registryManager, IConfiguration configuration,ILoggingService loggingService )
         {
             _registryManager = registryManager;
             _config = configuration;
+            _loggingService = loggingService;
         }
 
         public ActionResult Index()
         {
-            throw new Exception();
             var registryPageSize = _config.RegistryPageSize;
             var gifts = _registryManager.GetRegistry(registryPageSize, 0, 0);
             var categories = _registryManager.GetCategories();
@@ -44,10 +46,19 @@ namespace Ammeep.GiftRegister.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                _registryManager.ReserveGift(getThisModel.Name, getThisModel.Email, getThisModel.GiftId,
-                                             getThisModel.Quantity);
-                return PartialView("ThankYou");
-                
+                try
+                {
+                    _registryManager.ReserveGift(getThisModel.Name, getThisModel.Email, getThisModel.GiftId,
+                                                 getThisModel.Quantity);
+                    return PartialView("ThankYou");
+
+                }catch(Exception exception)
+                {
+                    Thread.Sleep(500);
+                    _loggingService.LogError(string.Format("The guest {0} could not reserve gift {1}. Email: {2}",getThisModel.Name,getThisModel.GiftId,getThisModel.Email),exception);
+                    return PartialView("OppsError");
+                }
+
             }
             return PartialView("OppsError");
         }

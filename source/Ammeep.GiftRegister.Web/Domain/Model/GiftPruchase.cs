@@ -4,6 +4,16 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 {
     public class GiftPruchase
     {
+        public GiftPruchase(int giftId,int quantity)
+        {
+            GiftId = giftId;
+            Quantity = quantity;
+            Confirmed = false;
+            CreatedOn = DateTime.Now;
+            ConfirmationId = Guid.NewGuid();
+        }
+
+        public Guid ConfirmationId { get; set; }
         public int GiftPurchaseId { get; set; }
         public int GiftId { get; set; }
         public int Quantity { get; set; }
@@ -11,5 +21,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public DateTime ConfirmedOn { get; set; }
         public DateTime CreatedOn { get; set; }
         public int GuestId { get; set; }
+
+        
     }
 }
