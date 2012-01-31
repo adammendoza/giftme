@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using System.IO;
 using System.Security.Policy;
@@ -93,12 +94,32 @@ namespace Ammeep.GiftRegister.Web.Models
       {
           HttpContext httpContext = HttpContext.Current;         
           UrlHelper url = new UrlHelper(httpContext.Request.RequestContext);
-          return string.Format("{0}://{1}{2}",
-                                                httpContext.Request.Url.Scheme,
-                                                httpContext.Request.Url.Authority,
-                                                url.Action("ConfirmReservation", "Registry",new {confirmationId = _guestPurchase.ConfirmationId}));
-        
+          Uri relativeUri = new Uri(url.Action("ConfirmReservation", "Registry", new {confirmationId = _guestPurchase.ConfirmationId}),UriKind.Relative);
+          return ToPublicUrl(relativeUri);
       }
+
+      private string ToPublicUrl(Uri relativeUri)
+      {
+          UrlHelper urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+          var httpContext = urlHelper.RequestContext.HttpContext;
+
+          var uriBuilder = new UriBuilder
+          {
+              Host = httpContext.Request.Url.Host,
+              Path = "/",
+              Port = 80,
+              Scheme = "http",
+          };
+
+          if (httpContext.Request.IsLocal)
+          {
+              uriBuilder.Port = httpContext.Request.Url.Port;
+          }
+
+          return new Uri(uriBuilder.Uri, relativeUri).AbsoluteUri;
+      }
+
+
        
     }
 }
