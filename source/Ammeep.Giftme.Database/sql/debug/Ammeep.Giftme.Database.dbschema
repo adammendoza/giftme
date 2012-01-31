@@ -629,6 +629,22 @@
 					</Element>
 				</Entry>
 				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[GiftPurchase].[ConfirmationId]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[GiftPurchase].[Confirmed]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">

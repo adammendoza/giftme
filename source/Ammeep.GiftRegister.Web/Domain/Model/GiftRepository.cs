@@ -73,6 +73,15 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             connection.Gifts.Insert(gift);
         }
+
+        public void DecrementQuantityRemaining(int giftId, int quantity)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            Gift gift = connection.Gifts.FindByGiftId(giftId);
+            gift.QuantityRemaining -= quantity;
+            gift.IsActive = gift.QuantityRemaining > 0;
+            connection.Gifts.Update(gift);
+        }
     }
 
     public interface IPagedList<T> : IEnumerable<T>

@@ -17,6 +17,7 @@ namespace Ammeep.GiftRegister.Web.Domain
         IEnumerable<Category> GetCategories();
         void AddNewGift(Gift gift);
         void ReserveGift(string guestName, string guestEmail, int giftId, int quantityReserved);
+        bool ConfirmReservation(Guid confirmationId);
     }
 
     public class RegistryManager : IRegistryManager
@@ -63,6 +64,27 @@ namespace Ammeep.GiftRegister.Web.Domain
             Gift gift = _giftRepository.GetGift(giftId);
 
             _mailService.SendPurchaseConfirmationEmail(guest, giftPurchase, gift);
+        }
+
+        public bool ConfirmReservation(Guid confirmationId)
+        {
+           _loggingService.LogInformation(string.Format("Confirming reservation {0}",confirmationId));
+            bool confirmed =false;
+            GiftPruchase reservation = _userRepository.GetGiftReservationByConfirmationId(confirmationId);
+            if (reservation != null)
+            {
+                reservation.Confirmed = true;
+                reservation.ConfirmedOn = DateTime.Now;
+                _userRepository.UpdateGiftReservation(reservation);
+                confirmed = true;
+            }
+
+            if(confirmed)
+            {
+                _giftRepository.DecrementQuantityRemaining(reservation.GiftId, reservation.Quantity);
+            }
+
+            return confirmed;
         }
 
         public IEnumerable<Gift> GetRegistry()

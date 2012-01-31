@@ -62,6 +62,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
 
         public ActionResult ConfirmReservation(Guid confirmationId)
         {
+            _registryManager.ConfirmReservation(confirmationId);
             return View();
         }
     }

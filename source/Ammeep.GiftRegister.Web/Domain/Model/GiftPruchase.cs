@@ -4,6 +4,8 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 {
     public class GiftPruchase
     {
+        public GiftPruchase(){}
+
         public GiftPruchase(int giftId,int quantity)
         {
             GiftId = giftId;

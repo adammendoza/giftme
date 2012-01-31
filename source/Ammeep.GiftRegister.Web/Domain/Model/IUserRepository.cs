@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Simple.Data;
 
@@ -12,6 +13,8 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         IEnumerable<Account> GetAllGuestUsers();
         Account GetAccountById(int accountId);
         void InserstGuestGiftReservation(Guest guest, GiftPruchase pruchase);
+        GiftPruchase GetGiftReservationByConfirmationId(Guid confirmationId);
+        void UpdateGiftReservation(GiftPruchase reservation);
     }
 
     public class UserRepository : IUserRepository
@@ -67,6 +70,19 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             Guest savedGuest = connection.Guest.Insert(guest);
             pruchase.GuestId = savedGuest.GuestId;
             connection.GiftPurchase.Insert(pruchase);
+        }
+
+        public GiftPruchase GetGiftReservationByConfirmationId(Guid confirmationId)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            var reservation = connection.GiftPurchase.FindByConfirmationId(confirmationId);
+            return (GiftPruchase) reservation;
+        }
+
+        public void UpdateGiftReservation(GiftPruchase reservation)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            connection.GiftPurchase.Update(reservation);
         }
     }
 }
