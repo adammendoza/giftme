@@ -1,6 +1,8 @@
 using System.Globalization;
 using System.IO;
+using System.Security.Policy;
 using System.Web;
+using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain.Model;
 using RazorEngine;
 
@@ -87,6 +89,16 @@ namespace Ammeep.GiftRegister.Web.Models
             return emailBody;
         }
 
+      public string GenerateConfirmUrl()
+      {
+          HttpContext httpContext = HttpContext.Current;         
+          UrlHelper url = new UrlHelper(httpContext.Request.RequestContext);
+          return string.Format("{0}://{1}{2}",
+                                                httpContext.Request.Url.Scheme,
+                                                httpContext.Request.Url.Authority,
+                                                url.Action("ConfirmReservation", "Registry",new {confirmationId = _guestPurchase.ConfirmationId}));
+        
+      }
        
     }
 }

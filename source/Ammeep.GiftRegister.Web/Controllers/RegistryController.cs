@@ -38,9 +38,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
             return View("Index",itemsPage);
         }
 
-
-    
-
+ 
         [HttpPost]
         public ActionResult GetThis(GetThisModel getThisModel)
         {
@@ -48,8 +46,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
             {
                 try
                 {
-                    _registryManager.ReserveGift(getThisModel.Name, getThisModel.Email, getThisModel.GiftId,
-                                                 getThisModel.Quantity);
+                    _registryManager.ReserveGift(getThisModel.Name, getThisModel.Email, getThisModel.GiftId, getThisModel.Quantity);
                     return PartialView("ThankYou");
 
                 }catch(Exception exception)
@@ -61,6 +58,11 @@ namespace Ammeep.GiftRegister.Web.Controllers
 
             }
             return PartialView("OppsError");
+        }
+
+        public ActionResult ConfirmReservation(Guid confirmationId)
+        {
+            return View();
         }
     }
 }

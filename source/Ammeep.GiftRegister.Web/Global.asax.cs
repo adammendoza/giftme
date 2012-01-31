@@ -27,6 +27,16 @@ namespace Ammeep.GiftRegister.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("ConfirmReservation",
+                         "Registry/ConfirmReservation/{confirmationId}",
+                         new
+                         {
+                             controller = "Registry",
+                             action = "ConfirmReservation",
+                             confirmationId = 0
+                         }
+             );
+
             routes.MapRoute("RegistryPage",
                             "Registry/RegistryPage/{page}/{categoryId}",
                             new

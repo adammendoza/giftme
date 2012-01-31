@@ -49,7 +49,6 @@
                                                                                                     img { height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; }
                                                                                                     br, strong br, b br, em br, i br { line-height:100%; }
                                                                                                     h1, h2, h3, h4, h5, h6 { line-height: 100% !important; -webkit-font-smoothing: antialiased; }
-                                                                                                    h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: blue !important; }
                                                                                                     h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {	color: red !important; }
 /* Preferably not the same color as the normal header link color.  There is limited support for psuedo classes in email clients, this was added just for good measure. */
                                                                                                     h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited { color: purple !important; }
@@ -79,10 +78,14 @@
                                                                                                     .article-content li { font-size: 13px; line-height: 18px; color: #633B1C; }
                                                                                                     .article-content li a { color: #166FC3; text-decoration:underline; }
                                                                                                     .article-content p {margin-bottom: 15px;}
+                                                                                                    .article-table-heading {font-size: 12px; line-height:18px; color: #EC008C; font-weight:bold; margin-top:0px; margin-bottom:2px; font-family: Lucida Grande, Lucida, Verdana, sans-serif; }
+                                                                                                    .article-table-content {font-size: 12px; color: #633B1C; margin-top:0px; margin-bottom:2px; font-family: Lucida Grande, Lucida, Verdana, sans-serif; }
                                                                                                     .footer-content-left { font-size: 12px; line-height: 15px; color: #e2e2e2; margin-top: 0px; margin-bottom: 15px; }
                                                                                                     .footer-content-left a { color: #e7cba3; font-weight: bold; text-decoration: none; }
                                                                                                     .footer-content-right { font-size: 11px; line-height: 16px; color: #e2e2e2; margin-top: 0px; margin-bottom: 15px; }
                                                                                                     .footer-content-right a { color: #e7cba3; font-weight: bold; text-decoration: none; }
+                                                                                                    .img_box { border: 5px solid #E8E7EB; height: 165px; margin-top: 13px; width: 170px;}
+                                                                                                    .confirm-button { cursor: pointer; border: 0 !important;}
                                                                                                     #footer { background-color: #C1E4F2; color: #e2e2e2; }
                                                                                                     #footer a { color: #e7cba3; text-decoration: none; font-weight: bold; }
                                                                                                     #permission-reminder { white-space: pre-wrap; }
@@ -156,167 +159,109 @@
                                                                       <table class="w640"width="788" cellpadding="0" cellspacing="0" border="0">
                                                                           <tbody><tr>
                                                                                      <td class="w30" width="30"></td>
-                                                                                     <td class="w580" width="580">
+                                                                                     <td class="w580" width="750">
                                                                                          <repeater>
                     
                                                                                              <layout label="Text only">
-                                                                                                 <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
+                                                                                                 <table class="w580" width="750" cellpadding="0" cellspacing="0" border="0">
                                                                                                      <tbody><tr>
-                                                                                                                <td class="w580" width="580">
+                                                                                                                <td class="w580" width="750">
                                                                                                                     <p align="left" class="article-title"><singleline label="Title">Thank you @Model.RecipientsName</singleline></p>
                                                                                                                     <div align="left" class="article-content">
-                                                                                                                        <multiline label="Description">First and for most, Thank you for choosing an awesome gift for Ian and Jo....more text here </multiline>
+                                                                                                                        <multiline label="Description">First and for most, thank you for choosing an awesome gift for Ian and Jo. We are sure that they will love it.
+                                                                                                                            Before you rush out shopping, there is one last step. Please click the 'Confirm Reservation' button bellow to ensure that no one else can pick your gift.
+                                                                                                                        </multiline>
                                                                                                                     </div>
                                                                                                                 </td>
                                                                                                             </tr>
-                                                                                                         <tr><td class="w580" width="580" height="10"></td></tr>
+                                                                                                         <tr><td class="w580" width="750" height="10"></td></tr>
                                                                                                      </tbody></table>
                                                                                              </layout>
                                         
                     
                                                                                              <layout label="Text with full-width image">
-                                                                                                 <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
-                                                                                                     <tbody><tr>
-                                                                                                                <td class="w580" width="580">
-                                                                                                                    <p align="left" class="article-title"><singleline label="Title">Your Gift</singleline></p>
-                                                                                                                </td>
-                                                                                                            </tr>
-                                                                                                         <tr><td class="w580" width="580" height="15"></td></tr>
+                                                                                                 <table class="w580" width="750" cellpadding="0" cellspacing="0" border="0">
+                                                                                                     <tbody>
                                                                                                          <tr>
                                                                                                              <td class="w580" width="580">
-                                                                                                                 <div align="left" class="article-content">
-                                                                                                                     <multiline label="Description">stuff about the gift</multiline>
-                                                                                                                     
-                                                                                                                     <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
-                                                                                                                         <tbody>
-                                                                                                                             <tr>
-                                                                                                                                 <td class="w580" width="200">
-                                                                                                                                     <img src="@Model.GiftLocation"/>
-                                                                                                                                 </td>
-                                                                                                                                 <td class="w580" width="380">
-                                                                                                                                     <p class="article-title">@Model.GiftName</p>
-                                                                                                                                     <p class="article-content">@Model.GiftDescription</p>
-                                                                                                                                     
-                                                                                                                     
-                                                                                                                                     <table class="w580" width="380" cellpadding="0" cellspacing="0" border="0">
-                                                                                                                                         <tbody>
-                                                                                                                                             <tr>
-                                                                                                                                                 <td>Suggested Store:</td>
-                                                                                                                                                 
-                                                                                                                                                 <td>@Model.GiftSuggestedStore</td>
-                                                                                                                                             </tr>
-                                                                                                                                             <tr>
-                                                                                                                                                 <td>Specific Item Required?</td>
-                                                                                                                                                 
-                                                                                                                                                 <td>@Model.SpecificGiftRequried</td>
-                                                                                                                                             </tr>
-                                                                                                                                             <tr>
-                                                                                                                                                 <td>Quantity:</td>
-                                                                                                                                                 
-                                                                                                                                                 <td>@Model.NominatedQuntity</td>
-                                                                                                                                             </tr>
-                                                                                                                                             <tr>
-                                                                                                                                                 <td>RRP (NZD):</td>
-                                                                                                                                                 
-                                                                                                                                                 <td>@Model.GiftPrice</td>
-                                                                                                                                             </tr>
-                                                                                                                                               <tr>
-                                                                                                                                                 <td>Website:</td>
-                                                                                                                                                 
-                                                                                                                                                 <td>@Model.Website</td>
-                                                                                                                                             </tr>
-                                                                                                                                         </tbody>
-                                                                                                                                     </table>
-                                                                                                                                 </td>
-                                                                                                                             </tr>
-                                                                                                                         </tbody>
-                                                                                                                     </table>
-                                                                                                                    @* <div class="registry_container first"> 
-                                                                                                                        @Html.DisplayFor(model => model.Item.ImageLocation)
-                                                                                                                        <div class="registry_content">
-                                                                                                                        <div class="registry_title_blurb">
-                                                                                                                        @Html.DisplayFor(model => model.Item.Name)
-                                                                                                                        @Html.DisplayFor(model => model.Item.Description)          
-                                                                                                                        </div>
-                                                                                                                        <div class="registry_box_left">
-                                                                                                                        <ul>
-                                                                                                                        <li>Suggested Store:</li>
-                                                                                                                        <li>Specific Item Required?</li>
-                                                                                                                        <li>Quantity:</li>
-
-                                                                                                                        <li>RRP (NZD):</li>
-                                                                                                                        <li>Website:</li>
-                                                                                                                        </ul>
-                                                                                                                        </div>
-                                                                                                                        <div class="registry_box_middle">
-                                                                                                                        <ul>
-                                                                                                                        <li>@Html.DisplayFor(model => model.Item.SuggestedStores)</li>
-                                                                                                                        <li>@Html.DisplayFor(model => model.Item.SpecificItemRequried)</li>
-                                                                                                                        <li>@Html.DisplayFor(model => model.Item.QuantityRequired)</li>
-                                                                                                                        <li>@Html.DisplayFor(model => model.Item.RetailPrice)</li>
-                                                                                                                        <li>@Html.DisplayFor(model => model.Item.Website)</li>            
-                                                                                                                        </ul>
-                                                                                                                        </div>
-                                                                                                                        <div class="registry_box_right_display">
-                                                                                                                        <a data-controls-modal="modal-from-dom" data-backdrop="static" data-keyboard="true">Get This</a>            
-                                                                                                                        </div>
-                                                                                                                        @Html.HiddenFor(model => Model.Item.GiftId)
-                                                                                                                        @Html.HiddenFor(model=>Model.Item.QuantityRemaining)
-                                                                                                                        </div>
-                                                                                                                        </div>
-
-                                                                                                                 </div>*@
+                                                                                                                 <p align="left" class="article-title"><singleline label="Title">@Model.GiftName</singleline></p>
                                                                                                              </td>
                                                                                                          </tr>
-                                                                                                         <tr><td class="w580" width="580" height="10"></td></tr>
-                                                                                                     </tbody></table>
+                                                                                                         <tr>
+                                                                                                             <td class="w580" width="750" height="5"></td>
+                                                                                                         </tr>
+                                                                                                         <tr>
+                                                                                                             <td class="w580" width="750">
+                                                                                                                 <table class="w580" width="750" cellpadding="0" cellspacing="0" border="0">
+                                                                                                                     <tbody>
+                                                                                                                         <tr>
+                                                                                                                             <td class="w580" width="200">
+                                                                                                                                 <img src="@Model.GiftLocation" class="img_box"/>
+                                                                                                                             </td>
+                                                                                                                             <td class="w580" width="550">
+                                                                                                                                 <table>
+                                                                                                                                     <tbody>
+                                                                                                                                         <tr>
+                                                                                                                                             <td><p class="article-content">@Model.GiftDescription</p></td>
+                                                                                                                                         </tr>
+                                                                                                                                         <tr>
+                                                                                                                                             <td>
+                                                                                                                                                 <table class="w580" width="550" cellpadding="0" cellspacing="0" border="0">
+                                                                                                                                                     <tbody>
+                                                                                                                                                         <tr>
+                                                                                                                                                             <td class="article-table-heading">Suggested Store:</td>
+                                                                                                                                                 
+                                                                                                                                                             <td class="article-table-content">@Model.GiftSuggestedStore</td>
+                                                                                                                                                         </tr>
+                                                                                                                                                         <tr>
+                                                                                                                                                             <td class="article-table-heading">Specific Item Required?</td>
+                                                                                                                                                 
+                                                                                                                                                             <td class="article-table-content">@Model.SpecificGiftRequried</td>
+                                                                                                                                                         </tr>
+                                                                                                                                                         <tr>
+                                                                                                                                                             <td class="article-table-heading">Quantity:</td>
+                                                                                                                                                 
+                                                                                                                                                             <td class="article-table-content">@Model.NominatedQuntity</td>
+                                                                                                                                                         </tr>
+                                                                                                                                                         <tr>
+                                                                                                                                                             <td class="article-table-heading">RRP (NZD):</td>
+                                                                                                                                                 
+                                                                                                                                                             <td class="article-table-content">@Model.GiftPrice</td>
+                                                                                                                                                         </tr>
+                                                                                                                                                         <tr>
+                                                                                                                                                             <td class="article-table-heading">Website:</td>
+                                                                                                                                                 
+                                                                                                                                                             <td class="article-table-content"><a href="@Model.Website">Click Here</a></td>
+                                                                                                                                                         </tr>
+                                                                                                                                                     </tbody>
+                                                                                                                                                 </table>
+                                                                                                                                               </td>
+                                                                                                                                         </tr>
+                                                                                                                                     </tbody>
+                                                                                                                                     
+                                                                                                                                 </table>
+                                                                                                                     
+                                                                                                                             </td>
+                                                                                                                         </tr>
+                                                                                                                     </tbody>
+                                                                                                                 </table>
+               
+                                                                                                             </td>
+                                                                                                         </tr>
+                                                                                                         <tr>
+                                                                                                             <td class="w580" width="750" height="10"></td>
+                                                                                                         </tr>
+                                                                                                         <tr>
+                                                                                                             <td class="w580" width="750">
+                                                                                                                 <a class="confirm-button" href="@Model.GenerateConfirmUrl()">
+                                                                                                                     <img src="http://www.onecutetomato.co.nz/wedding/img/flag_confirm_res.png" alt="Confirm!" style="border:none"/>
+                                                                                                                 </a>
+                                                                                                             </td>
+                                                                                                         </tr>
+                                                                                                     </tbody>
+                                                                                                 </table>
                                                                                              </layout>
-                                        
-                    
-@*                                                                                             <layout label="Text with right-aligned image">
-                                                                                                 <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
-                                                                                                     <tbody><tr>
-                                                                                                                <td class="w580" width="580">
-                                                                                                                    <p align="left" class="article-title"><singleline label="Title">Add a title</singleline></p>
-                                                                                                                    <table cellpadding="0" cellspacing="0" border="0" align="right">
-                                                                                                                        <tbody><tr>
-                                                                                                                                   <td class="w30" width="15"></td>
-                                                                                                                                   <td><img editable="true" label="Image" class="w300" width="300" border="0"></td>
-                                                                                                                               </tr>
-                                                                                                                            <tr><td class="w30" width="15" height="5"></td><td></td></tr>
-                                                                                                                        </tbody></table>
-                                                                                                                    <div align="left" class="article-content">
-                                                                                                                        <multiline label="Description">Enter your description</multiline>
-                                                                                                                    </div>
-                                                                                                                </td>
-                                                                                                            </tr>
-                                                                                                         <tr><td class="w580" width="580" height="10"></td></tr>
-                                                                                                     </tbody></table>
-                                                                                             </layout>
-                                        
-                    
-                                                                                             <layout label="Text with left-aligned image">
-                                                                                                 <table class="w580" width="580" cellpadding="0" cellspacing="0" border="0">
-                                                                                                     <tbody><tr>
-                                                                                                                <td class="w580" width="580">
-                                                                                                                    <p align="left" class="article-title"><singleline label="Title">Add a title</singleline></p>
-                                                                                                                    <table cellpadding="0" cellspacing="0" border="0" align="left">
-                                                                                                                        <tbody><tr>
-                                                                                                                                   <td><img editable="true" label="Image" class="w300" width="300" border="0"></td>
-                                                                                                                                   <td class="w30" width="15"></td>
-                                                                                                                               </tr>
-                                                                                                                            <tr><td></td><td class="w30" width="15" height="5"></td></tr>
-                                                                                                                        </tbody></table>
-                                                                                                                    <div align="left" class="article-content">
-                                                                                                                        <multiline label="Description">Enter your description</multiline>
-                                                                                                                    </div>
-                                                                                                                </td>
-                                                                                                            </tr>
-                                                                                                         <tr><td class="w580" width="580" height="10"></td></tr>
-                                                                                                     </tbody></table>
-                                                                                             </layout>*@
-                                                                                
-                    
+  
                                                                                          </repeater>
                                                                                      </td>
                                                                                      <td class="w30" width="30"></td>
@@ -328,7 +273,14 @@
                                       <tr>
                                           <td class="w640"width="788">
                                               <table id="footer" class="w640"width="788" cellpadding="0" cellspacing="0" border="0" bgcolor="#C1E4F2">
-                                                  <tbody><tr><td class="w30" width="30"></td><td class="w580 h0" width="360" height="30"></td><td class="w0" width="60"></td><td class="w0" width="160"></td><td class="w30" width="30"></td></tr>
+                                                  <tbody>
+                                                      <tr>
+                                                          <td class="w30" width="30"></td>
+                                                          <td class="w580 h0" width="360" height="30"></td>
+                                                          <td class="w0" width="60"></td>
+                                                          <td class="w0" width="160"></td>
+                                                          <td class="w30" width="30"></td>
+                                                      </tr>
                                                       <tr>
                                                           <td class="w30" width="30"></td>
                                                           <td class="w580" width="360" valign="top">
