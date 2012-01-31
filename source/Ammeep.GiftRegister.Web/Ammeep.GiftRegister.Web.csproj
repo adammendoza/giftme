@@ -151,7 +151,6 @@
     <Content Include="Content\Images\and.png" />
     <Content Include="Content\Images\button_add.png" />
     <Content Include="Content\Images\button_ill_get_this.png" />
-    <Content Include="Content\Images\button_ill_get_this_hover.png" />
     <Content Include="Content\Images\button_ok_will_do.png" />
     <Content Include="Content\Images\button_save.png" />
     <Content Include="Content\Images\button_yes.png" />
