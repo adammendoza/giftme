@@ -40,6 +40,7 @@ a:link {
 	color:#166FC3;
 	text-decoration: underline;
 	}
+	
 a:hover {
 	color: #166FC3;
 	text-decoration: none;
@@ -459,7 +460,7 @@ a.add_button {
 		}
 	
 	
-.registry_box_right_display a {
+.registry_box_right a {
 	float: right;
 	width: 223px;
 	height: 40px;
@@ -468,7 +469,7 @@ a.add_button {
 	text-indent: -9999px;
 	}
 
-.registry_box_right_display a:hover {
+.registry_box_right a:hover {
 	background: transparent url('Images/button_ill_get_this_hover.png') no-repeat scroll 0 top;
 	cursor: pointer;
 	}
