@@ -51,7 +51,6 @@ namespace Ammeep.GiftRegister.Web.Controllers
 
                 }catch(Exception exception)
                 {
-                    Thread.Sleep(500);
                     _loggingService.LogError(string.Format("The guest {0} could not reserve gift {1}. Email: {2}",getThisModel.Name,getThisModel.GiftId,getThisModel.Email),exception);
                     return PartialView("OppsError");
                 }

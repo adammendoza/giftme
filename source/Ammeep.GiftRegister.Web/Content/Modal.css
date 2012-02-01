@@ -33,6 +33,7 @@
   margin-left: -455px;
   z-index: 11000;
   width: 900px;
+  height: 600px;
   background-color: #ffffff;
   border: 5px solid #633B1C;
 
@@ -170,14 +171,16 @@
 					font-family: museo300,sans-serif;
 					font-size: 15px;
 					}
-					
-	#your_details_thanks {
+#spinner {
+   padding-top: 80px;
+}				
+	.submittingInformation {
 		width: 650px;
 		padding-left: 226px;
-		padding-top: 20px;
+		padding-top: 60px;
 		}
 				
-		#your_details_thanks p{	
+		.submittingInformation p{	
 			color: #633B1C;
     		font-family: Tahoma,Geneva,sans-serif;
     		font-size: 14px;

@@ -4,11 +4,7 @@
      <div class="modal-header-flag">
          <p id="getthisid" style="display: none">1</p>       
      </div> 
-     <div id="resultcontent"></div> 
-     <div id="spinner" style="display: none">
-       <img src="../../Content/Images/ajax-loader.gif" alt="Reserving Gift..."/>
-     </div>
-     <div id="popupcontent">
+   
        <div class="modal-header-text">
                  <h2> You have opted to gift Ian & Joanne:</h2>
                  <div class="input">
@@ -20,7 +16,14 @@
                  </div>
              </div>
 
-             <div id="gift-to-get"><!--Selected item here--></div>
+         <div id="gift-to-get"><!--Selected item here--></div>
+         <div id="resultcontent"></div> 
+     <div id="spinner" class="loading_spinner_invisible">
+         <img src="../../Content/Images/ajax-loader.gif" alt="Reserving Gift..."/>
+         <h2>Reserving your gift....</h2>
+     </div>
+     
+     <div id="popupcontent">
              <div class="modal-header-text">
                  <h2>Your details:</h2>
              </div>
