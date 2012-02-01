@@ -604,13 +604,35 @@ div.pagination {
     margin-left: 25px;
     margin-right: 25px;
     margin-top: 25px;
+    float: left;
+    width: 850px;
     }
+
+ div.pagination .leftspan {
+    float: left;
+    width: 200px;
+ }
+ 
+ div.pagination .rightspan {
+     float: right;
+ }   
+ 
+ .pagination .page_top {
+	font-family: museo300, sans-serif;
+	text-decoration: none;
+	float: right;
+	margin-right: 25px;	
+	}
+
+.pagination .page_top a {
+	text-decoration: none;
+	font-size: 13px;	
+	}
 .pageInformation {
     color: #633b1c;
-    margin-top: 25px;
     }
+    
 .pageNumbers {
-    float: right;
     list-style: none outside none;
     margin: 0 !important;
     }
