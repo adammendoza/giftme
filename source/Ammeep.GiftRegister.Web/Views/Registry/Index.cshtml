@@ -52,7 +52,7 @@ $(document).ready(function () {
             e.preventDefault();
             var $this = $(this).data('show', true);
             var parent = $this.parents(".registry_container").clone().addClass("first");
-            parent.find(".registry_box_right_display").hide();
+            parent.find(".registry_box_right").hide();
             var quantityRemaining = parent.find("#item_Item_QuantityRemaining").val();
             var id = parent.find("#item_Item_GiftId").val();
             $('#' + $this.attr('data-controls-modal')).find("#Quantity").val(quantityRemaining);
