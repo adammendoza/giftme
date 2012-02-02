@@ -15,6 +15,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         void InserstGuestGiftReservation(Guest guest, GiftPruchase pruchase);
         GiftPruchase GetGiftReservationByConfirmationId(Guid confirmationId);
         void UpdateGiftReservation(GiftPruchase reservation);
+        Guest GetGuestById(int guestId);
     }
 
     public class UserRepository : IUserRepository
@@ -83,6 +84,13 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             connection.GiftPurchase.Update(reservation);
+        }
+
+        public Guest GetGuestById(int guestId)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            var findByUserName = connection.Guest.FindByGuestId(guestId);
+            return (Guest)findByUserName;
         }
     }
 }

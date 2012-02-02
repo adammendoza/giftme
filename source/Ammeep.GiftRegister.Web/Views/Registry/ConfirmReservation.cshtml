@@ -1,8 +1,26 @@
-﻿@model dynamic
+﻿@using Ammeep.GiftRegister.Web.Models
+@model ReservationConfirmationPage
 
 @{
     ViewBag.Title = "Reservation Confirmed";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reservation Confirmed</h2>
+@if (Model.IsConfirmed)
+{
+    <h2>Reservation Confirmed</h2>
+    <h2>Thank you @Model.Guest.Name, your reservation has now been confirmed</h2>
+
+    @Html.DisplayFor(model => model.GiftRow)
+}
+else
+{
+    <h2>OH NOES!</h2>
+    <h2>Errors</h2>
+    <ul>
+        @foreach(string error in Model.ConfirmationErrors)
+        {
+            <li>@error</li>
+        }
+    </ul>
+}

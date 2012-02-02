@@ -14,6 +14,5 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         void UpdateGift(Gift gift);
         void DeactivateGift(int giftId, int updatedByAccountId, DateTime updatedDateTime);
         void InsertGift(Gift gift);
-        void DecrementQuantityRemaining(int giftId, int quantity);
     }
 }

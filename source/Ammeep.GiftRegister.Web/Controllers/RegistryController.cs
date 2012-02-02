@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Domain.Logging;
@@ -61,8 +60,9 @@ namespace Ammeep.GiftRegister.Web.Controllers
 
         public ActionResult ConfirmReservation(Guid confirmationId)
         {
-            _registryManager.ConfirmReservation(confirmationId);
-            return View();
+            ReservationConfirmationPage model =_registryManager.ConfirmReservation(confirmationId);
+
+            return View(model);
         }
     }
 }

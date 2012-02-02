@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Domain.Model;
+using Ammeep.GiftRegister.Web.Models;
 
 namespace Ammeep.GiftRegister.Web.Domain
 {
@@ -17,7 +18,7 @@ namespace Ammeep.GiftRegister.Web.Domain
         IEnumerable<Category> GetCategories();
         void AddNewGift(Gift gift);
         void ReserveGift(string guestName, string guestEmail, int giftId, int quantityReserved);
-        bool ConfirmReservation(Guid confirmationId);
+        ReservationConfirmationPage ConfirmReservation(Guid confirmationId);
     }
 
     public class RegistryManager : IRegistryManager
@@ -66,25 +67,36 @@ namespace Ammeep.GiftRegister.Web.Domain
             _mailService.SendPurchaseConfirmationEmail(guest, giftPurchase, gift);
         }
 
-        public bool ConfirmReservation(Guid confirmationId)
+        public ReservationConfirmationPage ConfirmReservation(Guid confirmationId)
         {
            _loggingService.LogInformation(string.Format("Confirming reservation {0}",confirmationId));
-            bool confirmed =false;
             GiftPruchase reservation = _userRepository.GetGiftReservationByConfirmationId(confirmationId);
-            if (reservation != null)
+            if (reservation != null && !reservation.Confirmed)
             {
-                reservation.Confirmed = true;
-                reservation.ConfirmedOn = DateTime.Now;
-                _userRepository.UpdateGiftReservation(reservation);
-                confirmed = true;
+                return CompleteReservation(reservation);              
             }
-
-            if(confirmed)
+            if(reservation == null)
             {
-                _giftRepository.DecrementQuantityRemaining(reservation.GiftId, reservation.Quantity);
+                return new ReservationConfirmationPage { ConfirmationErrors = new List<string> { "Reservation Not found" } };
             }
+            return new ReservationConfirmationPage{ConfirmationErrors = new List<string>{"Already confirmed"}};
+        }
 
-            return confirmed;
+        private ReservationConfirmationPage CompleteReservation(GiftPruchase reservation)
+        {
+            ReservationConfirmationPage reservationConfirmationPage = new ReservationConfirmationPage();
+            reservation.Confirmed = true;
+            reservation.ConfirmedOn = DateTime.Now;
+            _userRepository.UpdateGiftReservation(reservation);
+            Gift gift = _giftRepository.GetGift(reservation.GiftId);
+            gift.QuantityRemaining -= reservation.Quantity;
+            gift.IsActive = gift.QuantityRemaining > 0;
+            _giftRepository.UpdateGift(gift);
+            Guest guest = _userRepository.GetGuestById(reservation.GuestId);
+            reservationConfirmationPage.Guest = guest;
+            reservationConfirmationPage.GiftPruchase = reservation;
+            reservationConfirmationPage.ReservedGift = gift;
+            return reservationConfirmationPage;
         }
 
         public IEnumerable<Gift> GetRegistry()
