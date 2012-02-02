@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Ammeep.GiftRegister.Web.Domain.Model;
 
@@ -22,7 +21,6 @@ namespace Ammeep.GiftRegister.Web.Models
         {
             get
             {
-                throw new Exception();
                 return (ConfirmationErrors != null && ConfirmationErrors.Count == 0) ||
                        (GiftPruchase != null && GiftPruchase.Confirmed);
             }
