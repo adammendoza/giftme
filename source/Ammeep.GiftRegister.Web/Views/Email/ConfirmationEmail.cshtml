@@ -85,7 +85,8 @@
                                                                                                     .footer-content-right { font-size: 11px; line-height: 16px; color: #e2e2e2; margin-top: 0px; margin-bottom: 15px; }
                                                                                                     .footer-content-right a { color: #e7cba3; font-weight: bold; text-decoration: none; }
                                                                                                     .img_box { border: 5px solid #E8E7EB; height: 165px; margin-top: 13px; width: 170px;}
-                                                                                                    .confirm-button { cursor: pointer; border: 0 !important;}
+                                                                                                    .confirm-button { cursor: pointer; border: 0 !important;float: right;}
+                                                                                                    .confirm-button a:hover{background: url('http://onecutetomato.co.nz/wedding/img/flag_confirm_res_hover.png')}
                                                                                                     #footer { background-color: #C1E4F2; color: #e2e2e2; }
                                                                                                     #footer a { color: #e7cba3; text-decoration: none; font-weight: bold; }
                                                                                                     #permission-reminder { white-space: pre-wrap; }
@@ -187,9 +188,9 @@
                                                                                                                  <p align="left" class="article-title"><singleline label="Title">@Model.GiftName</singleline></p>
                                                                                                              </td>
                                                                                                          </tr>
-                                                                                                         <tr>
-                                                                                                             <td class="w580" width="750" height="5"></td>
-                                                                                                         </tr>
+                                                                                                           <tr>
+                                                                                                             <td class="w580" width="750"><p class="article-content">@Model.GiftDescription</p></td>
+                                                                                                          </tr>
                                                                                                          <tr>
                                                                                                              <td class="w580" width="750">
                                                                                                                  <table class="w580" width="750" cellpadding="0" cellspacing="0" border="0">
@@ -200,43 +201,51 @@
                                                                                                                              </td>
                                                                                                                              <td class="w580" width="550">
                                                                                                                                  <table>
-                                                                                                                                     <tbody>
-                                                                                                                                         <tr>
-                                                                                                                                             <td><p class="article-content">@Model.GiftDescription</p></td>
-                                                                                                                                         </tr>
-                                                                                                                                         <tr>
-                                                                                                                                             <td>
-                                                                                                                                                 <table class="w580" width="550" cellpadding="0" cellspacing="0" border="0">
-                                                                                                                                                     <tbody>
-                                                                                                                                                         <tr>
-                                                                                                                                                             <td class="article-table-heading">Suggested Store:</td>
+                                                                                                                                 <tbody>
+                                                                                                                                    
+                                                                                                                                     <tr>
+                                                                                                                                         <td>
+                                                                                                                                             <table class="w580" width="550" cellpadding="0" cellspacing="0" border="0">
+                                                                                                                                                 <tbody>
+                                                                                                                                                     <tr>
+                                                                                                                                                         <td class="article-table-heading">Suggested Store:</td>
                                                                                                                                                  
-                                                                                                                                                             <td class="article-table-content">@Model.GiftSuggestedStore</td>
-                                                                                                                                                         </tr>
-                                                                                                                                                         <tr>
-                                                                                                                                                             <td class="article-table-heading">Specific Item Required?</td>
+                                                                                                                                                         <td class="article-table-content">@Model.GiftSuggestedStore</td>
+                                                                                                                                                     </tr>
+                                                                                                                                                     <tr>
+                                                                                                                                                         <td class="article-table-heading">Specific Item Required?</td>
                                                                                                                                                  
-                                                                                                                                                             <td class="article-table-content">@Model.SpecificGiftRequried</td>
-                                                                                                                                                         </tr>
-                                                                                                                                                         <tr>
-                                                                                                                                                             <td class="article-table-heading">Quantity:</td>
+                                                                                                                                                         <td class="article-table-content">@Model.SpecificGiftRequried</td>
+                                                                                                                                                     </tr>
+                                                                                                                                                     <tr>
+                                                                                                                                                         <td class="article-table-heading">Quantity:</td>
                                                                                                                                                  
-                                                                                                                                                             <td class="article-table-content">@Model.NominatedQuntity</td>
-                                                                                                                                                         </tr>
-                                                                                                                                                         <tr>
-                                                                                                                                                             <td class="article-table-heading">RRP (NZD):</td>
+                                                                                                                                                         <td class="article-table-content">@Model.NominatedQuntity</td>
+                                                                                                                                                     </tr>
+                                                                                                                                                     <tr>
+                                                                                                                                                         <td class="article-table-heading">RRP (NZD):</td>
                                                                                                                                                  
-                                                                                                                                                             <td class="article-table-content">@Model.GiftPrice</td>
-                                                                                                                                                         </tr>
-                                                                                                                                                         <tr>
-                                                                                                                                                             <td class="article-table-heading">Website:</td>
+                                                                                                                                                         <td class="article-table-content">@Model.GiftPrice</td>
+                                                                                                                                                     </tr>
+                                                                                                                                                     <tr>
+                                                                                                                                                         <td class="article-table-heading">Website:</td>
                                                                                                                                                  
-                                                                                                                                                             <td class="article-table-content"><a href="@Model.Website">Click Here</a></td>
-                                                                                                                                                         </tr>
-                                                                                                                                                     </tbody>
-                                                                                                                                                 </table>
-                                                                                                                                               </td>
-                                                                                                                                         </tr>
+                                                                                                                                                         <td class="article-table-content"><a href="@Model.Website">Click Here</a></td>
+                                                                                                                                                     </tr>
+                                                                                                                                                 </tbody>
+                                                                                                                                             </table>
+                                                                                                                                         </td>
+                                                                                                                                     </tr>
+                                                                                                                                           <tr>
+                                                                                                                                            <td class="w580" width="750" height="25"></td>
+                                                                                                                                     </tr>
+                                                                                                                                        <tr>
+                                                                                                             <td class="w580" width="750">
+                                                                                                                 <a class="confirm-button" href="@Model.GenerateConfirmUrl()">
+                                                                                                                     <img src="http://www.onecutetomato.co.nz/wedding/img/flag_confirm_res.png" alt="Confirm!" style="border:none"/>
+                                                                                                                 </a>
+                                                                                                             </td>
+                                                                                                         </tr>
                                                                                                                                      </tbody>
                                                                                                                                      
                                                                                                                                  </table>
@@ -248,16 +257,8 @@
                
                                                                                                              </td>
                                                                                                          </tr>
-                                                                                                         <tr>
-                                                                                                             <td class="w580" width="750" height="10"></td>
-                                                                                                         </tr>
-                                                                                                         <tr>
-                                                                                                             <td class="w580" width="750">
-                                                                                                                 <a class="confirm-button" href="@Model.GenerateConfirmUrl()">
-                                                                                                                     <img src="http://www.onecutetomato.co.nz/wedding/img/flag_confirm_res.png" alt="Confirm!" style="border:none"/>
-                                                                                                                 </a>
-                                                                                                             </td>
-                                                                                                         </tr>
+                                                                                                   
+                                                                                                      
                                                                                                      </tbody>
                                                                                                  </table>
                                                                                              </layout>
