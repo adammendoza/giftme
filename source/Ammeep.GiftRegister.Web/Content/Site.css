@@ -497,6 +497,13 @@ a.add_button {
 		}
 	
 	
+	.registry_box_right_edit {
+	    	float: right;
+	        width: 223px;
+	        height: 40px;
+	        margin-top: 58px;
+	}
+	
 .registry_box_right a {
 	float: right;
 	width: 223px;
