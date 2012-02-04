@@ -1,5 +1,5 @@
 ﻿@{
-    Layout ="_Layout.cshtml";
+    Layout ="_NoNavLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -8,21 +8,25 @@
     <title>Error</title>
 </head>
 <body>
-    <h2>
-      <strong>There was an error! </strong>
-
-    </h2>
     
-    <div id="your_details_thanks">
+    <div class="error_header">
+        <img src="@Url.Content("~/Content/Images/oops_error.png")"/>
+    </div>
+    
+    <div class="error_content">
 
-    <p>
-        <br />Please try again...
-      
-        <br /><br />If you continue to have issues, fire us an email.</p>
-       <br /> 
-    <a href="@Url.Action("Index","Registry")">
-        <img src="../../Content/Images/button_ok_will_do.png"/>
-    </a>
-</div>
+        <p> Terribly sorry about this! Try again and if you continue to have issues, fire Amy an email and she will fix 'er right up.</p>
+    </div>   
+        <div>
+            <div class="email_icon rightspan">
+                <a href="mailto:amy@palamounta.in">Email Amy</a>
+            </div>
+            <div class="error_back_to_site">
+                <a href="@Url.Action("Index","Registry")">
+                    <img src="../../Content/Images/button_ok_will_do.png"/>
+                </a>
+            </div>
+        </div>
+
 </body>
 </html>

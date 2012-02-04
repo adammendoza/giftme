@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        Cufon.replace('h1');
+    </script>
+</head>
+
+<body>
+<a name="top" id="top"></a>  
+<div id="container">
+    @Html.Partial("Header")
+    <div id="content">
+  
+        @RenderBody()
+      
+         <div id="breaker"> &nbsp;</div>
+        <!--  needs to be here to keep the page glowing, geek off!!  -->
+        @Html.Partial("Footer")
+    </div>
+</div>
+
+</div> </div> </div> </div>
+<script type="text/javascript">    Cufon.now(); </script>
+</body>
+</html>
+

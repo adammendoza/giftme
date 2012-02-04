@@ -176,6 +176,7 @@
     <Content Include="Content\Images\manage_registry.png" />
     <Content Include="Content\Images\modal_get_this_flag.png" />
     <Content Include="Content\Images\nav_help.png" />
+    <Content Include="Content\Images\oops_error.png" />
     <Content Include="Content\Images\shape.png" />
     <Content Include="Content\Images\tile.gif" />
     <Content Include="Content\Images\tile.png" />
@@ -391,6 +392,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Registry\ConfirmReservation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_NoNavLayout.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
