@@ -61,8 +61,12 @@ namespace Ammeep.GiftRegister.Web.Controllers
         public ActionResult ConfirmReservation(Guid confirmationId)
         {
             ReservationConfirmationPage model =_registryManager.ConfirmReservation(confirmationId);
+            if(model.IsConfirmed)
+            {
+                return View(model);
+            }
+            return View("CouldNotConfirmReservation");
 
-            return View(model);
         }
     }
 }

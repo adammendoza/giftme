@@ -1,0 +1,27 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Could not confirm reservation";
+    Layout = "~/Views/Shared/_NoNavLayout.cshtml";
+}
+
+ <div class="error_header">
+        <img src="@Url.Content("~/Content/Images/oops_fail.png")"/>
+    </div>
+    
+    <div class="error_content">
+
+        <p> Terribly sorry about this, but we could not confirm your reservation.</p>
+        <p> You have either already confirmed it, or we can not find it. If you think this
+        should not be happening then send Amy an email.</p>
+    </div>   
+        <div>
+            <div class="email_icon rightspan">
+                <a href="mailto:amy@palamounta.in">Email Amy</a>
+            </div>
+            <div class="error_back_to_site">
+                <a href="@Url.Action("Index","Registry")">
+                    <img src="../../Content/Images/button_ok_will_do.png"/>
+                </a>
+            </div>
+        </div>
