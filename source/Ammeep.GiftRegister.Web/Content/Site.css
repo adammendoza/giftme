@@ -692,3 +692,36 @@ div.pagination {
     background: url("Images/iconArrowBlue.png") no-repeat scroll right top transparent;
     padding-right: 22px;
     }
+    
+ .reservation_confirmed_header {
+    background-image: url("Images/res_confirmed.png");
+    height: 40px;
+    margin-left: 24px;
+    margin-top: 43px;
+    width: 644px;
+ }
+ 
+ .reservation_confirmed_thank_you {
+     margin-left: 24px;
+     color: #ec008c;
+ }
+ 
+ .officially_reserved {
+	float: right;
+	width: 223px;
+	height: 40px;
+     margin-top: 58px;
+	text-indent: -9999px;
+	}
+
+.back_to_site {
+    margin-bottom: 50px;
+    width: 200px;
+    float: left;
+    margin-top: 25px;   
+    margin-left: 24px;
+}
+
+.back_to_site a {
+    color: #F0A42B;
+}

@@ -156,6 +156,7 @@
     <Content Include="Content\Images\button_ok_will_do.png" />
     <Content Include="Content\Images\button_save.png" />
     <Content Include="Content\Images\button_yes.png" />
+    <Content Include="Content\Images\flag_officially_reserved.png" />
     <Content Include="Content\Images\iconArrowBlueUp.png" />
     <Content Include="Content\Images\iconArrowBlueDown.png" />
     <Content Include="Content\Images\damask.png" />

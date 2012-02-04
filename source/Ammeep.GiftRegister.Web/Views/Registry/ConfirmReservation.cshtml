@@ -6,21 +6,42 @@
     Layout = "~/Views/Shared/_NoNavLayout.cshtml";
 }
 
-@if (Model.IsConfirmed)
-{
-    <h2>Reservation Confirmed</h2>
-    @*<h2>Thank you @Model.Guest.Name, your reservation has now been confirmed</h2>
+<div class="reservation_confirmed_header"></div>
 
-    @Html.DisplayFor(model => model.GiftRow)*@
-}
-else
-{
-    <h2>OH NOES!</h2>
-    <h2>Errors</h2>
-    <ul>
-        @foreach(string error in Model.ConfirmationErrors)
-        {
-            <li>@error</li>
-        }
-    </ul>
-}
+    <h2 class="reservation_confirmed_thank_you">Thank you @Model.Guest.Name</h2>
+
+<div class="registry_container first"> 
+    @Html.DisplayFor(model => model.ReservedGift.ImageLocation)
+    <div class="registry_content">
+        <div class="registry_title_blurb">
+            @Html.DisplayFor(model => model.ReservedGift.Name)
+            @Html.DisplayFor(model => model.ReservedGift.Description)          
+        </div>
+        <div class="registry_box_left">
+            <ul>
+                <li>Suggested Store:</li>
+                <li>Specific Item Required?</li>
+                <li>Quantity:</li>
+
+                <li>RRP (NZD):</li>
+                <li>Website:</li>
+            </ul>
+        </div>
+        <div class="registry_box_middle">
+            <ul>
+                <li>@Html.DisplayFor(model => model.ReservedGift.SuggestedStores)</li>
+                <li>@Html.DisplayFor(model => model.ReservedGift.SpecificItemRequried)</li>
+                <li>@Html.DisplayFor(model => model.ReservedGift.QuantityRequired)</li>
+                <li>@Html.DisplayFor(model => model.ReservedGift.RetailPrice)</li>
+                <li>@Html.DisplayFor(model => model.ReservedGift.Website)</li>            
+            </ul>
+        </div>
+        <div class="registry_box_right">
+            <img src="@Url.Content("~/Content/Images/flag_officially_reserved.png")" alt="Confirmed" class="officially_reserved"/>         
+        </div>
+    </div>
+</div>
+
+<div class="back_to_site">
+    @Html.ActionLink("Back To Home","Index","Registry")
+</div>
