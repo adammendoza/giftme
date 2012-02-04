@@ -52,6 +52,7 @@
             @Html.HiddenFor(model => model.Gift.GiftId)
             @Html.HiddenFor(model => model.Gift.CreatedBy)
             @Html.HiddenFor(model => model.Gift.CreatedDate)
+            @Html.HiddenFor(model => model.Gift.IsActive)
             
             <div class="row registry_container_preview">
                 @Html.Partial("RegistryItemPreview", new GiftRow { IsFirst = true, Item = Model.Gift })

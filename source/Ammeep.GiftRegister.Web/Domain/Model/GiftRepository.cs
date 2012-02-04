@@ -45,7 +45,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         {
             int shiftedPageNum = pageNumber > 0 ? pageNumber-- : pageNumber;
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            IEnumerable<Gift> page = connection.Gifts.FindAllByCategory(categoryId).Skip(shiftedPageNum).Take(pageSize).Cast<Gift>();
+            IEnumerable<Gift> page = connection.Gifts.FindAllByIsActiveAndCategory(true,categoryId).Skip(shiftedPageNum).Take(pageSize).Cast<Gift>();
             int totalNumberOfGifts = connection.Gifts.FindAllByIsActiveAndCategory(true, categoryId).Count();
             return new PagedList<Gift>(page, pageNumber, pageSize, totalNumberOfGifts);
         }

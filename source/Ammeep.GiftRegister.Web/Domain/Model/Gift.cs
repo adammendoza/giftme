@@ -31,7 +31,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public string SuggestedStores { get; set; }
 
         [UIHint("YesNo")]
-        [Display(Name = "Required:")]
+        [Display(Name = "Specific Item Desired:")]
         public bool SpecificItemRequried { get; set; }
 
         [Display(Name = "Quantity:")]
