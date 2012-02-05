@@ -1,0 +1,31 @@
+﻿@using Ammeep.GiftRegister.Web.Domain.Model
+@model IEnumerable<Gift>
+
+<h2>Deactivated Gift</h2>
+<p>These are gifts which have been marked as deleted.</p>
+<table class="zebra-striped">
+            <thead class="header">
+                <tr>
+                    <td class="header">Gift Id</td>
+                    <td class="header">Name</td>
+                    <td class="header">Description</td>
+                    <td class="header">Reactivate</td>
+                    <td></td>
+                </tr>
+            </thead>
+    <tbody>
+        
+        
+        @foreach(Gift gift in Model)
+        {
+            <tr>
+                 <td>@gift.GiftId</td>
+                 <td>@gift.Name</td>
+                 <td>@gift.Description</td>
+                 <td>@Html.ActionLink("Reactivate", "Reactivate", "Manage", new { giftId = gift.GiftId },null)</td>
+            </tr>
+        }
+    </tbody>
+        </table>
+
+

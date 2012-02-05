@@ -1,0 +1,16 @@
+﻿@model Ammeep.GiftRegister.Web.Models.GiftStatusesPage
+
+@{
+    ViewBag.Title = "Shhhh";
+    Layout = "../Shared/_AdminLayout.cshtml";
+}
+
+<h2>Shhhh</h2>
+
+
+ <div class="admin_content">
+     <p>Here is some text about Admin users</p>
+    @Html.Partial("PendingReservationList", Model.GiftsPendingReservation)
+    @Html.Partial("ReservedList", Model.GiftsConfirmedAsReserved)
+    @Html.Partial("NotActiveList", Model.GiftsNotActive)
+</div>

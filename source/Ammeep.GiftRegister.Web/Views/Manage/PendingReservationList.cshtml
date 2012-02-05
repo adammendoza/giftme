@@ -1,0 +1,9 @@
+﻿@using Ammeep.GiftRegister.Web.Domain.Model
+@model IEnumerable<Gift>
+
+<h2>Pending Reservation</h2>
+
+@foreach(Gift gift in Model)
+{
+    @Html.Display("GiftId",gift.GiftId)
+}
