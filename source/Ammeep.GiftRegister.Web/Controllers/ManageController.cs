@@ -66,7 +66,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
 
         public ActionResult Delete(int id)
         {
-            _registryManager.DeleteGift(id);
+            _registryManager.DeactivateGift(id);
             return RedirectToAction("Index");
         }
 
@@ -90,6 +90,17 @@ namespace Ammeep.GiftRegister.Web.Controllers
             addGiftPage.Gift = gift;
             return View(addGiftPage);
         }
-      
+
+        public ActionResult GiftStatues()
+        {
+            GiftStatusesPage model = _registryManager.GetAllGifts();
+            return View(model);
+        }
+
+        public ActionResult Reactivate(int giftId)
+        {
+            _registryManager.ReactivateGift(giftId);
+            return RedirectToAction("GiftStatues");
+        }       
     }
 }

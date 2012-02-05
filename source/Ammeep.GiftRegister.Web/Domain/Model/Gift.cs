@@ -43,7 +43,6 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         [Display(Name = "RRP:")]
         [Required]
         public decimal RetailPrice { get; set; }
-        public bool IsPurchased { get; set; }
 
         [UIHint("Category")]
         [Required]
@@ -61,5 +60,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public int QuantityRemaining { get; set; }
 
         public bool IsActive { get; set; }
+        public bool Reserved { get; set; }
+        public bool PendingReservation { get; set; }
     }
 }

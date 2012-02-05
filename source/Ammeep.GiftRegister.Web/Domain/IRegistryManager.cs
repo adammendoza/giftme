@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Ammeep.GiftRegister.Web.Domain.Logging;
 using Ammeep.GiftRegister.Web.Domain.Model;
 using Ammeep.GiftRegister.Web.Models;
@@ -8,17 +9,18 @@ namespace Ammeep.GiftRegister.Web.Domain
 {
     public interface IRegistryManager
     {
-        IEnumerable<Gift> GetRegistry();
         IEnumerable<Gift> GetRegisrty(int categoryId);
         IPagedList<Gift> GetRegistry(int pageSize, int pageNumber);
         IPagedList<Gift> GetRegistry(int pageSize, int pageNumber, int categoryId);
         Gift GetGift(int giftId);
         void UpdateGift(Gift gift);
-        void DeleteGift(int giftId);
+        void DeactivateGift(int giftId);
         IEnumerable<Category> GetCategories();
         void AddNewGift(Gift gift);
         void ReserveGift(string guestName, string guestEmail, int giftId, int quantityReserved);
         ReservationConfirmationPage ConfirmReservation(Guid confirmationId);
+        GiftStatusesPage GetAllGifts();
+        void ReactivateGift(int giftId);
     }
 
     public class RegistryManager : IRegistryManager
@@ -63,7 +65,7 @@ namespace Ammeep.GiftRegister.Web.Domain
             var giftPurchase = new GiftPruchase(giftId,quantityReserved);
             _userRepository.InserstGuestGiftReservation(guest, giftPurchase);
             Gift gift = _giftRepository.GetGift(giftId);
-
+            gift.PendingReservation = true;
             _mailService.SendPurchaseConfirmationEmail(guest, giftPurchase, gift);
         }
 
@@ -82,6 +84,13 @@ namespace Ammeep.GiftRegister.Web.Domain
             return new ReservationConfirmationPage{ConfirmationErrors = new List<string>{"Already confirmed"}};
         }
 
+        public GiftStatusesPage GetAllGifts()
+        {
+            var enumerable = _giftRepository.GetGifts().ToList();
+            return new GiftStatusesPage(enumerable);
+        }
+
+      
         private ReservationConfirmationPage CompleteReservation(GiftPruchase reservation)
         {
             ReservationConfirmationPage reservationConfirmationPage = new ReservationConfirmationPage();
@@ -90,18 +99,14 @@ namespace Ammeep.GiftRegister.Web.Domain
             _userRepository.UpdateGiftReservation(reservation);
             Gift gift = _giftRepository.GetGift(reservation.GiftId);
             gift.QuantityRemaining -= reservation.Quantity;
-            gift.IsActive = gift.QuantityRemaining > 0;
+            gift.Reserved = gift.QuantityRemaining > 0;
+            gift.PendingReservation = false;
             _giftRepository.UpdateGift(gift);
             Guest guest = _userRepository.GetGuestById(reservation.GuestId);
             reservationConfirmationPage.Guest = guest;
             reservationConfirmationPage.GiftPruchase = reservation;
             reservationConfirmationPage.ReservedGift = gift;
             return reservationConfirmationPage;
-        }
-
-        public IEnumerable<Gift> GetRegistry()
-        {
-            return _giftRepository.GetGifts();
         }
 
         public IEnumerable<Gift> GetRegisrty(int categoryId)
@@ -136,12 +141,19 @@ namespace Ammeep.GiftRegister.Web.Domain
             _giftRepository.UpdateGift(gift);
         }
 
-        public void DeleteGift(int giftId)
+        public void DeactivateGift(int giftId)
         {
             _loggingService.LogInformation(string.Format("Setting gift id {0} to inactive", giftId));
             _giftRepository.DeactivateGift (giftId,_currentUser.AccountId,DateTime.Now);
         }
 
-        
+        public void ReactivateGift(int giftId)
+        {
+            _loggingService.LogInformation(string.Format("Setting gift id {0} to active", giftId));
+            _giftRepository.ReactivateGift(giftId, _currentUser.AccountId, DateTime.Now);
+        }
+
+
+
     }
 }

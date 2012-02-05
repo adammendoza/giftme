@@ -11,6 +11,8 @@
     [Category]             INT            NOT NULL,
     [RetailPrice]          DECIMAL (18)   NOT NULL,
     [IsActive]             BIT            NOT NULL,
+    [Reserved]			   BIT            NOT NULL,
+    [PendingReservation]   BIT            NOT NULL,
     [CreatedBy]            INT            NOT NULL,
     [CreatedDate]          DATETIME       NOT NULL,
     [LastUpdatedBy]        INT            NOT NULL,

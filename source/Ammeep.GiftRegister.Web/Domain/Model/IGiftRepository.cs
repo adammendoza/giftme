@@ -13,6 +13,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         Gift GetGift(int giftId);
         void UpdateGift(Gift gift);
         void DeactivateGift(int giftId, int updatedByAccountId, DateTime updatedDateTime);
+        void ReactivateGift(int giftId, int updatedByAccountId, DateTime updatedDateTime);
         void InsertGift(Gift gift);
     }
 }

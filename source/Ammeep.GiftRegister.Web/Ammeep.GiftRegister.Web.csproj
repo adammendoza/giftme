@@ -132,6 +132,7 @@
     <Compile Include="Models\GiftRow.cs" />
     <Compile Include="Domain\Model\Gift.cs" />
     <Compile Include="Controllers\RegistryController.cs" />
+    <Compile Include="Models\GiftStatusesPage.cs" />
     <Compile Include="Models\LogOnModel.cs" />
     <Compile Include="Models\ManagePageModel.cs" />
     <Compile Include="Models\AllAccountsPage.cs" />
@@ -401,6 +402,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Registry\CouldNotConfirmReservation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Manage\GiftStatues.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Manage\PendingReservationList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Manage\ReservedList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Manage\NotActiveList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Manage\ReadOnlyView.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

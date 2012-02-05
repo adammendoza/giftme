@@ -23,7 +23,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public IEnumerable<Gift> GetGifts()
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Gifts.FindAllByIsActive(true).Cast<Gift>();           
+            return connection.Gifts.All().Cast<Gift>();           
         }
 
         public IEnumerable<Gift> GetAllGiftsForCategory(int categoryId)
@@ -36,8 +36,8 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         {
             int shiftedPageNum = pageNumber > 0 ? pageNumber-- : pageNumber;
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            IEnumerable<Gift> page = connection.Gifts.FindAllByIsActive(true).Skip(shiftedPageNum).Take(pageSize).Cast<Gift>();
-            int totalNumberOfGifts = connection.Gifts.FindAllByIsActive(true).Count();
+            IEnumerable<Gift> page = connection.Gifts.FindAllByIsActiveAndReservedAndPendingReservation(true, false,false).Skip(shiftedPageNum).Take(pageSize).Cast<Gift>();
+            int totalNumberOfGifts = connection.Gifts.FindAllByIsActiveAndReservedAndPendingReservation(true, false,false).Count();
             return new PagedList<Gift>(page, pageNumber, pageSize, totalNumberOfGifts);
         }
 
@@ -45,8 +45,8 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         {
             int shiftedPageNum = pageNumber > 0 ? pageNumber-- : pageNumber;
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            IEnumerable<Gift> page = connection.Gifts.FindAllByIsActiveAndCategory(true,categoryId).Skip(shiftedPageNum).Take(pageSize).Cast<Gift>();
-            int totalNumberOfGifts = connection.Gifts.FindAllByIsActiveAndCategory(true, categoryId).Count();
+            IEnumerable<Gift> page = connection.Gifts.FindAllByIsActiveAndCategoryAndReservedAndPendingReservation(true, categoryId,false, false).Skip(shiftedPageNum).Take(pageSize).Cast<Gift>();
+            int totalNumberOfGifts = connection.Gifts.FindAllByIsActiveAndCategoryAndReservedAndPendingReservation(true, categoryId, false, false).Count();
             return new PagedList<Gift>(page, pageNumber, pageSize, totalNumberOfGifts);
         }
 
@@ -66,6 +66,12 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             connection.Gifts.UpdateByGiftId(GiftId: giftId, LastUpdatedDate: updatedDateTime, LastUpdatedBy: updatedByAccountId, IsActive:false);
+        }
+
+        public void ReactivateGift(int giftId, int updatedByAccountId, DateTime updatedDateTime)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            connection.Gifts.UpdateByGiftId(GiftId: giftId, LastUpdatedDate: updatedDateTime, LastUpdatedBy: updatedByAccountId, IsActive: true);
         }
 
         public void InsertGift(Gift gift)
