@@ -21,6 +21,8 @@ namespace Ammeep.GiftRegister.Web.Domain
         ReservationConfirmationPage ConfirmReservation(Guid confirmationId);
         GiftStatusesPage GetAllGifts();
         void ReactivateGift(int giftId);
+        void RemovePendingStatus(int giftId);
+        void RemoveGiftPurhcase(int giftPurchaseId);
     }
 
     public class RegistryManager : IRegistryManager
@@ -66,6 +68,7 @@ namespace Ammeep.GiftRegister.Web.Domain
             _userRepository.InserstGuestGiftReservation(guest, giftPurchase);
             Gift gift = _giftRepository.GetGift(giftId);
             gift.PendingReservation = true;
+            _giftRepository.UpdateGift(gift);
             _mailService.SendPurchaseConfirmationEmail(guest, giftPurchase, gift);
         }
 
@@ -155,7 +158,16 @@ namespace Ammeep.GiftRegister.Web.Domain
             _giftRepository.ReactivateGift(giftId, _currentUser.AccountId, DateTime.Now);
         }
 
+        public void RemovePendingStatus(int giftId)
+        {
+            _loggingService.LogInformation(string.Format("Removing pending status from gift id {0}", giftId));
+            _giftRepository.RemovePendingStatus(giftId, _currentUser.AccountId, DateTime.Now);
+        }
 
-
+        public void RemoveGiftPurhcase(int giftPurchaseId)
+        {
+            _loggingService.LogInformation(string.Format("Removing gift purchase {0}", giftPurchaseId));
+            _giftRepository.DeactivateGiftPurhcase(giftPurchaseId, _currentUser.AccountId, DateTime.Now);
+        }
     }
 }

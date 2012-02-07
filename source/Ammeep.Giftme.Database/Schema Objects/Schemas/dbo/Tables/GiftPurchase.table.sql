@@ -5,6 +5,7 @@
     [Quantity]       INT      NOT NULL,
 	[ConfirmationId] UNIQUEIDENTIFIER NOT NULL,
     [Confirmed]      BIT      NOT NULL,
+    [IsActive]       BIT      NOT NULL,
     [CreatedOn]      DATETIME NOT NULL,
     [ConfimedOn]     DATETIME 
 );

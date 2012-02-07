@@ -1,5 +1,6 @@
 ﻿@model Ammeep.GiftRegister.Web.Models.GiftRow
-@{var itemContainerClass = Model.IsFirst ? "registry_container first" : "registry_container";}
+@{var itemContainerClass = Model.IsFirst ? "registry_container first" : "registry_container";
+  itemContainerClass = string.Format("{0} giftId{1}", itemContainerClass, Model.Item.GiftId);}
 <div class="@itemContainerClass"> 
      @Html.DisplayFor(model => model.Item.ImageLocation)
     <div class="registry_content">

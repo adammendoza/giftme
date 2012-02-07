@@ -7,13 +7,11 @@
 <table class="zebra-striped">
             <thead class="header">
                 <tr>
-                    <td class="header">Gift Id</td>
                     <td class="header">Gift Name</td>
-                    <td class="header">Pending reservation from</td>
-                    <td class="header"></td>
+                    <td class="header" colspan="2">Pending reservation from</td>
                     <td class="header">Reservation Date</td>
                     <td class="header">Resend Confirmation Email</td>
-                    <td></td>
+                    <td class="header">Remove Pending Reservation</td>
                 </tr>
             </thead>
     <tbody>
@@ -22,13 +20,12 @@
         @foreach (PendingGift pendingGifts in Model)
         {
             <tr>
-                 <td>@pendingGifts.Gift.GiftId</td>
                  <td>@pendingGifts.Gift.Name</td>
                  <td>@pendingGifts.Guest.Name</td>
                  <td>@pendingGifts.Guest.Email</td>
                  <td>@pendingGifts.GiftPruchase.CreatedOn</td>
                 <td>@Html.ActionLink("Resend Email", "ResendConfirmationEmail", "Manage")</td>
-                <td>@Html.ActionLink("Remove Pending Status", "RemovePendingStatus", "Manage")</td>
+                <td>@Html.ActionLink("Remove", "RemovePendingStatus", "Manage",new {giftId = pendingGifts.Gift.GiftId,giftPurchaseId = pendingGifts.GiftPruchase.GiftPurchaseId},null)</td>
             </tr>
         }
     </tbody>

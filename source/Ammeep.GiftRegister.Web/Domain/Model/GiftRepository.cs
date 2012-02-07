@@ -90,7 +90,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public IEnumerable<PendingGift> GetPendingGifts()
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            var giftPurchases = connection.GiftPurchase.FindAllByConfirmed(false).Cast<GiftPruchase>();
+            var giftPurchases = connection.GiftPurchase.FindAllByConfirmedAndIsActive(false,true).Cast<GiftPruchase>();
             List<PendingGift> pendingGifts = new List<PendingGift>();
             foreach (var pruchase in giftPurchases)
             {
@@ -117,6 +117,19 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
                 pendingGifts.Add(pendingGift);
             }
             return pendingGifts;
+        }
+
+        public void RemovePendingStatus(int giftId, int updatedByAccountId, DateTime updatedDateTime)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            connection.Gifts.UpdateByGiftId(GiftId: giftId, LastUpdatedDate: updatedDateTime, LastUpdatedBy: updatedByAccountId, PendingReservation: false);
+        }
+
+        public void DeactivateGiftPurhcase(int giftPurchaseId, int updatedByAccountId, DateTime updatedDateTime)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            connection.GiftPurchase.UpdateByGiftPurchaseId(GiftPurchaseId: giftPurchaseId, LastUpdatedDate: updatedDateTime, LastUpdatedBy: updatedByAccountId, IsActive: false);
+
         }
     }
 

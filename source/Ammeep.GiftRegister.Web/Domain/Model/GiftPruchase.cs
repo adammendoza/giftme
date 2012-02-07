@@ -13,6 +13,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             Confirmed = false;
             CreatedOn = DateTime.Now;
             ConfirmationId = Guid.NewGuid();
+            IsActive = true;
         }
 
         public Guid ConfirmationId { get; set; }
@@ -23,7 +24,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public DateTime ConfirmedOn { get; set; }
         public DateTime CreatedOn { get; set; }
         public int GuestId { get; set; }
-
+        public bool IsActive { get; set; }
         
     }
 }

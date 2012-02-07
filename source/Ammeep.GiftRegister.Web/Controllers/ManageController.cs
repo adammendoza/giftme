@@ -108,8 +108,10 @@ namespace Ammeep.GiftRegister.Web.Controllers
             return RedirectToAction("GiftStatues");
         }
 
-        public ActionResult RemovePendingStatus()
+        public ActionResult RemovePendingStatus(int giftId,int giftPurchaseId)
         {
+            _registryManager.RemovePendingStatus(giftId);
+            _registryManager.RemoveGiftPurhcase(giftPurchaseId);
             return RedirectToAction("GiftStatues");
         }
     }
