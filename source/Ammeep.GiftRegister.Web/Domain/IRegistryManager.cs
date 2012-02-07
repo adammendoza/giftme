@@ -86,8 +86,10 @@ namespace Ammeep.GiftRegister.Web.Domain
 
         public GiftStatusesPage GetAllGifts()
         {
-            var enumerable = _giftRepository.GetGifts().ToList();
-            return new GiftStatusesPage(enumerable);
+            var deactivatedGifts = _giftRepository.GetDeactivatedGifts().ToList();
+            IEnumerable<PendingGift> pendingGifts = _giftRepository.GetPendingGifts().ToList();
+            IEnumerable<ReservedGift> reservedGifts = _giftRepository.GetConfirmedGifts();
+            return new GiftStatusesPage(deactivatedGifts,pendingGifts,reservedGifts);
         }
 
       

@@ -1,31 +1,21 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Domain.Model;
 
 namespace Ammeep.GiftRegister.Web.Models
 {
     public class GiftStatusesPage
     {
-        private IEnumerable<Gift> Gifts { get; set; }
+        public IEnumerable<Gift> GiftsNotActive { get; private set; }
+        public IEnumerable<PendingGift> GiftsPendingReservation { get; private set; }
+        public IEnumerable<ReservedGift> GiftsConfirmedAsReserved { get; private set; }
+   
 
-        public IEnumerable<Gift> GiftsPendingReservation
+        public GiftStatusesPage(IEnumerable<Gift> deactivatedGifts, IEnumerable<PendingGift> pendingGifts, IEnumerable<ReservedGift> reservedGifts)
         {
-            get { return Gifts.Where(gift => gift.PendingReservation); }
-        }
-
-        public IEnumerable<Gift> GiftsConfirmedAsReserved
-        {
-            get { return Gifts.Where(gift => gift.Reserved); }
-        }
-
-        public IEnumerable<Gift> GiftsNotActive
-        {
-            get { return Gifts.Where(gift => !gift.IsActive); }
-        }
-
-        public GiftStatusesPage(IEnumerable<Gift> gifts)
-        {
-            Gifts = gifts;
+            GiftsNotActive = deactivatedGifts;
+            GiftsPendingReservation = pendingGifts;
+            GiftsConfirmedAsReserved = reservedGifts;
         }
     }
 }

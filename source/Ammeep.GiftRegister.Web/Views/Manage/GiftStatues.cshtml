@@ -5,11 +5,11 @@
     Layout = "../Shared/_AdminLayout.cshtml";
 }
 
-<h2>Shhhh</h2>
 
 
- <div class="admin_content">
-     <p>Here is some text about Admin users</p>
+ <h2>Shhhh, this stuff is secret</h2>
+
+<div class="admin_content">
     @Html.Partial("PendingReservationList", Model.GiftsPendingReservation)
     @Html.Partial("ReservedList", Model.GiftsConfirmedAsReserved)
     @Html.Partial("NotActiveList", Model.GiftsNotActive)

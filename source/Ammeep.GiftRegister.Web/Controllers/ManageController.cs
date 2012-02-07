@@ -101,6 +101,16 @@ namespace Ammeep.GiftRegister.Web.Controllers
         {
             _registryManager.ReactivateGift(giftId);
             return RedirectToAction("GiftStatues");
-        }       
+        }
+
+        public ActionResult ResendConfirmationEmail()
+        {
+            return RedirectToAction("GiftStatues");
+        }
+
+        public ActionResult RemovePendingStatus()
+        {
+            return RedirectToAction("GiftStatues");
+        }
     }
 }

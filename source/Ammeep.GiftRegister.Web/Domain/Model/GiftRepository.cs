@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Simple.Data;
 
@@ -78,6 +79,44 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
             connection.Gifts.Insert(gift);
+        }
+
+        public IEnumerable<Gift> GetDeactivatedGifts()
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            return connection.Gifts.FindAllByIsActive(false).Cast<Gift>();
+        }
+
+        public IEnumerable<PendingGift> GetPendingGifts()
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            var giftPurchases = connection.GiftPurchase.FindAllByConfirmed(false).Cast<GiftPruchase>();
+            List<PendingGift> pendingGifts = new List<PendingGift>();
+            foreach (var pruchase in giftPurchases)
+            {
+                PendingGift pendingGift = new PendingGift();
+                pendingGift.GiftPruchase = pruchase;
+                pendingGift.Guest = (Guest) connection.Guest.FindByGuestId(pruchase.GuestId);
+                pendingGift.Gift =(Gift) connection.Gifts.FindByGiftId(pruchase.GiftId);
+                pendingGifts.Add(pendingGift);
+            }
+            return pendingGifts.ToList();
+        }
+
+        public IEnumerable<ReservedGift> GetConfirmedGifts()
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            var giftPurchases = connection.GiftPurchase.FindAllByConfirmed(true).Cast<GiftPruchase>();
+            List<ReservedGift> pendingGifts = new List<ReservedGift>();
+            foreach (var pruchase in giftPurchases)
+            {
+                ReservedGift pendingGift = new ReservedGift();
+                pendingGift.GiftPruchase = pruchase;
+                pendingGift.Guest = (Guest)connection.Guest.FindByGuestId(pruchase.GuestId);
+                pendingGift.Gift = (Gift)connection.Gifts.FindByGiftId(pruchase.GiftId);
+                pendingGifts.Add(pendingGift);
+            }
+            return pendingGifts;
         }
     }
 
