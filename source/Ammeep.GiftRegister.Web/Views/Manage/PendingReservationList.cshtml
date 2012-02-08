@@ -24,7 +24,7 @@
                  <td>@pendingGifts.Guest.Name</td>
                  <td>@pendingGifts.Guest.Email</td>
                  <td>@pendingGifts.GiftPruchase.CreatedOn</td>
-                <td>@Html.ActionLink("Resend Email", "ResendConfirmationEmail", "Manage")</td>
+                <td>@Html.ActionLink("Resend Email", "ResendConfirmationEmail", "Manage", new {giftPurchaseId = pendingGifts.GiftPruchase.GiftPurchaseId},null)</td>
                 <td>@Html.ActionLink("Remove", "RemovePendingStatus", "Manage",new {giftId = pendingGifts.Gift.GiftId,giftPurchaseId = pendingGifts.GiftPruchase.GiftPurchaseId},null)</td>
             </tr>
         }

@@ -131,6 +131,12 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
             connection.GiftPurchase.UpdateByGiftPurchaseId(GiftPurchaseId: giftPurchaseId, LastUpdatedDate: updatedDateTime, LastUpdatedBy: updatedByAccountId, IsActive: false);
 
         }
+
+        public GiftPruchase GetGiftPurchase(int giftPurhcaseId)
+        {
+            var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
+            return connection.GiftPurchase.FindByGiftPurchaseId(giftPurhcaseId);
+        }
     }
 
     public interface IPagedList<T> : IEnumerable<T>

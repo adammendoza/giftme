@@ -20,5 +20,6 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         IEnumerable<ReservedGift> GetConfirmedGifts();
         void RemovePendingStatus(int giftId, int updatedByAccountId, DateTime updatedDateTime);
         void DeactivateGiftPurhcase(int giftPurchaseId, int updatedByAccountId, DateTime updatedDateTime);
+        GiftPruchase GetGiftPurchase(int giftPurhcaseId);
     }
 }

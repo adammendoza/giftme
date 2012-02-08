@@ -103,8 +103,9 @@ namespace Ammeep.GiftRegister.Web.Controllers
             return RedirectToAction("GiftStatues");
         }
 
-        public ActionResult ResendConfirmationEmail()
+        public ActionResult ResendConfirmationEmail(int giftPurhcaseId)
         {
+            _registryManager.ResendConfirmationEmail(giftPurhcaseId);
             return RedirectToAction("GiftStatues");
         }
 
