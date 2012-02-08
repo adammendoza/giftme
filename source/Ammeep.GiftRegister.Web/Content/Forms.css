@@ -204,6 +204,7 @@ input[type="reset"],
 input[type="submit"] {
   cursor: pointer;
   -webkit-appearance: button;
+  min-height: 50px;
 }
 
 /* buttons*/
