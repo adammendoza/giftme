@@ -22,19 +22,19 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 
         [UIHint("Website")]
         [Required]
-        [Display(Name = "Website:")]
+        [Display(Name = "Product website:")]
         public string Website { get; set; }
 
-        [Display(Name = "Suggested Store(s):")]
+        [Display(Name = "Suggested store(s):")]
         [UIHint("Stores")]
         [Required]
         public string SuggestedStores { get; set; }
 
         [UIHint("YesNo")]
-        [Display(Name = "Specific Item Desired:")]
+        [Display(Name = "Specific item desired:")]
         public bool SpecificItemRequried { get; set; }
 
-        [Display(Name = "Quantity:")]
+        [Display(Name = "Quantity we'd like:")]
         [UIHint("Quantity")]
         [Required]
         public int QuantityRequired { get; set; }
