@@ -104,9 +104,7 @@ namespace Ammeep.GiftRegister.Web.Domain
             reservation.ConfirmedOn = DateTime.Now;
             _userRepository.UpdateGiftReservation(reservation);
             Gift gift = _giftRepository.GetGift(reservation.GiftId);
-            gift.QuantityRemaining -= reservation.Quantity;
-            gift.Reserved = gift.QuantityRemaining <= 0;
-            gift.PendingReservation = false;
+            gift.ConfirmReservation(reservation.Quantity);
             _giftRepository.UpdateGift(gift);
             Guest guest = _userRepository.GetGuestById(reservation.GuestId);
             reservationConfirmationPage.Guest = guest;

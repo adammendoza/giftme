@@ -64,5 +64,25 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public bool IsActive { get; set; }
         public bool Reserved { get; set; }
         public bool PendingReservation { get; set; }
+
+        public void ConfirmReservation(int quantityReserved)
+        {
+            QuantityRemaining -= quantityReserved;
+            Reserved = QuantityRemaining <= 0;
+            PendingReservation = false;
+        }
+
+        public void UpdateQuantityRequired(int newQuantityRequired)
+        {
+            if(QuantityRequired > newQuantityRequired)
+            {
+                QuantityRemaining -= newQuantityRequired;
+            }
+            else
+            {
+                QuantityRemaining += newQuantityRequired;
+            }
+            Reserved = QuantityRemaining <= 0;
+        }
     }
 }
