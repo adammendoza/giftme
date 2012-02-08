@@ -57,6 +57,8 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 
         public int CreatedBy { get; set; }
 
+        [Display(Name = "Quantity we'd like:")]
+        [UIHint("Quantity")]
         public int QuantityRemaining { get; set; }
 
         public bool IsActive { get; set; }

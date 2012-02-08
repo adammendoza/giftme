@@ -249,7 +249,7 @@ CREATE TABLE [dbo].[GiftPurchase] (
     [Confirmed]      BIT              NOT NULL,
     [IsActive]       BIT              NOT NULL,
     [CreatedOn]      DATETIME         NOT NULL,
-    [ConfimedOn]     DATETIME         NULL
+    [ConfirmedOn]    DATETIME         NULL
 );
 
 

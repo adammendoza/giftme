@@ -693,7 +693,7 @@
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[GiftPurchase].[ConfimedOn]">
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[GiftPurchase].[ConfirmedOn]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">

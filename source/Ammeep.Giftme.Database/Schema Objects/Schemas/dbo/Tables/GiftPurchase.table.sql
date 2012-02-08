@@ -7,6 +7,6 @@
     [Confirmed]      BIT      NOT NULL,
     [IsActive]       BIT      NOT NULL,
     [CreatedOn]      DATETIME NOT NULL,
-    [ConfimedOn]     DATETIME 
+    [ConfirmedOn]    DATETIME 
 );
 

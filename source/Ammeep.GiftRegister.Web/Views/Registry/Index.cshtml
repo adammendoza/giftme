@@ -47,13 +47,13 @@ $(document).ready(function () {
             window.location =actionUrl.replace('CATEGORY', newCategory).concat("#registry");
 
         });
-
+    var quantityRemaining = 0;
         $('body').delegate('[data-controls-modal]', 'click', function(e) {
             e.preventDefault();
             var $this = $(this).data('show', true);
             var parent = $this.parents(".registry_container").clone().addClass("first");
             parent.find(".registry_box_right").hide();
-            var quantityRemaining = parent.find("#item_Item_QuantityRemaining").val();
+            quantityRemaining = parent.find("#item_Item_QuantityRemaining").val();
             var id = parent.find("#item_Item_GiftId").val();
             $('#' + $this.attr('data-controls-modal')).find("#Quantity").val(quantityRemaining);
             $('#' + $this.attr('data-controls-modal')).find("#getthisid").val(id);
@@ -76,7 +76,7 @@ $(document).ready(function () {
 
             var incremented = ++oldNumber;
 
-            if(incremented <= 4) {
+            if(incremented <= quantityRemaining) {
                 $("#Quantity").val(incremented);
             }
         });
