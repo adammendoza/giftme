@@ -152,6 +152,11 @@
     font-size: 15px;
     text-decoration: none;
     font-style: normal;
+    cursor:pointer;
+}	
+
+.modal-your_details_button a:hover {
+    background: url(Images/button_yes.png) no-repeat left top;
 }	
 			
 .no_wait {
