@@ -65,6 +65,20 @@
 }
 
 
+.modal-close-header {
+    float: right;
+    height: 51px;
+    margin-right: -30px;
+    margin-top: -60px;
+    width: 52px; 
+    background: url(Images/icon_close.png) no-repeat scroll 0 0 transparent;
+}
+
+.modal-close-header:hover {
+    background: url(Images/icon_close_click.png) no-repeat scroll 0 0 transparent;
+}
+
+
 .modal-header-flag {
    background: url(Images/modal_get_this_flag.png) no-repeat scroll 0 0 transparent;
    margin-left: -40px;
