@@ -37,9 +37,9 @@ label,
 input,
 select,
 textarea {
-  font-family: Museo300, sans-serif;
+  font-family: "museo-slab-n5", "museo-slab",serif;
   font-size: 13px;
-  font-weight: normal;
+  font-weight: 500;
   line-height: normal;
 }
 label {
@@ -49,7 +49,7 @@ label {
   text-align: left;
   padding-right:10px;
   color: #EC008C;
-  font-family: Museo300, sans-serif;
+  font-family: "museo-slab-n5", "museo-slab",serif;
   font-size: 13px;
   font-weight: bold;
   line-height: 150%;
@@ -89,7 +89,7 @@ select {
   font-size: 13px;
   line-height: 18px;
   color: #633B1C;
-  font-family: Museo300, sans-serif;
+  font-family: "museo-slab-n5", "museo-slab",serif;
   border: 1px solid #ccc;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

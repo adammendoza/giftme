@@ -78,8 +78,8 @@
 }
 
 .modal-header-text label {
-    color: #8AC3DA;
-    font-family: Museo300,sans-serif;
+    color: #8AC3DA;    
+    font-family: "museo-slab-n5", "museo-slab",serif;
     font-size: 14px;
     width: 70px;
 }
@@ -132,12 +132,12 @@
 }
 		
 .modal-your_details_text label{
-	font-family: museo300,sans-serif;
+    font-family: "museo-slab-n5", "museo-slab",serif;
 	padding-left: 20px;
     width: 150px;
 	color: #633B1C;
     font-size: 15px;
-   	font-weight: bold;
+   	font-weight: 500;
     line-height: 130%;
 }
 							
@@ -147,7 +147,7 @@
     float: left;
     margin-left: 175px;
     padding: 10px 0 0 80px;
-    font-family: museo300,sans-serif;
+    font-family: "museo-slab-n5", "museo-slab",serif;
     color: #ec652a;
     font-size: 15px;
     text-decoration: none;
@@ -173,7 +173,7 @@
 				}
 			
 				.modal-your_details_no {
-					font-family: museo300,sans-serif;
+                    font-family: "museo-slab-n5", "museo-slab",serif;
 					font-size: 15px;
 					}
 #spinner {
@@ -252,7 +252,7 @@
   -moz-box-shadow: 0 0 6px #f8b9b7;
   box-shadow: 0 0 6px #f8b9b7;
 }
-.input .input-validation-error, . .input-validation-error {
+.input .input-validation-error, .input-validation-error {
   color: #EC008C;
   border-color: #EC008C;
 }
