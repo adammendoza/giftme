@@ -92,9 +92,9 @@
 }
 
 .modal-header-text label {
-    color: #8AC3DA;    
-    font-family: "museo-slab-n5", "museo-slab",serif;
-    font-size: 14px;
+    font-family: "museo-slab-n5","museo-slab",serif;
+    font-size: 18px;
+    margin-top: -7px;
     width: 70px;
 }
 
