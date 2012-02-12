@@ -18,7 +18,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         public IEnumerable<Category> GetCategories()
         {
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            return connection.Category.All().Cast<Category>();       
+            return connection.Category.All().OrderByName().Cast<Category>();       
         }
 
         public IEnumerable<Gift> GetGifts()

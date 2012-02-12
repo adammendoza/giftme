@@ -1,4 +1,157 @@
-﻿
+﻿/*
+Deployment script for Giftme
+*/
+
+GO
+SET ANSI_NULLS, ANSI_PADDING, ANSI_WARNINGS, ARITHABORT, CONCAT_NULL_YIELDS_NULL, QUOTED_IDENTIFIER ON;
+
+SET NUMERIC_ROUNDABORT OFF;
+
+
+GO
+:setvar DatabaseName "Giftme"
+:setvar DefaultDataPath "c:\Program Files\Microsoft SQL Server\MSSQL10.SQLEXPRESS\MSSQL\DATA\"
+:setvar DefaultLogPath "c:\Program Files\Microsoft SQL Server\MSSQL10.SQLEXPRESS\MSSQL\DATA\"
+
+GO
+:on error exit
+GO
+USE [master]
+GO
+IF (DB_ID(N'$(DatabaseName)') IS NOT NULL
+    AND DATABASEPROPERTYEX(N'$(DatabaseName)','Status') <> N'ONLINE')
+BEGIN
+    RAISERROR(N'The state of the target database, %s, is not set to ONLINE. To deploy to this database, its state must be set to ONLINE.', 16, 127,N'$(DatabaseName)') WITH NOWAIT
+    RETURN
+END
+
+GO
+IF (DB_ID(N'$(DatabaseName)') IS NOT NULL) 
+BEGIN
+    ALTER DATABASE [$(DatabaseName)]
+    SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE [$(DatabaseName)];
+END
+
+GO
+PRINT N'Creating $(DatabaseName)...'
+GO
+CREATE DATABASE [$(DatabaseName)]
+    ON 
+    PRIMARY(NAME = [Giftme], FILENAME = N'$(DefaultDataPath)Giftme.mdf')
+    LOG ON (NAME = [Giftme_log], FILENAME = N'$(DefaultLogPath)Giftme_log.ldf') COLLATE Latin1_General_CI_AS
+GO
+EXECUTE sp_dbcmptlevel [$(DatabaseName)], 100;
+
+
+GO
+IF EXISTS (SELECT 1
+           FROM   [master].[dbo].[sysdatabases]
+           WHERE  [name] = N'$(DatabaseName)')
+    BEGIN
+        ALTER DATABASE [$(DatabaseName)]
+            SET ANSI_NULLS ON,
+                ANSI_PADDING ON,
+                ANSI_WARNINGS ON,
+                ARITHABORT ON,
+                CONCAT_NULL_YIELDS_NULL ON,
+                NUMERIC_ROUNDABORT OFF,
+                QUOTED_IDENTIFIER ON,
+                ANSI_NULL_DEFAULT ON,
+                CURSOR_DEFAULT LOCAL,
+                RECOVERY FULL,
+                CURSOR_CLOSE_ON_COMMIT OFF,
+                AUTO_CREATE_STATISTICS ON,
+                AUTO_SHRINK OFF,
+                AUTO_UPDATE_STATISTICS ON,
+                RECURSIVE_TRIGGERS OFF 
+            WITH ROLLBACK IMMEDIATE;
+        ALTER DATABASE [$(DatabaseName)]
+            SET AUTO_CLOSE OFF 
+            WITH ROLLBACK IMMEDIATE;
+    END
+
+
+GO
+IF EXISTS (SELECT 1
+           FROM   [master].[dbo].[sysdatabases]
+           WHERE  [name] = N'$(DatabaseName)')
+    BEGIN
+        ALTER DATABASE [$(DatabaseName)]
+            SET ALLOW_SNAPSHOT_ISOLATION OFF;
+    END
+
+
+GO
+IF EXISTS (SELECT 1
+           FROM   [master].[dbo].[sysdatabases]
+           WHERE  [name] = N'$(DatabaseName)')
+    BEGIN
+        ALTER DATABASE [$(DatabaseName)]
+            SET READ_COMMITTED_SNAPSHOT OFF;
+    END
+
+
+GO
+IF EXISTS (SELECT 1
+           FROM   [master].[dbo].[sysdatabases]
+           WHERE  [name] = N'$(DatabaseName)')
+    BEGIN
+        ALTER DATABASE [$(DatabaseName)]
+            SET AUTO_UPDATE_STATISTICS_ASYNC OFF,
+                PAGE_VERIFY NONE,
+                DATE_CORRELATION_OPTIMIZATION OFF,
+                DISABLE_BROKER,
+                PARAMETERIZATION SIMPLE,
+                SUPPLEMENTAL_LOGGING OFF 
+            WITH ROLLBACK IMMEDIATE;
+    END
+
+
+GO
+IF IS_SRVROLEMEMBER(N'sysadmin') = 1
+    BEGIN
+        IF EXISTS (SELECT 1
+                   FROM   [master].[dbo].[sysdatabases]
+                   WHERE  [name] = N'$(DatabaseName)')
+            BEGIN
+                EXECUTE sp_executesql N'ALTER DATABASE [$(DatabaseName)]
+    SET TRUSTWORTHY OFF,
+        DB_CHAINING OFF 
+    WITH ROLLBACK IMMEDIATE';
+            END
+    END
+ELSE
+    BEGIN
+        PRINT N'The database settings cannot be modified. You must be a SysAdmin to apply these settings.';
+    END
+
+
+GO
+IF IS_SRVROLEMEMBER(N'sysadmin') = 1
+    BEGIN
+        IF EXISTS (SELECT 1
+                   FROM   [master].[dbo].[sysdatabases]
+                   WHERE  [name] = N'$(DatabaseName)')
+            BEGIN
+                EXECUTE sp_executesql N'ALTER DATABASE [$(DatabaseName)]
+    SET HONOR_BROKER_PRIORITY OFF 
+    WITH ROLLBACK IMMEDIATE';
+            END
+    END
+ELSE
+    BEGIN
+        PRINT N'The database settings cannot be modified. You must be a SysAdmin to apply these settings.';
+    END
+
+
+GO
+USE [$(DatabaseName)]
+GO
+IF fulltextserviceproperty(N'IsFulltextInstalled') = 1
+    EXECUTE sp_fulltext_database 'enable';
+
+
 GO
 /*
  Pre-Deployment Script Template							
@@ -256,6 +409,15 @@ GO
 ALTER TABLE [dbo].[Gifts] WITH NOCHECK
     ADD CONSTRAINT [FK_Gifts_LastUpdatedBy_Users] FOREIGN KEY ([LastUpdatedBy]) REFERENCES [dbo].[Account] ([AccountId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+
+GO
+-- Refactoring step to update target server with deployed transaction logs
+CREATE TABLE  [dbo].[__RefactorLog] (OperationKey UNIQUEIDENTIFIER NOT NULL PRIMARY KEY)
+GO
+sp_addextendedproperty N'microsoft_database_tools_support', N'refactoring log', N'schema', N'dbo', N'table', N'__RefactorLog'
+GO
+
+GO
 /*
 Post-Deployment Script Template							
 --------------------------------------------------------------------------------------
@@ -287,6 +449,7 @@ INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdated
 INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (4, N'Outdoor & Sports', 3, CAST(0x00006FC4012B6B86 AS DateTime), 3, CAST(0x0000914300F2953B AS DateTime))
 INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (5, N'Travel', 3, CAST(0x00008E0100563DB4 AS DateTime), 3, CAST(0x00008664005189C4 AS DateTime))
 INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (6, N'Other', 3, CAST(0x00007FDF0147F8B8 AS DateTime), 3, CAST(0x00006C15013C4C64 AS DateTime))
+INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (7, N'Bedroom', 3, CAST(0x00007FDF0147F8B8 AS DateTime), 3, CAST(0x00006C15013C4C64 AS DateTime))
 SET IDENTITY_INSERT [Category] OFF
 
 GO

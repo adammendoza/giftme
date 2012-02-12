@@ -29,4 +29,5 @@ INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdated
 INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (4, N'Outdoor & Sports', 3, CAST(0x00006FC4012B6B86 AS DateTime), 3, CAST(0x0000914300F2953B AS DateTime))
 INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (5, N'Travel', 3, CAST(0x00008E0100563DB4 AS DateTime), 3, CAST(0x00008664005189C4 AS DateTime))
 INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (6, N'Other', 3, CAST(0x00007FDF0147F8B8 AS DateTime), 3, CAST(0x00006C15013C4C64 AS DateTime))
+INSERT [Category] ([CategoryId], [Name], [CreatedBy], [CreateDate], [LastUpdatedBy], [LastUpdatedDate]) VALUES (7, N'Bedroom', 3, CAST(0x00007FDF0147F8B8 AS DateTime), 3, CAST(0x00006C15013C4C64 AS DateTime))
 SET IDENTITY_INSERT [Category] OFF
