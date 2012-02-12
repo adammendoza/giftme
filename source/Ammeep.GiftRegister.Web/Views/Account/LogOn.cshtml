@@ -13,7 +13,6 @@
 <div class="content">
 
     <div class="admin_content">
-        <p>Please enter your user name and password. @Html.ActionLink("Register", "Register") if you don't have an account.</p>
          @using (Html.BeginForm())
          {
           @Html.ValidationSummary(true,"The user name and password combination supplied is invalid")

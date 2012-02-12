@@ -1,3 +1,4 @@
+using System.Web.Mvc;
 using Ammeep.GiftRegister.Web.Attributes;
 using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Domain.Authentication;
@@ -64,6 +65,7 @@ namespace Ammeep.GiftRegister.Web.App_Start
             kernel.Bind<IMailService>().To<MailService>();
 
             kernel.BindFilter<HandleAllTheThingsAttribute>(System.Web.Mvc.FilterScope.Controller, 0);
+            kernel.BindFilter<AuthorizeAdminUserFilter>(FilterScope.Action, 0).WhenActionMethodHas<AuthorizeAdminUserAttribute>();
         }        
     }
 }

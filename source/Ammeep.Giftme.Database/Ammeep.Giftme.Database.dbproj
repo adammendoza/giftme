@@ -235,9 +235,6 @@
     <NotInBuild Include="Scripts\Post-Deployment\TestData\Gift.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
-    <NotInBuild Include="Scripts\Post-Deployment\TestData\Guests.sql">
-      <SubType>NotInBuild</SubType>
-    </NotInBuild>
     <NotInBuild Include="Scripts\Post-Deployment\TestData\Accounts.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>

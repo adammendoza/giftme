@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using Ammeep.GiftRegister.Web.Attributes;
 using Ammeep.GiftRegister.Web.Domain;
 using Ammeep.GiftRegister.Web.Domain.Model;
 using Ammeep.GiftRegister.Web.Models;
@@ -91,6 +92,7 @@ namespace Ammeep.GiftRegister.Web.Controllers
             return View(addGiftPage);
         }
 
+        [AuthorizeAdminUser]
         public ActionResult GiftStatues()
         {
             GiftStatusesPage model = _registryManager.GetAllGifts();

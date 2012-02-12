@@ -13,4 +13,3 @@ print 'Inserting Test Data'
 :r .\ReferenceData\AccountTypes.sql
 :r .\TestData\Accounts.sql
 :r .\TestData\Category.sql
-:r .\TestData\Gift.sql
