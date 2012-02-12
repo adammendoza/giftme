@@ -63,6 +63,8 @@ $(document).ready(function () {
             $('#' + $this.attr('data-controls-modal')).modal($this.data());
         });
 
+
+
         $("#decrementQuantity").click(function() {
             var oldNumber = $("#Quantity").val();
             var decremented = (oldNumber - 1 );
@@ -117,6 +119,9 @@ $(document).ready(function () {
                         $("#spinner").removeClass("loading_spinner_visible").fadeOut();
                         $("#resultcontent").show();
                         $("#resultcontent").html(data);
+                        $("#reloadafterclose").click(function() {
+                            window.location.reload(true);
+                          });
                     }
                 });
             
