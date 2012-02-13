@@ -50,7 +50,7 @@
   background-clip: padding-box;
 }
 .modal .close {
-  margin-top: 7px;
+
 }
 .modal.fade {
   -webkit-transition: opacity .3s linear, top .3s ease-out;
