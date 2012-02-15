@@ -37,11 +37,13 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
         [Display(Name = "Quantity we'd like:")]
         [UIHint("Quantity")]
         [Required]
+        [Range(1,int.MaxValue, ErrorMessage = "You must enter a quantity")]
         public int QuantityRequired { get; set; }
 
         [UIHint("Cost")]
         [Display(Name = "RRP:")]
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "You must enter a price")]
         public decimal RetailPrice { get; set; }
 
         [UIHint("Category")]

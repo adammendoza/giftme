@@ -91,11 +91,21 @@
     padding-left: 25px;
 }
 
-.modal-header-text label {
+.modal-header-text h2 {    
+    color: #EC008C;
     font-family: "museo-slab-n5","museo-slab",serif;
     font-size: 18px;
+    font-weight: 500;
+}
+
+.modal-header-text label {
     margin-top: -7px;
     width: 70px;
+    
+    color: #EC008C;
+    font-family: "museo-slab-n5","museo-slab",serif;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .modal-header-text .input {
