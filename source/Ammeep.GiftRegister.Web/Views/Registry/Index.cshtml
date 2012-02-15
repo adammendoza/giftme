@@ -43,7 +43,7 @@ $(document).ready(function () {
         
         $('#categoryDropdown').change(function () {
             var newCategory = $("#categoryDropdown option:selected").val();
-            var actionUrl ="@Url.Action("RegistryPage", new { page = "0", categoryId = "CATEGORY" })";
+            var actionUrl ="@Url.Action("Index", new { pageNumber = "0", categoryId = "CATEGORY" })";
             window.location =actionUrl.replace('CATEGORY', newCategory).concat("#registry");
 
         });

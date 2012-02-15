@@ -13,10 +13,8 @@
      <div class="rightspan">     
          @if (Model.HasItemsToDisplay)
          {
-             @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalNumberOfItems, "RegistryPage", new { categoryId = Model.SelectedCategoryId })
+             @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalNumberOfItems, "Index", new { categoryId = Model.SelectedCategoryId })
          }
      </div>
-    
-    
-            
+       
  </div>

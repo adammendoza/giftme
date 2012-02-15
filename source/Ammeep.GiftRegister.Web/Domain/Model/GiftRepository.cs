@@ -35,18 +35,18 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 
         public IPagedList<Gift> GetPagedGifts(int pageSize, int pageNumber)
         {
-            int shiftedPageNum = pageNumber > 0 ? pageNumber-- : pageNumber;
+            int shiftedPageNum = pageNumber > 0 ? (pageNumber -1)  : pageNumber;
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            IEnumerable<Gift> page = connection.Gifts.FindAllByIsActiveAndReservedAndPendingReservation(true, false,false).Skip(shiftedPageNum).Take(pageSize).Cast<Gift>();
+            IEnumerable<Gift> page = connection.Gifts.FindAllByIsActiveAndReservedAndPendingReservation(true, false, false).Skip(shiftedPageNum * pageSize).Take(pageSize).Cast<Gift>();
             int totalNumberOfGifts = connection.Gifts.FindAllByIsActiveAndReservedAndPendingReservation(true, false,false).Count();
             return new PagedList<Gift>(page, pageNumber, pageSize, totalNumberOfGifts);
         }
 
         public IPagedList<Gift> GetPagedGiftsForCategory(int pageSize, int pageNumber, int categoryId)
         {
-            int shiftedPageNum = pageNumber > 0 ? pageNumber-- : pageNumber;
+            int shiftedPageNum = pageNumber > 0 ? (pageNumber - 1) : pageNumber;
             var connection = Database.OpenConnection(_configuration.GiftmeConnectionString);
-            IEnumerable<Gift> page = connection.Gifts.FindAllByIsActiveAndCategoryAndReservedAndPendingReservation(true, categoryId,false, false).Skip(shiftedPageNum).Take(pageSize).Cast<Gift>();
+            IEnumerable<Gift> page = connection.Gifts.FindAllByIsActiveAndCategoryAndReservedAndPendingReservation(true, categoryId, false, false).Skip(shiftedPageNum * pageSize).Take(pageSize).Cast<Gift>();
             int totalNumberOfGifts = connection.Gifts.FindAllByIsActiveAndCategoryAndReservedAndPendingReservation(true, categoryId, false, false).Count();
             return new PagedList<Gift>(page, pageNumber, pageSize, totalNumberOfGifts);
         }
@@ -184,7 +184,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 
         public int PageNumber
         {
-            get { return PageIndex + 1; }
+            get { return PageIndex +1; }
         }
 
         public int PageSize { get; private set; }
@@ -227,6 +227,11 @@ namespace Ammeep.GiftRegister.Web.Domain.Model
 
             if (pageSize < 1)
                 throw new ArgumentOutOfRangeException("index", "PageSize cannot be less than 1.");
+
+            if(index > 0)
+            {
+                index--;
+            }
 
             TotalItemCount = totalItemCount;
             PageSize = pageSize;

@@ -91,12 +91,13 @@ namespace Ammeep.GiftRegister.Web
             }
             else if (pageCount != 1 && _currentPage > 0 && _currentPage <= pageCount)
             {
+
                 const int numberOfPagesToDisplay = 5;
 
                 stringBuilder.Append("<span class=\"numbers\">");
-
+               
                 stringBuilder.Append(@"<ul class=""pageNumbers"">");
-
+                stringBuilder.Append(string.Format("<li> {0}  |  </li>", GenerateViewAllPageLink("View All", 0, "pageValue", false)));
                 // Previous
                 if (_currentPage > 1)
                 {
@@ -146,7 +147,7 @@ namespace Ammeep.GiftRegister.Web
                     }
                 }
 
-                if (end < (pageCount - 3))
+                if (end <= (pageCount - 3))
                 {
                     stringBuilder.Append("<li>...</li>");
                     stringBuilder.Append(GeneratePageLink((pageCount - 1).ToString(), pageCount - 1));
@@ -182,7 +183,7 @@ namespace Ammeep.GiftRegister.Web
         private string GeneratePageLink(string linkText, int pageNumber, string cssClass, bool writeListItem)
         {
             var pageLinkValueDictionary = new RouteValueDictionary(_linkWithoutPageValuesDictionary);
-            pageLinkValueDictionary["page"] = pageNumber;
+            pageLinkValueDictionary["pageNumber"] = pageNumber;
 
             VirtualPathData virtualPathData = _viewContext.RouteData.Route.GetVirtualPath(_viewContext.RequestContext,
                                                                                           pageLinkValueDictionary);
@@ -198,5 +199,28 @@ namespace Ammeep.GiftRegister.Web
             }
             return null;
         }
+
+
+        private string GenerateViewAllPageLink(string linkText, int pageNumber, string cssClass, bool writeListItem)
+        {
+            var pageLinkValueDictionary = new RouteValueDictionary(_linkWithoutPageValuesDictionary);
+            pageLinkValueDictionary["pageNumber"] = pageNumber;
+            pageLinkValueDictionary["pageSize"] = _totalItemCount;
+
+            VirtualPathData virtualPathData = _viewContext.RouteData.Route.GetVirtualPath(_viewContext.RequestContext,
+                                                                                          pageLinkValueDictionary);
+
+            if (virtualPathData != null)
+            {
+                string s = String.Format("<a href=\"{0}#registry\" class=\"{1}\">{2}</a>",@"/" + virtualPathData.VirtualPath, cssClass, linkText);
+
+                if (writeListItem)
+                    s = "<li>" + s + "</li>";
+
+                return s;
+            }
+            return null;
+        }
+
     }
 }

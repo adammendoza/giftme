@@ -19,25 +19,14 @@ namespace Ammeep.GiftRegister.Web.Controllers
             _loggingService = loggingService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int pageNumber,int pageSize, int categoryId)
         {
-            var registryPageSize = _config.RegistryPageSize;
-            var gifts = _registryManager.GetRegistry(registryPageSize, 0, 0);
+            var gifts = _registryManager.GetRegistry(pageSize, pageNumber, categoryId);
             var categories = _registryManager.GetCategories();
-            RegistryItemsPage itemsPage = new RegistryItemsPage(gifts,categories,registryPageSize,0);
+            RegistryItemsPage itemsPage = new RegistryItemsPage(gifts, categories, pageSize, categoryId);
             return View(itemsPage);
         }
 
-        public ActionResult RegistryPage(int page,int categoryId)
-        {
-            var registryPageSize = _config.RegistryPageSize;
-            var gifts = _registryManager.GetRegistry(registryPageSize, page, categoryId);
-            var categories = _registryManager.GetCategories();
-            RegistryItemsPage itemsPage = new RegistryItemsPage(gifts, categories, registryPageSize,categoryId);
-            return View("Index",itemsPage);
-        }
-
- 
         [HttpPost]
         public ActionResult GetThis(GetThisModel getThisModel)
         {
