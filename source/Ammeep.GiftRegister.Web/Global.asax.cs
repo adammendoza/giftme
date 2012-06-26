@@ -49,19 +49,20 @@ namespace Ammeep.GiftRegister.Web
                            }
                );
 
-         
+            routes.MapRoute(
+                "Registery", // Route name
+                "Registry/{action}/{pageNumber}/{pageSize}/{categoryId}", // URL with parameters
+                new {controller = "Registry", action = "Index", pageNumber = 0, pageSize = 10, categoryId = 0}
+                // Parameter defaults
+                );
             routes.MapRoute(
                 "Feedback", // Route name
-                "Feedback/{action}", // URL with parameters
+                "{controller}/{action}", // URL with parameters
                 new {controller = "Feedback", action = "Index"}
                 // Parameter defaults
                 );
 
-            routes.MapRoute(
-             "Registery", // Route name
-             "{controller}/{action}/{pageNumber}/{pageSize}/{categoryId}", // URL with parameters
-             new { controller = "Registry", action = "Index", pageNumber = 0, pageSize = 10, categoryId = 0 } // Parameter defaults
-             );
+   
 
 
         }
