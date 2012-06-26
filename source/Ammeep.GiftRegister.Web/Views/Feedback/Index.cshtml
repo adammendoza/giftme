@@ -1,0 +1,188 @@
+﻿@model Ammeep.GiftRegister.Web.Domain.Model.UserFeedback
+
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_FeedbackLayout.cshtml";
+}
+
+
+<div id="hello">
+    <div id="feedback_box">
+        <div id="feedback_box_left">
+        </div>
+        <div id="hello_box_right"> 
+            <p>
+                Hello all!
+                <br>
+                <br>
+                As you may have heard, we are looking at starting this @Html.ActionLink("online registry","Index","Registry") idea as a business venture, due to its success earlier this year.
+                <br>
+                <br>
+                We'd love it if you could spare a few minutes of your time to fill out the survey below!
+                <br>
+                <br>
+                <br>
+                Cheers,
+                <br>  
+                
+                <h1 class="joanneandamy">
+                    Joanne &amp; Amy
+                </h1>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="feedback_wrapper">
+@using(Html.BeginForm("Index","Feedback",FormMethod.Post))
+{
+    <div class="feedback_question">
+        <div class="question_lable">
+            @Html.LabelFor(model => model.Name)
+            <span class="pink">*</span>
+        </div>
+        <div class="question_input">
+             @Html.TextBoxFor(model => model.Name)
+             @Html.ValidationMessageFor(model => model.Name)
+        </div>
+     
+    </div>
+
+    <div class="feedbackseperator"></div>
+    
+    <div class="feedback_question">
+        <div class="question_lable">
+            @Html.LabelFor(model => model.InterpretationComments)
+            <span class="pink">*</span>
+        </div>
+        <div class="question_input">
+            @Html.TextAreaFor(model => model.InterpretationComments)
+            @Html.ValidationMessageFor(model => model.InterpretationComments)
+        </div>
+     
+    </div>
+    
+    <div class="feedback_question">
+        <div class="question_lable">
+            @Html.LabelFor(model => model.WasItClear)
+            <span class="pink">*</span>
+        </div>
+        <div class="question_input">
+            @Html.RadioButtonFor(model => model.WasItClear,Model.WasItClear) <span class="question_text">Yes</span>
+            @Html.RadioButtonFor(model => model.WasItClear,!Model.WasItClear) <span class="question_text">No</span>
+            @Html.ValidationMessageFor(model => model.WasItClear)
+        </div>
+     
+    </div>
+    
+     <div class="feedback_question">
+        <div class="question_lable">
+            @Html.LabelFor(model => model.NotClearComments)
+            <span class="pink"></span>
+        </div>
+        <div class="question_input">
+             @Html.TextAreaFor(model => model.NotClearComments)
+        </div>
+     
+    </div>
+
+    <div class="feedbackseperator"></div>
+    
+    <div class="feedback_question">
+        <div class="question_lable">
+            @Html.LabelFor(model => model.WantsToSeeReservedGifts)
+            <span class="pink">*</span>
+        </div>
+        <div class="question_input">
+            @Html.RadioButtonFor(model => model.WantsToSeeReservedGifts, Model.WantsToSeeReservedGifts) <span class="question_text">Yes</span>
+            @Html.RadioButtonFor(model => model.WantsToSeeReservedGifts, !Model.WantsToSeeReservedGifts) <span class="question_text">No</span>
+            @Html.ValidationMessageFor(model => model.WantsToSeeReservedGifts)
+        </div>
+     
+    </div>
+    
+    <div class="feedback_question">
+        <div class="question_lable">
+            @Html.LabelFor(model => model.SeeReservedGiftsComments)
+
+        </div>
+        <div class="question_input">
+            @Html.TextAreaFor(model => model.SeeReservedGiftsComments)
+            @Html.ValidationMessageFor(model => model.SeeReservedGiftsComments)
+        </div>
+     
+    </div>
+    
+    <div class="feedbackseperator"></div>
+    
+    <div class="feedback_question">
+        <div class="question_lable">
+            @Html.LabelFor(model => model.AgreesWithPricingModels)
+            <span class="pink">*</span>
+        </div>
+      
+        <div class="all_price_options">
+            <div class="price_option">
+                <h4 class="pink">Option One</h4>
+                <p class="question_text">
+                    A one-off payment for $40 for site setup<br/>
+                    Upload unlimited gifts<br/>
+                    Additional gifts entered are $5<br />
+                    4 months web access and $10 for each month there after<br/>
+                    
+                </p>
+            </div>
+            
+
+           <div class="price_option">
+                <h4 class="pink">Option Two</h4>
+                <p class="question_text">
+                    A one-off payment for $99 for site setup<br/>
+                    First 20 gifts entered are free<br/>
+                    5 months web access and $10 for each month there after<br/>
+                </p>
+            </div>
+        </div>
+
+        <div class="question_input">
+            @Html.RadioButtonFor(model => model.AgreesWithPricingModels, Model.AgreesWithPricingModels) <span class="question_text">Yes</span>
+            @Html.RadioButtonFor(model => model.AgreesWithPricingModels, !Model.AgreesWithPricingModels) <span class="question_text">No</span>
+            @Html.ValidationMessageFor(model => model.AgreesWithPricingModels)
+        </div>
+     
+    </div>
+    
+    <div class="feedback_question">
+        <div class="question_lable">
+            @Html.LabelFor(model => model.PricingModelComments)
+       
+        </div>
+        <div class="question_input">
+            @Html.TextAreaFor(model => model.PricingModelComments)
+            @Html.ValidationMessageFor(model => model.PricingModelComments)
+        </div>
+     
+    </div>
+    
+    <div class="feedbackseperator"></div>
+    
+    <div class="feedback_question">
+        <div class="question_lable">
+            @Html.LabelFor(model => model.FinalComments)
+       
+        </div>
+        <div class="question_input">
+            @Html.TextAreaFor(model => model.FinalComments)
+            @Html.ValidationMessageFor(model => model.FinalComments)
+        </div>
+     
+    </div>
+    
+    
+    <div id="submit">
+    <div id="blue_box">                    
+                <input type="submit" class="btn feedback_button" value="Send Feedback" />  
+    </div>
+</div>
+    
+}
+</div>

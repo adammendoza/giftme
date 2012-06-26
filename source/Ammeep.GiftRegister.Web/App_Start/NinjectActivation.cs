@@ -59,10 +59,12 @@ namespace Ammeep.GiftRegister.Web.App_Start
             kernel.Bind<IAuthenticationService>().To<AuthenticationService>();
             kernel.Bind<ICurrentUser>().To<CurrentUser>();
             kernel.Bind<IGiftRepository>().To<GiftRepository>();
+            kernel.Bind<IFeedbackRepository>().To<FeedbackRepository>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IUserManager>().To<UserManager>();
             kernel.Bind<IRegistryManager>().To<RegistryManager>();
             kernel.Bind<IMailService>().To<MailService>();
+            kernel.Bind<IFeedbackManager>().To<FeedbackManager>();
 
             kernel.BindFilter<HandleAllTheThingsAttribute>(System.Web.Mvc.FilterScope.Controller, 0);
             kernel.BindFilter<AuthorizeAdminUserFilter>(FilterScope.Action, 0).WhenActionMethodHas<AuthorizeAdminUserAttribute>();
