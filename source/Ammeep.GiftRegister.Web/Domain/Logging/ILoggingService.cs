@@ -57,6 +57,7 @@ namespace Ammeep.GiftRegister.Web.Domain.Logging
             if (Logger.IsErrorEnabled)
             {
                 Logger.Error(message, exception);
+                Logger.Error(exception.ToString);
             }
         }
 

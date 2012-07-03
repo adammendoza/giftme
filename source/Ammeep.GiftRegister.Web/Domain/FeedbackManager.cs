@@ -19,7 +19,7 @@ namespace Ammeep.GiftRegister.Web.Domain
 
         public void SubmitFeedback(UserFeedback userFeedback)
         {
-            _loggingService.LogInformation("Inserting user feedback");
+            _loggingService.LogInformation(string.Format("Inserting feedback from {0}",userFeedback.Name));
             Feedback feedback = new Feedback
                                     {
                                         Name = userFeedback.Name,
